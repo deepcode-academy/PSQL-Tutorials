@@ -286,3 +286,10 @@ HAVING aggregate_condition;
 2. `GROUP BY` - qatorlarni belgilangan ustunlarga asoslangan holda guruhlash uchun ishlatiladi.
 3. `HAVING` - guruhlangan maʼlumotlarni agregatsiya funksiyalariga asoslangan holda filtrlash uchun ishlatiladi.
 
+**Example 1:** Filtering Sales Data
+
+**Table:** Sales
+
+| Salesperson | Region | Sales |
+|-------------|--------|-------|
+| Alice       | East   | 500   |
