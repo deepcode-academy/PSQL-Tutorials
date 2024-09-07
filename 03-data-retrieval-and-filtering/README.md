@@ -44,4 +44,12 @@ FROM users
 WHERE age = 30;
 ```
 
+2. Shartlar kombinatsiyasi `AND` va `OR`
 
+`30` yoshdan katta va faqat `"Toshkent"` shahrida yashaydigan foydalanuvchilarni olish:
+
+```sql
+SELECT name, city, age
+FROM users
+WHERE age > 30 AND city = 'Toshkent';
+```
