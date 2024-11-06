@@ -1,2 +1,2 @@
-# PSQL-Tutorials
-PostgreSQL Basic
+# PostgreSQL Tutorials
+
