@@ -20,3 +20,9 @@
 # About PostgreSQL
 PostgreSQL – bu `open-source` va powerful relational database management system (RDBMS). U ko'p turdagi ma'lumot turlarini qo'llab-quvvatlaydi va `murakkab so'rovlar`, katta hajmdagi `ma'lumotlarni boshqarish` imkoniyatini beradi.
 
+- `PostgreSQL`ning asosiy afzalliklari:
+  - **Open-source:** `PostgreSQL` bepul va uni o'zgartirish yoki moslashtirish mumkin.
+  - **Data Integrity:** Yozilgan ma'lumotlarning to'g'ri va bir xil bo'lishini kafolatlaydi.
+  - **Support for SQL and JSON:** `PostgreSQL` relational (SQL) va `JSON` bilan ishlash imkoniyatini beradi, ya'ni bu ikkala usulda ma'lumot saqlash mumkin.
+  - **Extensibility:** `PostgreSQL`ni qo'shimcha modullar yordamida kengaytirish oson.
+
