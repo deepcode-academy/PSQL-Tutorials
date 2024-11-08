@@ -26,3 +26,5 @@ PostgreSQL – bu `open-source` va powerful relational database management syste
   - **Support for SQL and JSON:** `PostgreSQL` relational (SQL) va `JSON` bilan ishlash imkoniyatini beradi, ya'ni bu ikkala usulda ma'lumot saqlash mumkin.
   - **Extensibility:** `PostgreSQL`ni qo'shimcha modullar yordamida kengaytirish oson.
 
+
+
