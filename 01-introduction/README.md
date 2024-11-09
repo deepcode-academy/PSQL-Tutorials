@@ -26,5 +26,11 @@ PostgreSQL – bu `open-source` va powerful relational database management syste
   - **Support for SQL and JSON:** `PostgreSQL` relational (SQL) va `JSON` bilan ishlash imkoniyatini beradi, ya'ni bu ikkala usulda ma'lumot saqlash mumkin.
   - **Extensibility:** `PostgreSQL`ni qo'shimcha modullar yordamida kengaytirish oson.
 
+  
+# Install PostgreSQL
 
+1. Download PostgreSQL
+   1. PostgreSQL rasmiy saytidan `postgresql`ni yuklab oling.
+   2. Saytda `Windows` ni tanlaganingizdan so‘ng, `Download the installer` linkiga bosing, bu sizni `EnterpriseDB` saytidagi `PostgreSQL` yuklab olish sahifasiga yo‘naltiradi.
+![img.png](images/img.png)
 
