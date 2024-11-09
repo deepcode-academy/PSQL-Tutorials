@@ -32,11 +32,15 @@ PostgreSQL – bu `open-source` va powerful relational database management syste
 - Download PostgreSQL
     - [PostgreSQL rasmiy saytiga kirib olamiz.](https://www.postgresql.org/)
     - Download tugmasini bosamiz.
+    - 
     ![img.png](images/img.png)
+
     - Bu yerdan o'zimizga kerak bo'lgan `OS`(**Operating System**) ni tanlab olamiz.
     ![img.png](images/selectos.png)
+
     - Bu yerdan Download the installer ni bosamiz.
     ![img.png](images/download.png)
+
     - Bu yerdan esa PostgreSQLni versiyasini tanlashimiz mumkin.
     ![img.png](images/selectversion.png)
 
