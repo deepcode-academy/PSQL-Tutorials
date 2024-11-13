@@ -52,3 +52,7 @@ Agar bizda `students` nomli jadval bo'lsa, uning tarkibi quyidagicha bo'lishi mu
 3. **Document-Based Database:** Bunda ma'lumotlar `JSON`, `XML` kabi hujjat formatida saqlanadi, har bir hujjat ma'lumotni o'zida saqlaydi va murakkab tuzilmaga ega bo'lishi mumkin. 
    - **Example:** `MongoDB`.
 
+4. **Graph Database:**
+   - Bu ma'lumotlar bazasi tarmoq aloqalari va murakkab bog'lanishlarni ifodalashda qo'llaniladi. Grafik bazalarida ma'lumot tugunlar va bog'lanishlar shaklida saqlanadi. 
+   - **Example:** `Neo4j`.
+
