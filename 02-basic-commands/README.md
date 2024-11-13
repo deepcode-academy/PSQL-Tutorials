@@ -38,10 +38,17 @@ Agar bizda `students` nomli jadval bo'lsa, uning tarkibi quyidagicha bo'lishi mu
 |2  | Madina      | Ismailova     | 21     | A2    |
 |3  | Bekzod      | Karimov       | 22     | A3    |
 
-- **Database** - bunda bizning "University" nomli ma'lumotlar bazamiz bor deb tasavvur qilaylik.
+- **Database** - bunda bizning `"University"` nomli ma'lumotlar bazamiz bor deb tasavvur qilaylik.
 - **Table** - `students` jadvali.
 - **Columns** - `ID`, `Name`, `Surname`, `Age`, `Class`.
 - **Rows** - har bir talaba haqida ma'lumotni ifodalovchi yozuvlar.
 
-
+- Types of Databases
+    - Databases turli shaklda bo'lishi mumkin va ular qanday turdagi ma'lumotlar bilan ishlashiga qarab tasniflanadi
+1. **Relational Database (RDBMS):** Bu eng ko'p ishlatiladigan ma'lumotlar bazasi turi bo'lib, ma'lumotlar jadvallar shaklida saqlanadi. Har bir jadval o'zaro bog'liq bo'lgan ustunlar va qatorlardan tashkil topgan. 
+   - **Example:** `PostgreSQL`, `MySQL`, `Oracle`.
+2. **NoSQL Database:** NoSQL(Not Only SQL) ma'lumotlar bazalari katta hajmdagi va tezkor o'zgaruvchan ma'lumotlarni saqlash uchun ishlatiladi. NoSQL bazalarida ma'lumotlar jadval shaklida emas, balki boshqa formatlarda saqlanishi mumkin (example, `such as documents`, `key-value pairs`). 
+   - **Example:** `MongoDB`, `Cassandra`, `Redis`.
+3. **Document-Based Database:** Bunda ma'lumotlar `JSON`, `XML` kabi hujjat formatida saqlanadi, har bir hujjat ma'lumotni o'zida saqlaydi va murakkab tuzilmaga ega bo'lishi mumkin. 
+   - **Example:** `MongoDB`.
 
