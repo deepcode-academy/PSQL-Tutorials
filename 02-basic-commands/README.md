@@ -24,5 +24,17 @@
 
    - **Masalan:** `ism`, `familiya` va `yosh` — bu talabalar jadvalidagi ustunlardir.
 
+4. Row
+    - **Row** — jadvaldagi ma'lumotlarning bir birlikdagi ko'rinishi bo'lib, har bir qator alohida bir yozuvni ifodalaydi. 
+    - **Masalan:** talabalar jadvalida har bir qator bitta talaba haqida ma'lumot saqlaydi: talaba `ID` raqami, `ismi`, `yoshi` va `guruh`.
 
+**Example:**
+
+Agar bizda `students` nomli jadval bo'lsa, uning tarkibi quyidagicha bo'lishi mumkin:
+
+|ID | Name        | Surname       | Age    | Class |
+|---|-------------|---------------|--------|-------|
+|1  | Ali         | Valiyev       | 20     | A1    |
+|2  | Madina      | Ismailova     | 21     | A2    |
+|3  | Bekzod      | Karimov       | 22     | A3    |
 
