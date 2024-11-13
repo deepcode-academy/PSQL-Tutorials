@@ -38,3 +38,8 @@ Agar bizda `students` nomli jadval bo'lsa, uning tarkibi quyidagicha bo'lishi mu
 |2  | Madina      | Ismailova     | 21     | A2    |
 |3  | Bekzod      | Karimov       | 22     | A3    |
 
+- Database - bunda bizning "University" nomli ma'lumotlar bazamiz bor deb tasavvur qilaylik.
+- Table - `students` jadvali.
+- Columns - `ID`, `Name`, `Surname`, `Age`, `Class`.
+- Rows - har bir talaba haqida ma'lumotni ifodalovchi yozuvlar.
+
