@@ -1,7 +1,7 @@
-# Introduction to PostgreSQL
+# INTRODUCTION TO DATABASE
 
 - Topics:
-  - `Relational databases` va `PostgreSQL` haqida tushuncha
+  - `Databases` haqida tushuncha
   - `PostgreSQL`ning xususiyatlari va foydalanish holatlari
   - PostgreSQLni o'rnatish (`Windows`, `macOS` va `Linux` uchun ko'rsatmalar)
   - `pgAdmin` bilan ishlashni o'rganish
