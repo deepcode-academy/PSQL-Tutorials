@@ -11,7 +11,7 @@
 
 # `databases`, `tables`, `rows` VA `columns` HAQIDA TUSHUNCHA
 
-# Types of Databases
+# TYPES OF DATABASES
 > [!NOTE]
 > `Databases` turli shaklda bo'lishi mumkin va ular qanday turdagi ma'lumotlar bilan ishlashiga qarab tasniflanadi
 
