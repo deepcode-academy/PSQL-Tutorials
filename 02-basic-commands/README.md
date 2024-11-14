@@ -11,8 +11,11 @@
 
 # `databases`, `tables`, `rows` VA `columns` HAQIDA TUSHUNCHA
 
-- Types of Databases
-    - Databases turli shaklda bo'lishi mumkin va ular qanday turdagi ma'lumotlar bilan ishlashiga qarab tasniflanadi
+# Types of Databases
+> [!NOTE]
+> `Databases` turli shaklda bo'lishi mumkin va ular qanday turdagi ma'lumotlar bilan ishlashiga qarab tasniflanadi
+
+
 1. **Relational Database (RDBMS):** Bu eng ko'p ishlatiladigan ma'lumotlar bazasi turi bo'lib, ma'lumotlar jadvallar shaklida saqlanadi. Har bir jadval o'zaro bog'liq bo'lgan ustunlar va qatorlardan tashkil topgan. 
    - **Example:** `PostgreSQL`, `MySQL`, `Oracle`.
 2. **NoSQL Database:** NoSQL(Not Only SQL) ma'lumotlar bazalari katta hajmdagi va tezkor o'zgaruvchan ma'lumotlarni saqlash uchun ishlatiladi. NoSQL bazalarida ma'lumotlar jadval shaklida emas, balki boshqa formatlarda saqlanishi mumkin (example, `such as documents`, `key-value pairs`). 
