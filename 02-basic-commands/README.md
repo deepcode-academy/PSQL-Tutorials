@@ -9,6 +9,8 @@
 > [!NOTE]
 > `Databases`, `tables`, `rows` va `columns` — bu `SQL` va ma'lumotlar bazalari boshqaruvi tizimlarining asosiy tushunchalar hisoblanadi.
 
+# `databases`, `tables`, `rows` VA `columns` HAQIDA TUSHUNCHA
+
 1. Database
    - **Database** — bu bir joyda to'plangan va mantiqiy tartibda saqlangan ma'lumotlarning yig'indisi. Ma'lumotlar bazasi yordamida biz katta hajmdagi ma'lumotlarni `boshqarish`, `saqlash`, `yangilash` va ulardan samarali foydalanish imkoniyatiga ega bo'lamiz. 
 
