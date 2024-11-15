@@ -50,6 +50,18 @@ Agar bizda `students` nomli jadval bo'lsa, uning tarkibi quyidagicha bo'lishi mu
 > [!NOTE]
 > PostgreSQLda ma'lumot turlari (data types) ma'lumotlar bazasidagi ustunlar uchun qiymatlarni saqlash va ishlov berishning turli usullarini ta'minlaydi. Quyida PostgreSQLda ishlatiladigan asosiy ma'lumot turlari keltirilgan:
 
+
+1. Numeric Data Types(Raqamli ma'lumot turlari)
+
+`INTEGER` (int, int4): 4 baytli butun sonlar (−2,147,483,648 dan +2,147,483,647 gacha).
+
+```sql
+CREATE TABLE Example (
+    num INTEGER
+);
+```
+
+
 # Asosiy `SQL` buyruqlari: `CREATE DATABASE`, `CREATE TABLE`, `DROP`, `INSERT`, `SELECT`
 
 ## CREATE DATABASE
@@ -145,20 +157,8 @@ FROM Students
 WHERE Grade = 'A';
 ```
 
-# Primary keys and constraints
+# PRIMARY KEYS AND CONSTRAINTS
 
-> [!NOTE]
-> PostgreSQLda `data types` `database`dagi ustunlar uchun qiymatlarni saqlash va ishlov berishning turli usullarini ta'minlaydi.
-
-1. Numeric Data Types(Raqamli ma'lumot turlari)
-
-`INTEGER` (int, int4): 4 baytli butun sonlar (−2,147,483,648 dan +2,147,483,647 gacha).
-
-```sql
-CREATE TABLE Example (
-    num INTEGER
-);
-```
 
 
 
