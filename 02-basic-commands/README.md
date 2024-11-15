@@ -193,6 +193,108 @@ CREATE TABLE Example (
 );
 ```
 
+`INTERVAL`: Vaqt oralig'ini saqlash (masalan, 1 kun, 3 soat).
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    duration INTERVAL
+);
+```
+
+4. Boolean Data Type(Mantiqiy ma'lumot turlari )
+
+`BOOLEAN`: `TRUE`, `FALSE` yoki `NULL` qiymatlarini saqlash.
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    is_active BOOLEAN
+);
+```
+
+5. Array Data Types(Ma'lumotlar to'plamlari)
+
+`ARRAY`: Bir xil turdagi bir nechta qiymatlarni saqlash uchun array (massiv) turidan foydalanish mumkin.
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    scores INTEGER[]
+);
+```
+
+6. `JSON` va `JSONB` ma'lumot turlari (JSON Data Types)
+
+`JSON`: JSON formatidagi ma'lumotlarni saqlash.
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    data JSON
+);
+```
+
+`JSONB`: `JSON` formatidagi ma'lumotlarni binary formatda saqlash (tezroq ishlash uchun).
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    data JSONB
+);
+```
+
+7. Yagona identifikatorlar (`UUID`)
+
+`UUID`: Unikal identifikatorlarni saqlash uchun ishlatiladi. Bu tur, global darajada noyob bo'lgan identifikatorlarni yaratadi.
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    user_id UUID
+);
+```
+
+8. Binar ma'lumot turlari (Binary Data Types)
+
+`BYTEA`: Binary (2-lik) ma'lumotlarni saqlash uchun ishlatiladi (masalan, rasm yoki fayl).
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    image BYTEA
+);
+```
+
+9. Ma'lumotlar turlari bilan bog'liq boshqa turdagi turlar
+
+`SERIAL`: Avtomatik ravishda raqamlar yaratish uchun ishlatiladi (asosan asosiy kalit sifatida).
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    id SERIAL PRIMARY KEY
+);
+```
+
+`BIGSERIAL`: Katta avtomatik raqamlar yaratish uchun ishlatiladi.
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    id BIGSERIAL PRIMARY KEY
+);
+```
+
 # Asosiy `SQL` buyruqlari: `CREATE DATABASE`, `CREATE TABLE`, `DROP`, `INSERT`, `SELECT`
 
 ## CREATE DATABASE
