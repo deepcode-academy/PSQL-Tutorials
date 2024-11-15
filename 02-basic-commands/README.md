@@ -77,6 +77,8 @@ CREATE TABLE Students (
 );
 ```
 
+
+
 # DROP
 
 `DROP`: Ma'lumotlar bazasini yoki jadvalni o‘chirib tashlaydi. Ushbu buyruqni ehtiyotkorlik bilan ishlating, chunki u barcha ma'lumotlarni o‘chiradi.
@@ -110,3 +112,22 @@ VALUES (value1, value2, ...);
 INSERT INTO Students (StudentID, Name, Age, Grade)
 VALUES (1, 'John Doe', 20, 'A');
 ```
+
+# SELECT
+
+`SELECT`: Jadvaldan ma'lumotlarni chiqarib beradi. Maxsus ustunlarni yoki shartlarni belgilash mumkin.
+
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+```
+
+**Example:**
+
+```sql
+SELECT Name, Age
+FROM Students
+WHERE Grade = 'A';
+```
+
