@@ -45,11 +45,27 @@ Agar bizda `students` nomli jadval bo'lsa, uning tarkibi quyidagicha bo'lishi mu
 - **Columns** - `ID`, `Name`, `Surname`, `Age`, `Class`.
 - **Rows** - har bir talaba haqida ma'lumotni ifodalovchi yozuvlar.
 
-## CREATE DATABASE
-`CREATE DATABASE:` Yangi database yaratadi.
+# CREATE DATABASE
+`CREATE DATABASE`: Yangi database yaratadi.
 ```sql
 CREATE DATABASE database_name;
 ```
 
+**Example:**
+```sql
+CREATE DATABASE School;
+```
+
+# CREATE TABLE
+
+`CREATE TABLE`: Ma'lumotlar bazasi ichida yangi jadval (table) yaratadi.
+
+```sql
+CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    ...
+);
+```
 
 
