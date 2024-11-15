@@ -151,6 +151,48 @@ CREATE TABLE Example (
 );
 ```
 
+3. Date and Time Data Types(Sana va vaqt ma'lumot turlari)
+
+`DATE`: Faqat sana (yil, oy, kun).
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    birth_date DATE
+);
+```
+
+`TIME`: Faqat vaqt (soat, daqiqa, soniya).
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    work_start TIME
+);
+```
+
+`TIMESTAMP`: Sana va vaqt birgalikda (yil, oy, kun, soat, daqiqa, soniya).
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    created_at TIMESTAMP
+);
+```
+
+`TIMESTAMPTZ`: Sana va vaqt (soat mintaqasi bilan).
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    event_time TIMESTAMPTZ
+);
+```
+
 # Asosiy `SQL` buyruqlari: `CREATE DATABASE`, `CREATE TABLE`, `DROP`, `INSERT`, `SELECT`
 
 ## CREATE DATABASE
