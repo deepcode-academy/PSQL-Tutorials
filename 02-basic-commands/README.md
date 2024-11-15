@@ -45,7 +45,7 @@ Agar bizda `students` nomli jadval bo'lsa, uning tarkibi quyidagicha bo'lishi mu
 - **Columns** - `ID`, `Name`, `Surname`, `Age`, `Class`.
 - **Rows** - har bir talaba haqida ma'lumotni ifodalovchi yozuvlar.
 
-# DATA TYPES IN PostgreSQL
+# DATA TYPES IN `PostgreSQL`
 
 > [!NOTE]
 > PostgreSQLda ma'lumot turlari (data types) ma'lumotlar bazasidagi ustunlar uchun qiymatlarni saqlash va ishlov berishning turli usullarini ta'minlaydi. Quyida PostgreSQLda ishlatiladigan asosiy ma'lumot turlari keltirilgan:
@@ -55,9 +55,31 @@ Agar bizda `students` nomli jadval bo'lsa, uning tarkibi quyidagicha bo'lishi mu
 
 `INTEGER` (int, int4): 4 baytli butun sonlar (−2,147,483,648 dan +2,147,483,647 gacha).
 
+**Example:**
+
 ```sql
 CREATE TABLE Example (
     num INTEGER
+);
+```
+
+`BIGINT` (int8): 8 baytli butun sonlar (−9,223,372,036,854,775,808 dan +9,223,372,036,854,775,807 gacha).
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    big_num BIGINT
+);
+```
+
+`SMALLINT` (int2): 2 baytli butun sonlar (−32,768 dan +32,767 gacha).
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    small_num SMALLINT
 );
 ```
 
