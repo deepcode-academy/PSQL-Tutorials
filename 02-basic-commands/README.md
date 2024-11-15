@@ -99,6 +99,26 @@ CREATE TABLE Example (
 );
 ```
 
+`REAL`: 4 baytli haqiqiy son (single precision floating point).
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    value REAL
+);
+```
+
+`DOUBLE PRECISION`: 8 baytli haqiqiy son (double precision floating point).
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    value DOUBLE PRECISION
+);
+```
+
 
 # Asosiy `SQL` buyruqlari: `CREATE DATABASE`, `CREATE TABLE`, `DROP`, `INSERT`, `SELECT`
 
