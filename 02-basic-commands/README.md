@@ -119,6 +119,37 @@ CREATE TABLE Example (
 );
 ```
 
+2.  Text Data Types(Matnli ma'lumot turlari)
+
+`CHAR(n)`: Sabit uzunlikdagi matn. Agar matn uzunligi `n` dan qisqa bo'lsa, qolgan joylar bo'shliq bilan to'ldiriladi.
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    code CHAR(5)
+);
+```
+
+`VARCHAR(n)`: O'zgaruvchan uzunlikdagi matn. Maksimal uzunlik `n` bilan belgilangan.
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    name VARCHAR(50)
+);
+```
+
+`TEXT`: Cheksiz uzunlikdagi matn. Bu turingizdagi matnning uzunligi chegaralanmagan.
+
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    description TEXT
+);
+```
 
 # Asosiy `SQL` buyruqlari: `CREATE DATABASE`, `CREATE TABLE`, `DROP`, `INSERT`, `SELECT`
 
