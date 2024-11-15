@@ -2,7 +2,7 @@
 
 - Topics:
   - `databases`, `tables`, `rows` va `columns` haqida tushuncha
-  - `PostgreSQL`dagi ma'lumot turlari
+  - Data types in `PostgreSQL`
   - Asosiy `SQL` buyruqlari: `CREATE DATABASE`, `CREATE TABLE`, `DROP`, `INSERT`, `SELECT`
   - Primary keys and constraints
 
@@ -44,6 +44,11 @@ Agar bizda `students` nomli jadval bo'lsa, uning tarkibi quyidagicha bo'lishi mu
 - **Table** - `students` jadvali.
 - **Columns** - `ID`, `Name`, `Surname`, `Age`, `Class`.
 - **Rows** - har bir talaba haqida ma'lumotni ifodalovchi yozuvlar.
+
+# DATA TYPES IN PostgreSQL
+
+> [!NOTE]
+> PostgreSQLda ma'lumot turlari (data types) ma'lumotlar bazasidagi ustunlar uchun qiymatlarni saqlash va ishlov berishning turli usullarini ta'minlaydi. Quyida PostgreSQLda ishlatiladigan asosiy ma'lumot turlari keltirilgan:
 
 # Asosiy `SQL` buyruqlari: `CREATE DATABASE`, `CREATE TABLE`, `DROP`, `INSERT`, `SELECT`
 
