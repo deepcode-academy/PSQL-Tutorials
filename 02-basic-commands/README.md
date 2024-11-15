@@ -145,3 +145,20 @@ FROM Students
 WHERE Grade = 'A';
 ```
 
+# Primary keys and constraints
+
+> [!NOTE]
+> PostgreSQLda `data types` `database`dagi ustunlar uchun qiymatlarni saqlash va ishlov berishning turli usullarini ta'minlaydi.
+
+1. Numeric Data Types(Raqamli ma'lumot turlari)
+
+`INTEGER` (int, int4): 4 baytli butun sonlar (−2,147,483,648 dan +2,147,483,647 gacha).
+
+```sql
+CREATE TABLE Example (
+    num INTEGER
+);
+```
+
+
+
