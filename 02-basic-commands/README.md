@@ -77,6 +77,9 @@ CREATE TABLE Students (
 );
 ```
 
+|StudentID|Name| Age |Grade|
+|---------|----|-----|-----|
+|         |    |     |     | 
 
 
 # DROP
@@ -112,6 +115,10 @@ VALUES (value1, value2, ...);
 INSERT INTO Students (StudentID, Name, Age, Grade)
 VALUES (1, 'John Doe', 20, 'A');
 ```
+
+| StudentID | Name     | Age | Grade |
+|-----------|----------|-----|-------|
+| 1         | John Doe | 20  | A     | 
 
 # SELECT
 
