@@ -392,6 +392,8 @@ WHERE Grade = 'A';
 
 # PRIMARY KEYS AND CONSTRAINTS
 
+> [!NOTE]
+> Ma'lumotlar bazasida asosiy kalit (primary key) va cheklovlar (constraints) ma'lumotlarning to'g'ri va tartibli saqlanishini ta'minlash uchun ishlatiladi.
 
 
 
