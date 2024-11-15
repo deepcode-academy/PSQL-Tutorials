@@ -83,6 +83,14 @@ CREATE TABLE Example (
 );
 ```
 
+`DECIMAL` yoki `NUMERIC`: Yuksak aniqlikka ega haqiqiy sonlar, masalan, valyutalarni saqlashda foydalidir.
+
+**Sintaksis:** 
+
+- `DECIMAL`(**precision**, **scale**)
+  - **Precision:** Jami raqamlar soni.
+  - **Scale:** Kasr qismidagi raqamlar soni.
+
 
 # Asosiy `SQL` buyruqlari: `CREATE DATABASE`, `CREATE TABLE`, `DROP`, `INSERT`, `SELECT`
 
