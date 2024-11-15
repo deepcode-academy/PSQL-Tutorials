@@ -77,4 +77,36 @@ CREATE TABLE Students (
 );
 ```
 
+# DROP
 
+`DROP`: Ma'lumotlar bazasini yoki jadvalni o‘chirib tashlaydi. Ushbu buyruqni ehtiyotkorlik bilan ishlating, chunki u barcha ma'lumotlarni o‘chiradi.
+
+`Database`ni o‘chirish:
+```sql
+DROP DATABASE database_name;
+```
+`Table`ni o'chirish
+```sql
+DROP TABLE table_name;
+```
+
+**Example:**
+```sql
+DROP TABLE Students;
+```
+
+# INSERT
+
+`INSERT`: Jadvalni elementlar bilan to'ldirish.
+
+```sql
+INSERT INTO table_name (column1, column2, ...)
+VALUES (value1, value2, ...);
+```
+
+**Example:**
+
+```sql
+INSERT INTO Students (StudentID, Name, Age, Grade)
+VALUES (1, 'John Doe', 20, 'A');
+```
