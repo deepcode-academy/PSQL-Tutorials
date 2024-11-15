@@ -91,6 +91,14 @@ CREATE TABLE Example (
   - **Precision:** Jami raqamlar soni.
   - **Scale:** Kasr qismidagi raqamlar soni.
 
+**Example:**
+
+```sql
+CREATE TABLE Example (
+    price DECIMAL(10, 2)
+);
+```
+
 
 # Asosiy `SQL` buyruqlari: `CREATE DATABASE`, `CREATE TABLE`, `DROP`, `INSERT`, `SELECT`
 
