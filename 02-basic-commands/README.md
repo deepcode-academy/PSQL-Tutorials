@@ -45,7 +45,9 @@ Agar bizda `students` nomli jadval bo'lsa, uning tarkibi quyidagicha bo'lishi mu
 - **Columns** - `ID`, `Name`, `Surname`, `Age`, `Class`.
 - **Rows** - har bir talaba haqida ma'lumotni ifodalovchi yozuvlar.
 
-# CREATE DATABASE
+# Asosiy `SQL` buyruqlari: `CREATE DATABASE`, `CREATE TABLE`, `DROP`, `INSERT`, `SELECT`
+
+## CREATE DATABASE
 `CREATE DATABASE`: Yangi database yaratadi.
 ```sql
 CREATE DATABASE database_name;
@@ -56,7 +58,7 @@ CREATE DATABASE database_name;
 CREATE DATABASE School;
 ```
 
-# CREATE TABLE
+## CREATE TABLE
 
 `CREATE TABLE`: Ma'lumotlar bazasi ichida yangi table(jadval) yaratadi.
 
@@ -82,7 +84,7 @@ CREATE TABLE Students (
 |         |    |     |     | 
 
 
-# DROP
+## DROP
 
 `DROP`: Ma'lumotlar bazasini yoki jadvalni o‘chirib tashlaydi. Ushbu buyruqni ehtiyotkorlik bilan ishlating, chunki u barcha ma'lumotlarni o‘chiradi.
 
@@ -100,7 +102,7 @@ DROP TABLE table_name;
 DROP TABLE Students;
 ```
 
-# INSERT
+## INSERT
 
 `INSERT`: Jadvalni elementlar bilan to'ldirish.
 
@@ -120,7 +122,7 @@ VALUES (1, 'John Doe', 20, 'A');
 |-----------|----------|-----|-------|
 | 1         | John Doe | 20  | A     | 
 
-# SELECT
+## SELECT
 
 `SELECT`: Jadvaldan ma'lumotlarni chiqarib beradi. Maxsus ustunlarni yoki shartlarni belgilash mumkin.
 
