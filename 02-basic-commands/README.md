@@ -58,13 +58,22 @@ CREATE DATABASE School;
 
 # CREATE TABLE
 
-`CREATE TABLE`: Ma'lumotlar bazasi ichida yangi jadval (table) yaratadi.
+`CREATE TABLE`: Ma'lumotlar bazasi ichida yangi table(jadval) yaratadi.
 
 ```sql
 CREATE TABLE table_name (
     column1 datatype,
     column2 datatype,
     ...
+);
+```
+**Example:**
+```sql
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Age INT,
+    Grade VARCHAR(10)
 );
 ```
 
