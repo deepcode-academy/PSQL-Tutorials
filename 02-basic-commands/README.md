@@ -416,7 +416,7 @@ CREATE TABLE Students (
 
 Bu yerda `StudentID` asosiy kalit bo'lib, har bir talabaning noyob `ID`ga ega bo'lishini ta'minlaydi.
 
-Composite Primary Key Example:
+**Composite Primary Key Example:**
 
 ```sql
 CREATE TABLE Enrollments (
@@ -427,4 +427,26 @@ CREATE TABLE Enrollments (
 ```
 
 Bu jadvalda `StudentID` va `CourseID` birgalikda birikma asosiy kalit sifatida ishlatiladi, ya'ni har bir talaba bitta kursga faqat bir marta yozilishi mumkin.
+
+### Constraints
+
+> [!NOTE]
+> `Constraints` jadval ustunlariga qo'llaniladigan qoidalar bo'lib, ular ma'lumotlarning `to'g'ri` va `tartibli` bo'lishini ta'minlaydi.
+
+Types of Constraints:
+1. NOT NULL
+
+Ustunda `NULL` qiymat bo'lishiga ruxsat bermaydi.
+
+**Example:**
+
+```sql
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL
+);
+```
+
+
+
 
