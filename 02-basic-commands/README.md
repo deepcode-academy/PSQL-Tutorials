@@ -395,5 +395,13 @@ WHERE Grade = 'A';
 > [!NOTE]
 > Ma'lumotlar bazasida asosiy kalit (primary key) va cheklovlar (constraints) ma'lumotlarning to'g'ri va tartibli saqlanishini ta'minlash uchun ishlatiladi.
 
+### Primary key
+
+Primary key jadvaldagi har bir qatorni yagona tarzda identifikatsiya qiladi. U shuni ta'minlaydiki, jadvaldagi ikkita qator bir xil asosiy kalit qiymatiga ega bo'lmaydi va asosiy kalit hech qachon `NULL` bo'lmaydi.
+
+- Primary key xususiyatlari
+  - **Uniqueness:** Har bir qator uchun asosiy kalit qiymati takrorlanmas bo'lishi kerak.
+  - **Non-null:** Primary key ustunida `NULL` qiymatlari bo'lishi mumkin emas.
+  - **Single-column or Composite:** Asosiy kalit bitta ustundan yoki bir nechta ustunlarning birikmasidan iborat bo'lishi mumkin.
 
 
