@@ -399,9 +399,22 @@ WHERE Grade = 'A';
 
 Primary key jadvaldagi har bir qatorni yagona tarzda identifikatsiya qiladi. U shuni ta'minlaydiki, jadvaldagi ikkita qator bir xil asosiy kalit qiymatiga ega bo'lmaydi va asosiy kalit hech qachon `NULL` bo'lmaydi.
 
-- Primary key xususiyatlari
+- Characteristics of a Primary Key:
   - **Uniqueness:** Har bir qator uchun asosiy kalit qiymati takrorlanmas bo'lishi kerak.
   - **Non-null:** Primary key ustunida `NULL` qiymatlari bo'lishi mumkin emas.
   - **Single-column or Composite:** Asosiy kalit bitta ustundan yoki bir nechta ustunlarning birikmasidan iborat bo'lishi mumkin.
+
+**Example:**
+
+```sql
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Age INT
+);
+```
+
+Bu yerda `TalabaID` asosiy kalit bo'lib, har bir talabaning noyob `ID`ga ega bo'lishini ta'minlaydi.
+
 
 
