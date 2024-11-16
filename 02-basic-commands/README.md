@@ -414,7 +414,17 @@ CREATE TABLE Students (
 );
 ```
 
-Bu yerda `TalabaID` asosiy kalit bo'lib, har bir talabaning noyob `ID`ga ega bo'lishini ta'minlaydi.
+Bu yerda `StudentID` asosiy kalit bo'lib, har bir talabaning noyob `ID`ga ega bo'lishini ta'minlaydi.
 
+Composite Primary Key Example:
 
+```sql
+CREATE TABLE Enrollments (
+    StudentID INT,
+    CourseID INT,
+    PRIMARY KEY (StudentID, CourseID)
+);
+```
+
+Bu jadvalda `StudentID` va `CourseID` birgalikda birikma asosiy kalit sifatida ishlatiladi, ya'ni har bir talaba bitta kursga faqat bir marta yozilishi mumkin.
 
