@@ -447,6 +447,18 @@ CREATE TABLE Employees (
 );
 ```
 
+2. UNIQUE
+
+Ustundagi barcha qiymatlar takrorlanmas bo'lishini ta'minlaydi.
+
+**Example:**
+
+```sql
+CREATE TABLE Products (
+    ProductID INT PRIMARY KEY,
+    SKU VARCHAR(50) UNIQUE
+);
+```
 
 
 
