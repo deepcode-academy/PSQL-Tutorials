@@ -1,4 +1,4 @@
-# Funktsiyalar va agregatsiyalash orqali ma'lumotlarni olish
+# Advanced Data Retrieval with Functions and Aggregation
 
 - Topics:
   - PostgreSQL funksiyalari `COUNT`, `SUM`, `AVG`, `MIN`, `MAX`
