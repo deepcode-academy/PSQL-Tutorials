@@ -1,10 +1,10 @@
 # Data Retrieval and Filtering
 
 - Topics:
-  - `SELECT` operatori va `WHERE` sharti
-  - Operatorlar va shartlar (`=`, `<`, `>`, `AND`, `OR`, `NOT`)
-  - Ma'lumotlarni `ORDER BY` yordamida saralash
-  - LIMIT(Natijalarni cheklash)
+  - `SELECT` statement with `WHERE` clause
+  - Operators and conditions(`=`, `<`, `>`, `AND`, `OR`, `NOT`)
+  - Sorting data with `ORDER BY`
+  - Limiting results with `LIMIT`
 
 > [!NOTE]
 > SQLning `SELECT` operatori ma'lumotlarni jadvaldan olish uchun ishlatiladi. `WHERE` qismi esa ma'lumotlarni ma'lum bir shartga asoslanib filtrlaydi.
