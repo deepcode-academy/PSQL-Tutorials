@@ -504,3 +504,24 @@ CREATE TABLE Users (
 );
 ```
 
+# PRACTICE
+
+- `library_system` nomli ma’lumotlar bazasini yarating.
+- `library_system` bazasida `books` nomli jadval yarating va quyidagi ustunlarni qo‘shing:
+  - `id` (integer, primary key)
+  - `title` (varchar, maksimal 200 ta belgi)
+  - `author` (varchar, maksimal 100 ta belgi)
+  - `published_year` (integer)
+- `books` jadvaliga quyidagi ma’lumotlarni kiriting:
+
+| ID | title                    | author          | published_year |
+|----|--------------------------|-----------------|----------------|
+| 1  | "1984"                   | "George Orwell" | 1949           |
+| 2  | "To Kill a Mockingbird"  | "Harper Lee"    | 1960           |
+
+- `books` jadvalidan barcha ma’lumotlarni oling.
+- 1950-yildan keyin nashr etilgan kitoblarning faqat `title` va `author` ustunlarini oling.
+- `books` jadvalini o‘chirib tashlang.
+- `library_system` ma’lumotlar bazasini o‘chirib tashlang (ehtiyotkorlik bilan foydalaning!).
+
+
