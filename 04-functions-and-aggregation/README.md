@@ -1,7 +1,7 @@
 # Advanced Data Retrieval with Functions and Aggregation
 
 - Topics:
-  - PostgreSQL funksiyalari `COUNT`, `SUM`, `AVG`, `MIN`, `MAX`
-  - `GROUP BY` yordamida ma'lumotlarni guruhlash
-  - `HAVING` orqali guruhlangan ma'lumotlarni filtrlash
+  - Using PostgreSQL functions `COUNT`, `SUM`, `AVG`, `MIN`, `MAX`
+  - Grouping data with `GROUP BY`
+  - Filtering grouped data with `HAVING`
 
