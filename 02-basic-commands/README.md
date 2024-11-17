@@ -533,10 +533,36 @@ CREATE TABLE Users (
   - `name` (varchar, 100 ta belgi)
   - `age` (integer)
 
-3. Composite Primary Key yaratish
+3. `Composite Primary Key` yaratish
 
 - `enrollments` nomli jadval yarating. U quyidagi ustunlardan iborat bo‘lsin:
   - `student_id` (integer)
   - `course_id` (integer)
   - `enrollment_date` (date)
 - `student_id` va `course_id` ustunlarini birgalikda `composite primary key` sifatida belgilang
+
+4. `NOT NULL Constraint` qo‘shish
+
+- `teachers` nomli jadval yarating. U quyidagi ustunlardan iborat bo‘lsin:
+  - `teacher_id` (integer, primary key)
+  - `name` (varchar, 100 ta belgi, null bo‘lishi mumkin emas)
+  - `subject` (varchar, 50 ta belgi)
+
+5. `UNIQUE Constraint` qo‘shish
+
+- `courses` nomli jadval yarating. U quyidagi ustunlardan iborat bo‘lsin:
+  - `course_id` (integer, primary key)
+  - `course_name` (varchar, 100 ta belgi, har bir nom noyob bo‘lishi kerak)
+
+6. `FOREIGN KEY Constraint` qo‘shish
+
+- `classes` nomli jadval yarating. U quyidagi ustunlardan iborat bo‘lsin:
+  - `class_id` (integer, primary key)
+  - `teacher_id` (integer, teachers jadvalidagi teacher_id ustuniga bog‘langan bo‘lishi kerak)
+
+7. `CHECK Constraint` qo‘shish
+
+- `grades` nomli jadval yarating. U quyidagi ustunlardan iborat bo‘lsin:
+    - `grade_id` (integer, primary key)
+    - `student_id` (integer)
+    - `grade` (integer, qiymati 0 va 100 oralig‘ida bo‘lishi kerak)
