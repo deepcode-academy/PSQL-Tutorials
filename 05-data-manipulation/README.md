@@ -1,7 +1,7 @@
 # Data Manipulation
 
 - Topics:
-  - `UPDATE` Ma'lumotlarni yangilash
-  - `DELETE` Ma'lumotlarni o'chirish
-  - Ma'lumotlar yaxlitligini cheklovlar bilan ta'minlash (xorijiy kalit, unique)
-  - `rollback` Tranzaksiyalar va bekor qilish
+  - Updating records with `UPDATE`
+  - Deleting records with `DELETE`
+  - Managing data integrity with constraints (foreign keys, unique)
+  - Transactions and rollback
