@@ -506,6 +506,8 @@ CREATE TABLE Users (
 
 # PRACTICE
 
+1. Create `library_system` database
+
 - `library_system` nomli ma’lumotlar bazasini yarating.
 - `library_system` bazasida `books` nomli jadval yarating va quyidagi ustunlarni qo‘shing:
   - `id` (integer, primary key)
@@ -524,4 +526,17 @@ CREATE TABLE Users (
 - `books` jadvalini o‘chirib tashlang.
 - `library_system` ma’lumotlar bazasini o‘chirib tashlang (ehtiyotkorlik bilan foydalaning!).
 
+2. Primary Key bilan jadval yaratish
 
+- `students` nomli jadval yarating. U quyidagi ustunlardan iborat bo‘lsin:
+  - `student_id` (integer, primary key)
+  - `name` (varchar, 100 ta belgi)
+  - `age` (integer)
+
+3. Composite Primary Key yaratish
+
+- `enrollments` nomli jadval yarating. U quyidagi ustunlardan iborat bo‘lsin:
+  - `student_id` (integer)
+  - `course_id` (integer)
+  - `enrollment_date` (date)
+- `student_id` va `course_id` ustunlarini birgalikda `composite primary key` sifatida belgilang
