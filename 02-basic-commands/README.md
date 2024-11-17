@@ -460,5 +460,22 @@ CREATE TABLE Products (
 );
 ```
 
+3. PRIMARY KEY
+
+U `NOT NULL` va `UNIQUE` qoidalarini birlashtirib, har bir qatorni noyob identifikatsiyalaydi.
+
+4. FOREIGN KEY
+
+Jadvalni boshqa jadval bilan bog'laydi, boshqa jadvalning asosiy kalitiga ishora qiladi.
+
+**Example:**
+
+```sql
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+```
 
 
