@@ -478,4 +478,29 @@ CREATE TABLE Orders (
 );
 ```
 
+5. CHECK
+
+Ustundagi qiymatlarning ma'lum bir shartga mos kelishini tekshiradi.
+
+**Example:**
+
+```sql
+CREATE TABLE Accounts (
+    AccountID INT PRIMARY KEY,
+    Balance DECIMAL(10, 2) CHECK (Balance >= 0)
+);
+```
+
+6. DEFAULT
+
+Agar kiritishda qiymat berilmasa, ustun uchun `standart` qiymatni belgilaydi.
+
+**Example:**
+
+```sql
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY,
+    RegistrationDate DATE DEFAULT CURRENT_DATE
+);
+```
 
