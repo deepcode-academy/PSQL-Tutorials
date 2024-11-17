@@ -1,7 +1,7 @@
 # Data Retrieval and Filtering
 
 - Topics:
-  - SELECT operatori va WHERE sharti
+  - `SELECT` operatori va `WHERE` sharti
   - Operatorlar va shartlar (`=`, `<`, `>`, `AND`, `OR`, `NOT`)
   - Ma'lumotlarni `ORDER BY` yordamida saralash
   - LIMIT(Natijalarni cheklash)
