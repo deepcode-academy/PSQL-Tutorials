@@ -43,7 +43,7 @@ PostgreSQL – bu `open-source` va powerful relational database management syste
     - Bu yerdan esa PostgreSQLni versiyasini tanlashimiz mumkin.
     ![img.png](images/selectversion.png)
 
-# AMALIYOT
+# PRACTICS
 
 - PostgreSQLni o'rnatish, `terminal` va `pgAdmin` yordamida ulanish.
 
