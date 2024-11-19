@@ -16,6 +16,10 @@
 
 2. **NoSQL Database:** NoSQL(Not Only SQL) ma'lumotlar bazalari katta hajmdagi va tezkor o'zgaruvchan ma'lumotlarni saqlash uchun ishlatiladi. NoSQL bazalarida ma'lumotlar jadval shaklida emas, balki boshqa formatlarda saqlanishi mumkin (example, `such as documents`, `key-value pairs`). 
    - **Example:** `MongoDB`, `Cassandra`, `Redis`.
+
+![img.png](images/nosql.png)
+
+
 3. **Document-Based Database:** Bunda ma'lumotlar `JSON`, `XML` kabi hujjat formatida saqlanadi, har bir hujjat ma'lumotni o'zida saqlaydi va murakkab tuzilmaga ega bo'lishi mumkin. 
    - **Example:** `MongoDB`.
 
