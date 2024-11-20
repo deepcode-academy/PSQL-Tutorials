@@ -24,4 +24,8 @@ SELECT column1, column2, ...
 FROM table_name;
 ```
 
+`column1, column2, ...:` Qaysi ustunlarni tanlash kerakligini ko'rsatadi. Agar barcha ustunlarni tanlash kerak bo'lsa, `*` ishlatiladi.
+
+`table_name:` Ma'lumot olingan jadvalning nomi.
+
 
