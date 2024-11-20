@@ -6,7 +6,10 @@
   - Sorting data with `ORDER BY`
   - Limiting results with `LIMIT`
 
+
+# `SELECT` STATEMENT WITH `WHERE` CLAUSE
+
 > [!NOTE]
-> SQLning `SELECT` operatori ma'lumotlarni jadvaldan olish uchun ishlatiladi. `WHERE` qismi esa ma'lumotlarni ma'lum bir shartga asoslanib filtrlaydi.
+> `SELECT` operatori va `WHERE` sharti yordamida `database`dan aniq shartlarga mos keladigan ma'lumotlarni tanlash mumkin.
 
 
