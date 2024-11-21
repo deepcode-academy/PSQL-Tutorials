@@ -28,4 +28,9 @@ FROM table_name;
 
 `table_name:` Ma'lumot olingan jadvalning nomi.
 
+## `WHERE` CLAUSE
+
+`WHERE` ma'lum bir shartlarga asoslanib, qatorlarni filtrlaydi. Faqat `WHERE` shartiga mos keladigan qatorlar qaytariladi.
+
+
 
