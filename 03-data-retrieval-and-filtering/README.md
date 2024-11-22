@@ -53,3 +53,13 @@ SELECT name, city, age
 FROM users
 WHERE age > 30 AND city = 'Toshkent';
 ```
+
+3. Ma'lum bir oraliqda bo'lgan ma'lumotlarni olish
+
+Yoshi 25 dan 40 gacha bo'lgan foydalanuvchilarni olish:
+
+```sql
+SELECT name, age
+FROM users
+WHERE age BETWEEN 25 AND 40;
+```
