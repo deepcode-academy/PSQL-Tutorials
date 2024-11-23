@@ -63,3 +63,13 @@ SELECT name, age
 FROM users
 WHERE age BETWEEN 25 AND 40;
 ```
+
+4. Ma'lumotlarni o'xshashlik bilan qidirish `LIKE`
+
+`"Ali"` bilan boshlanadigan ismlarni qidirish:
+
+```sql
+SELECT name
+FROM users
+WHERE name LIKE 'Ali%';
+```
