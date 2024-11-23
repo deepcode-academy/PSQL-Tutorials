@@ -73,3 +73,13 @@ SELECT name
 FROM users
 WHERE name LIKE 'Ali%';
 ```
+
+5. `NULL` qiymatlarni qidirish
+
+Telefon raqami kiritilmagan foydalanuvchilarni olish:
+
+```sql
+SELECT name, phone
+FROM users
+WHERE phone IS NULL;
+```
