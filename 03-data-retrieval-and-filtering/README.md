@@ -32,5 +32,16 @@ FROM table_name;
 
 `WHERE` ma'lum bir shartlarga asoslanib, qatorlarni filtrlaydi. Faqat `WHERE` shartiga mos keladigan qatorlar qaytariladi.
 
+**Basic Examples:**
+
+1. Malum bir shartga mos keladigan qatorlarni olish
+
+Foydalanuvchilarning faqat 30 yoshdagilarini olish:
+
+```sql
+SELECT name, age
+FROM users
+WHERE age = 30;
+```
 
 
