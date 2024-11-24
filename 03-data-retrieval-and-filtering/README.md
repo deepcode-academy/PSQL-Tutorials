@@ -91,5 +91,14 @@ Additional Concepts
 - `!=` or `<>`: Checks inequality.
 - `IN`: Checks if a value exists within a set of specified values.
 
+**Example:** Using `IN`
+Find users living in `"Tashkent"`, `"Samarkand"`, or `"Bukhara"`:
+```sql
+SELECT name, city
+FROM users
+WHERE city IN ('Tashkent', 'Samarkand', 'Bukhara');
+```
+
+
 
 # PRACTICS
