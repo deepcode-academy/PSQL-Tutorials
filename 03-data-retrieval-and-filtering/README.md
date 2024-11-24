@@ -154,4 +154,24 @@ WHERE age < 18;
 
 **Explanation**: Returns users younger than 18.
 
+- `>=`: Finds values greater than or equal to the specified value.
+
+**Example:**
+
+```sql
+SELECT name, age
+FROM users
+WHERE age >= 21;
+```
+
+- `<=`: Finds values less than or equal to the specified value.
+
+**Example:**
+
+```sql
+SELECT name, age
+FROM users
+WHERE age <= 60;
+```
+
 # PRACTICS
