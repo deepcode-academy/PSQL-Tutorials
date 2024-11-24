@@ -142,4 +142,16 @@ FROM users
 WHERE age > 30;
 ```
 
+- `<`: Finds values less than the specified value
+
+**Example:**
+
+```sql
+SELECT name, age
+FROM users
+WHERE age < 18;
+```
+
+**Explanation**: Returns users younger than 18.
+
 # PRACTICS
