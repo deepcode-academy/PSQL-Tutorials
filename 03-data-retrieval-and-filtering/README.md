@@ -105,6 +105,17 @@ WHERE city IN ('Tashkent', 'Samarkand', 'Bukhara');
 > [!NOTE]
 > `SQL operatorlari` va shartlari yordamida ma'lumotlarni `filtrlash`, `solishtirish` va `boshqarish` mumkin.
 
+1. Equality Operators
 
+- `=`: Checks if values are equal.
+
+**Example:**
+
+```sql
+SELECT name, age
+FROM users
+WHERE age = 25;
+```
+**Explanation**: Returns users whose age is exactly 25.
 
 # PRACTICS
