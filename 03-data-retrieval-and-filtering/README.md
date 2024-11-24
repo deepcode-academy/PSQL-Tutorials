@@ -174,4 +174,8 @@ FROM users
 WHERE age <= 60;
 ```
 
+3. Logical Operators
+
+
+
 # PRACTICS
