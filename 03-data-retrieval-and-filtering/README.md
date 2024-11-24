@@ -84,5 +84,12 @@ FROM users
 WHERE phone IS NULL;
 ```
 
+Additional Concepts
+
+- `=`: Checks equality
+- `>` or `<`: Checks greater than or less than.
+- `!=` or `<>`: Checks inequality.
+- `IN`: Checks if a value exists within a set of specified values.
+
 
 # PRACTICS
