@@ -118,7 +118,7 @@ WHERE age = 25;
 ```
 **Explanation**: Returns users whose age is exactly 25.
 
-2. `!=` or `<>`: Checks if values are not equal.
+- `!=` or `<>`: Checks if values are not equal.
 
 **Example:**
 
@@ -129,5 +129,17 @@ WHERE age != 25;
 ```
 
 **Explanation**: Returns users whose age is not 25.
+
+2. Comparison Operators
+
+- `>`: Finds values greater than the specified value.
+
+**Example:**
+
+```sql
+SELECT name, age
+FROM users
+WHERE age > 30;
+```
 
 # PRACTICS
