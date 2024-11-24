@@ -100,6 +100,11 @@ FROM users
 WHERE city IN ('Tashkent', 'Samarkand', 'Bukhara');
 ```
 
+# OPERATORS AND CONDITIONS `=`, `<`, `>`, `AND`, `OR`, `NOT`
+
+> [!NOTE]
+> `SQL operatorlari` va shartlari yordamida ma'lumotlarni `filtrlash`, `solishtirish` va `boshqarish` mumkin.
+
 
 
 # PRACTICS
