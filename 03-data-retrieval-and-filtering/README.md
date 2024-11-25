@@ -178,9 +178,7 @@ WHERE age <= 60;
 
 Mantiqiy operatorlar yordamida bir nechta shartlarni birlashtirish mumkin.
 
-- `AND`
-
-Bir nechta shartlarning barchasi bajarilishini talab qiladi.
+- `AND` Bir nechta shartlarning barchasi bajarilishini talab qiladi.
 
 **Example:**
 
