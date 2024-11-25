@@ -176,6 +176,19 @@ WHERE age <= 60;
 
 3. Logical Operators
 
+Mantiqiy operatorlar yordamida bir nechta shartlarni birlashtirish mumkin.
+
+- `AND`
+
+Bir nechta shartlarning barchasi bajarilishini talab qiladi.
+
+**Example:**
+
+```sql
+SELECT name, age, city
+FROM users
+WHERE age > 25 AND city = 'Tashkent';
+```
 
 
 # PRACTICS
