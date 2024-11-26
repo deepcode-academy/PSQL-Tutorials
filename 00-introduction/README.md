@@ -26,5 +26,3 @@
 4. **Graph Database:**
    - Bu ma'lumotlar bazasi tarmoq aloqalari va murakkab bog'lanishlarni ifodalashda qo'llaniladi. Grafik bazalarida ma'lumot tugunlar va bog'lanishlar shaklida saqlanadi. 
    - **Example:** `Neo4j`.
-
-# PRACTICS
