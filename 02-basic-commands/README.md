@@ -316,6 +316,8 @@ CREATE DATABASE database_name;
 CREATE DATABASE School;
 ```
 
+`\c database_name;` - databasega ulanish
+
 ## CREATE TABLE
 
 `CREATE TABLE`: Ma'lumotlar bazasi ichida yangi table(jadval) yaratadi.
