@@ -307,6 +307,9 @@ CREATE TABLE Example (
 
 ## CREATE DATABASE
 `CREATE DATABASE`: Yangi database yaratadi.
+
+`\c database_name;` - databasega ulanish
+
 ```sql
 CREATE DATABASE database_name;
 ```
@@ -316,7 +319,6 @@ CREATE DATABASE database_name;
 CREATE DATABASE School;
 ```
 
-`\c database_name;` - databasega ulanish
 
 ## CREATE TABLE
 
