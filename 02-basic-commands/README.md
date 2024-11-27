@@ -345,6 +345,10 @@ CREATE TABLE Students (
 |---------|----|-----|-----|
 |         |    |     |     | 
 
+`\dt` - yaratilgan jadvalni ko'rish
+
+`\d table_name;` - jadvalga ulanish
+
 
 ## DROP
 
