@@ -297,6 +297,14 @@ CREATE TABLE Example (
 
 # Asosiy `SQL` buyruqlari: `CREATE DATABASE`, `CREATE TABLE`, `DROP`, `INSERT`, `SELECT`
 
+`\h` - SQL dagi buyruqlarni chiqarish
+
+`\?`  - PSQL ni ishlatish uchun buyruqlar
+
+`\q` - dasturdan chiqish
+
+`\l` - database larni ko'rish
+
 ## CREATE DATABASE
 `CREATE DATABASE`: Yangi database yaratadi.
 ```sql
