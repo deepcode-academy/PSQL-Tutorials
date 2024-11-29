@@ -85,3 +85,13 @@ WHERE total_salary > 500000;
 SELECT CONCAT(first_name, ' ', last_name) AS full_name
 FROM employees;
 ```
+
+- Date/Time Functions:
+  - `NOW()`, `AGE()`, `DATE_PART()`
+
+**Example:**
+
+```sql
+SELECT employee_id, AGE(NOW(), hire_date) AS years_of_service
+FROM employees;
+```
