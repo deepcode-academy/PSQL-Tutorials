@@ -351,7 +351,32 @@ LIMIT 3;
 | 4  | Shirin | 88    |
 | 1  | Ali    | 85    |
 
+4. Handling NULL Values
 
+Agar jadvalda `NULL` qiymatlar bo'lsa, PostgreSQL ularni saralashda oxirida yoki boshida joylashtiradi. Buni boshqarish uchun `NULLS FIRST` yoki `NULLS LAST` ishlatiladi.
+
+**Example:**
+
+| id | name      | score  |
+|----|-----------|--------|
+| 1  | Ali       | 85     |
+| 2  | Umid      | 92     |
+| 3  | Bekzod    | NULL   |
+| 4  | Shirin    | 88     |
+
+Saralashda `NULL` qiymatlarni boshiga qo'yish:
+
+```sql
+SELECT * 
+FROM students 
+ORDER BY score ASC NULLS FIRST;
+```
+| id | name   | score |
+|----|--------|-------|
+| 3  | Bekzod | NULL  |
+| 1  | Ali    | 85    |
+| 4  | Shirin | 88    |
+| 2  | Umid   | 92    |
 
 
 
