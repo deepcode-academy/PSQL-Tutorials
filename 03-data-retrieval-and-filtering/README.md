@@ -245,4 +245,20 @@ WHERE name LIKE 'A%';
 
 Ismi `"A"` harfi bilan boshlanadigan foydalanuvchilarni qaytaradi.
 
+# SORTING DATA WITH `ORDER BY`
+
+> [!NOTE]
+> `ORDER BY` operatori ma'lumotlarni saralashda ishlatiladi. Bu operator ma'lumotlarni **ascending**(o'sish tartibida) yoki **descending**(kamayish tartibida) tartiblash imkoniyatini beradi.
+
+## GENERAL SYNTAX
+
+```sql
+SELECT column1, column2, ...
+FROM table_name
+ORDER BY column_name [ASC | DESC];
+```
+- `ASC`: Ma'lumotlarni o'sish tartibida saralaydi (standart qiymat).
+- `DESC`: Ma'lumotlarni kamayish tartibida saralaydi.
+
+
 # PRACTICS
