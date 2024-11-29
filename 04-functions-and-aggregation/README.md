@@ -19,7 +19,7 @@
 - `AVG()`: Calculates the average.
 - `MAX()` and `MIN()`: Find the highest and lowest values.
 
-```postgresql
+```sql
 SELECT department, COUNT(*) AS employee_count, AVG(salary) AS avg_salary
 FROM employees
 GROUP BY department
@@ -31,7 +31,7 @@ ORDER BY avg_salary DESC;
    - Agregatsiyalangan maʼlumotlarni filtrlash uchun `HAVING` operatoridan foydalaniladi.
 **Example:**
 
-```postgresql
+```sql
 SELECT department, SUM(salary) AS total_salary
 FROM employees
 GROUP BY department
