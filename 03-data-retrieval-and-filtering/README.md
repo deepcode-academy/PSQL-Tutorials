@@ -19,7 +19,7 @@
 
 **Basic syntax:**
 
-```sql
+```postgresql
 SELECT column1, column2, ...
 FROM table_name;
 ```
@@ -38,7 +38,7 @@ FROM table_name;
 
 Foydalanuvchilarning faqat 30 yoshdagilarini olish:
 
-```sql
+```postgresql
 SELECT name, age
 FROM users
 WHERE age = 30;
@@ -48,7 +48,7 @@ WHERE age = 30;
 
 `30` yoshdan katta va faqat `"Toshkent"` shahrida yashaydigan foydalanuvchilarni olish:
 
-```sql
+```postgresql
 SELECT name, city, age
 FROM users
 WHERE age > 30 AND city = 'Toshkent';
@@ -58,7 +58,7 @@ WHERE age > 30 AND city = 'Toshkent';
 
 Yoshi `25` dan `40` gacha bo'lgan foydalanuvchilarni olish:
 
-```sql
+```postgresql
 SELECT name, age
 FROM users
 WHERE age BETWEEN 25 AND 40;
@@ -68,7 +68,7 @@ WHERE age BETWEEN 25 AND 40;
 
 `"Ali"` bilan boshlanadigan ismlarni qidirish:
 
-```sql
+```postgresql
 SELECT name
 FROM users
 WHERE name LIKE 'Ali%';
@@ -78,7 +78,7 @@ WHERE name LIKE 'Ali%';
 
 Telefon raqami kiritilmagan foydalanuvchilarni olish:
 
-```sql
+```postgresql
 SELECT name, phone
 FROM users
 WHERE phone IS NULL;
@@ -94,7 +94,7 @@ Additional Concepts
 **Example:** Using `IN`
 
 Find users living in `"Tashkent"`, `"Samarkand"`, or `"Bukhara"`:
-```sql
+```postgresql
 SELECT name, city
 FROM users
 WHERE city IN ('Tashkent', 'Samarkand', 'Bukhara');
@@ -111,7 +111,7 @@ WHERE city IN ('Tashkent', 'Samarkand', 'Bukhara');
 
 **Example:**
 
-```sql
+```postgresql
 SELECT name, age
 FROM users
 WHERE age = 25;
@@ -122,7 +122,7 @@ WHERE age = 25;
 
 **Example:**
 
-```sql
+```postgresql
 SELECT name, age
 FROM users
 WHERE age != 25;
@@ -136,7 +136,7 @@ WHERE age != 25;
 
 **Example:**
 
-```sql
+```postgresql
 SELECT name, age
 FROM users
 WHERE age > 30;
@@ -146,7 +146,7 @@ WHERE age > 30;
 
 **Example:**
 
-```sql
+```postgresql
 SELECT name, age
 FROM users
 WHERE age < 18;
@@ -158,7 +158,7 @@ WHERE age < 18;
 
 **Example:**
 
-```sql
+```postgresql
 SELECT name, age
 FROM users
 WHERE age >= 21;
@@ -168,7 +168,7 @@ WHERE age >= 21;
 
 **Example:**
 
-```sql
+```postgresql
 SELECT name, age
 FROM users
 WHERE age <= 60;
@@ -182,7 +182,7 @@ Mantiqiy operatorlar yordamida bir nechta shartlarni birlashtirish mumkin.
 
 **Example:**
 
-```sql
+```postgresql
 SELECT name, age, city
 FROM users
 WHERE age > 25 AND city = 'Tashkent';
@@ -194,7 +194,7 @@ WHERE age > 25 AND city = 'Tashkent';
 
 **Example:**
 
-```sql
+```postgresql
 SELECT name, age, city
 FROM users
 WHERE (age > 30 AND city = 'Tashkent') OR NOT age = 25;
@@ -211,7 +211,7 @@ WHERE (age > 30 AND city = 'Tashkent') OR NOT age = 25;
 
 **Example:**
 
-```sql
+```postgresql
 SELECT name, age
 FROM users
 WHERE age BETWEEN 20 AND 30;
@@ -222,7 +222,7 @@ WHERE age BETWEEN 20 AND 30;
 
 `IN`: Bir nechta qiymatlar ro'yxatiga mos kelishini tekshiradi.
 
-```sql
+```postgresql
 SELECT name, city
 FROM users
 WHERE city IN ('Tashkent', 'Samarkand', 'Bukhara');
@@ -236,7 +236,7 @@ WHERE city IN ('Tashkent', 'Samarkand', 'Bukhara');
 - `%`: Belgilar ketma-ketligini ifodalaydi.
 - `_`: Bitta belgini bildiradi.
 
-```sql
+```postgresql
 SELECT name
 FROM users
 WHERE name LIKE 'A%';
@@ -252,7 +252,7 @@ Ismi `"A"` harfi bilan boshlanadigan foydalanuvchilarni qaytaradi.
 
 ## GENERAL SYNTAX
 
-```sql
+```postgresql
 SELECT column1, column2, ...
 FROM table_name
 ORDER BY column_name [ASC | DESC];
@@ -275,7 +275,7 @@ ORDER BY column_name [ASC | DESC];
 - O'sish tartibida saralash
   - Quyidagi `SQL` so'rovi ma'lumotlarni `score` ustuniga qarab o'sish tartibida saralaydi:
 
-```sql
+```postgresql
 SELECT * 
 FROM students 
 ORDER BY score ASC;
@@ -292,7 +292,7 @@ ORDER BY score ASC;
 - Kamayish tartibida saralash 
   - Quyidagi so'rov ma'lumotlarni `score` ustuniga qarab kamayish tartibida saralaydi:
 
-```sql
+```postgresql
 SELECT * 
 FROM students 
 ORDER BY score DESC;
@@ -315,7 +315,7 @@ ORDER BY score DESC;
 
 `name` ustuni bo'yicha alfavit tartibida, agar ism bir xil bo'lsa, `score` kamayish tartibida saralanadi:
 
-```sql
+```postgresql
 SELECT * 
 FROM students 
 ORDER BY name ASC, score DESC;
@@ -333,7 +333,7 @@ ORDER BY name ASC, score DESC;
 
 **Example:**
 
-```sql
+```postgresql
 SELECT * 
 FROM students 
 ORDER BY score DESC 
@@ -360,7 +360,7 @@ LIMIT 3;
 
 Saralashda `NULL` qiymatlarni boshiga qo'yish:
 
-```sql
+```postgresql
 SELECT * 
 FROM students 
 ORDER BY score ASC NULLS FIRST;
@@ -379,7 +379,7 @@ ORDER BY score ASC NULLS FIRST;
 
 `LIMIT` Syntax
 
-```sql
+```postgresql
 SELECT column1, column2, ...
 FROM table_name
 LIMIT number_of_rows;
@@ -392,7 +392,7 @@ LIMIT number_of_rows;
 
 **Example:**
 
-```sql
+```postgresql
 SELECT id, name, score
 FROM students
 LIMIT 5;
@@ -402,7 +402,7 @@ LIMIT 5;
 2. Using `LIMIT` with Sorting
    - Birinchi eng yuqori baholangan `3` nafar talabani ko‘rish uchun:
 
-```sql
+```postgresql
 SELECT id, name, score
 FROM students
 ORDER BY score DESC
@@ -416,7 +416,7 @@ LIMIT 3;
    - `OFFSET` operatori natijalardagi maʼlum bir sonli yozuvlarni o‘tkazib yuborishga imkon beradi.
    - Masalan, 6-`row`dan boshlab keyingi 5 ta `row`ni olish uchun:
 
-```sql
+```postgresql
 SELECT id, name, score
 FROM students
 ORDER BY score DESC
@@ -429,7 +429,7 @@ LIMIT 5 OFFSET 5;
 4. Using `LIMIT` with `WHERE`
    - Faqat bahosi `80` dan katta bo‘lgan talabalarning birinchi `3` tasini olish:
 
-```sql
+```postgresql
 SELECT id, name, score
 FROM students
 WHERE score > 80
@@ -440,7 +440,7 @@ LIMIT 3;
 5. `LIMIT` with `Aggregate Functions`
    - Birinchi 10 ta talabaning o‘rtacha bahosini hisoblash:
 
-```sql
+```postgresql
 SELECT AVG(score) AS average_score
 FROM (
     SELECT score
