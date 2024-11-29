@@ -286,10 +286,30 @@ ORDER BY score ASC;
 
 | id | name   | score |
 |----|--------|-------|
-| 1  | Bekzod | 74    |
-| 2  | Ali    | 85    |
-| 3  | Shirin | 88    |
-| 4  | Umid   | 92    |
+| 3  | Bekzod | 74    |
+| 1  | Ali    | 85    |
+| 4  | Shirin | 88    |
+| 2  | Umid   | 92    |
+
+- Kamayish tartibida saralash
+
+Quyidagi so'rov ma'lumotlarni `score` ustuniga qarab kamayish tartibida saralaydi:
+
+```sql
+SELECT * 
+FROM students 
+ORDER BY score DESC;
+```
+
+**Result**:
+
+| id | name   | score |
+|----|--------|-------|
+| 1  | Umid   | 92    |
+| 2  | Shirin | 88    |
+| 3  | Ali    | 85    |
+| 4  | Bekzod | 74    |
+
 
 
 
