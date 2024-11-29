@@ -497,4 +497,7 @@ Here are some tasks based on the `SELECT` statement with the `WHERE` clause, alo
    - l
    - Expected Output: Row with Alice.
 
-8. 
+8. Using `IN` Clause
+   - l
+   - Expected Output: Rows with Alice, Bob, Charlie, and Edward.
+
