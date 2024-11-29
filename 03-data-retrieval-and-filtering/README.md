@@ -484,3 +484,9 @@ Here are some tasks based on the `SELECT` statement with the `WHERE` clause, alo
 4. Combining Conditions
    - `HR` bo‘limida ishlaydigan va maoshi `6000` dan kam bo‘lgan xodimlarni toping.
    - **Expected Output:** Rows with `Alice` and `Edward`.
+
+5. Using `OR` in Conditions
+   - `HR` yoki `Marketing` bo‘limida ishlaydigan xodimlarni toping.
+   - **Expected Output:** Rows with `Alice`, `Diana`, and `Edward`.
+
+6. 
