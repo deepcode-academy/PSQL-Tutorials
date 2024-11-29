@@ -505,5 +505,7 @@ Here are some tasks based on the `SELECT` statement with the `WHERE` clause, alo
    - l
    - Expected Output: Rows with Alice, Diana, and Edward.
 
-
+10. Case Sensitivity in Filtering
+   - l 
+   - Expected Output: No rows (if names are stored case-sensitive).
 
