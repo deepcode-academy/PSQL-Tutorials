@@ -25,6 +25,9 @@ FROM employees
 GROUP BY department
 ORDER BY avg_salary DESC;
 ```
+- Bu soʻrov bo‘limlar bo‘yicha xodimlarni `guruhlab`, ularning sonini va `o‘rtacha ish haqini` hisoblaydi.
+
+
 
 
 
