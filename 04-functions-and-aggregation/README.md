@@ -27,6 +27,17 @@ ORDER BY avg_salary DESC;
 ```
 - Bu soʻrov bo‘limlar bo‘yicha xodimlarni `guruhlab`, ularning sonini va `o‘rtacha ish haqini` hisoblaydi.
 
+2. Filtering Aggregated Data
+   - Agregatsiyalangan maʼlumotlarni filtrlash uchun `HAVING` operatoridan foydalaniladi.
+**Example:**
+
+```postgresql
+SELECT department, SUM(salary) AS total_salary
+FROM employees
+GROUP BY department
+HAVING SUM(salary) > 500000;
+```
+Bu soʻrov umumiy ish haqi `500,000` dan yuqori boʻlgan bo‘limlarni chiqaradi.
 
 
 
