@@ -501,3 +501,9 @@ Here are some tasks based on the `SELECT` statement with the `WHERE` clause, alo
    - l
    - Expected Output: Rows with Alice, Bob, Charlie, and Edward.
 
+9. Using `BETWEEN` Clause
+   - l
+   - Expected Output: Rows with Alice, Diana, and Edward.
+
+
+
