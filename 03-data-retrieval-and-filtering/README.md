@@ -494,8 +494,8 @@ Here are some tasks based on the `SELECT` statement with the `WHERE` clause, alo
    - **Expected Output:** Rows with `Alice`, `Diana`, and `Edward`.
 
 7. Using Wildcards `LIKE`
-   - l
-   - Expected Output: Row with Alice.
+   - Ismi `'A'` harfi bilan boshlanadigan xodimlarni toping.
+   - **Expected Output:** Row with `Alice`.
 
 8. Using `IN` Clause
    - l
