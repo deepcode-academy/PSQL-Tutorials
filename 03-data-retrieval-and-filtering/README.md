@@ -506,6 +506,8 @@ Here are some tasks based on the `SELECT` statement with the `WHERE` clause, alo
    - **Expected Output:** Rows with `Alice`, `Diana`, and `Edward`.
 
 10. Case Sensitivity in Filtering
-   - l 
-   - Expected Output: No rows (if names are stored case-sensitive).
+   - Ismi aniq `'diana'` (kichik harflar bilan) bo‘lgan xodimlarni toping. (Agar ma’lumotlar bazasi katta-kichik harfga sezgir bo‘lsa.)
+   - **Expected Output:** No rows (if names are stored case-sensitive).
+
+
 
