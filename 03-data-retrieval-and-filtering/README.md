@@ -260,5 +260,18 @@ ORDER BY column_name [ASC | DESC];
 - `ASC`: Ma'lumotlarni o'sish tartibida saralaydi (standart qiymat).
 - `DESC`: Ma'lumotlarni kamayish tartibida saralaydi.
 
+## EXAMPLES WITH EXPLANATION
+
+1. Simple Sorting
+
+Aytaylik, `students` jadvalimiz bor va unda quyidagi ma'lumotlar saqlanadi:
+
+| id | name      | score |
+|----|-----------|-------|
+| 1  | Ali       | 85    |
+| 2  | Umid      | 92    |
+| 3  | Bekzod    | 74    |
+| 4  | Shirin    | 88    |
+
 
 # PRACTICS
