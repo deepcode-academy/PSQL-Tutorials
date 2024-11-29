@@ -305,10 +305,32 @@ ORDER BY score DESC;
 
 | id | name   | score |
 |----|--------|-------|
-| 1  | Umid   | 92    |
-| 2  | Shirin | 88    |
-| 3  | Ali    | 85    |
-| 4  | Bekzod | 74    |
+| 2  | Umid   | 92    |
+| 4  | Shirin | 88    |
+| 1  | Ali    | 85    |
+| 3  | Bekzod | 74    |
+
+
+2. Sorting by Multiple Columns
+
+Agar bir nechta ustunlar bo'yicha saralash kerak bo'lsa, ular ketma-ket yoziladi.
+
+**Example:**
+
+`name` ustuni bo'yicha alfavit tartibida, agar ism bir xil bo'lsa, `score` kamayish tartibida saralanadi:
+
+```sql
+SELECT * 
+FROM students 
+ORDER BY name ASC, score DESC;
+```
+| id | name   | score |
+|----|--------|-------|
+| 1  | Ali    | 92    |
+| 3  | Bekzod | 88    |
+| 4  | Shirin | 85    |
+| 2  | Umid   | 74    |
+
 
 
 
