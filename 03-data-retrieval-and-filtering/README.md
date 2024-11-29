@@ -387,5 +387,16 @@ LIMIT number_of_rows;
 
 `number_of_rows`: Natijalar orasidan nechta yozuvni qaytarish kerakligini belgilaydi.
 
+1. Fetching the First 5 Rows
+   - Tasavvur qilaylik, bizda `students` jadvali bor, va u quyidagi ustunlarni o‘z ichiga oladi: `id`, `name`, va `score`.
+
+**Example:**
+
+```sql
+SELECT id, name, score
+FROM students
+LIMIT 5;
+```
+- Bu so‘rov `students` jadvalidan birinchi `5` ta `row`ni qaytaradi.
 
 # PRACTICS
