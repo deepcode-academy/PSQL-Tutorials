@@ -426,6 +426,17 @@ LIMIT 5 OFFSET 5;
 - `LIMIT 5`: Faqat `5` ta `row`ni qaytaradi.
 - `OFFSET 5`: Birinchi `5` ta `row`ni o‘tkazib yuboradi.
 
+4. Using `LIMIT` with `WHERE`
+   - Faqat bahosi `80` dan katta bo‘lgan talabalarning birinchi `3` tasini olish:
+
+```sql
+SELECT id, name, score
+FROM students
+WHERE score > 80
+ORDER BY score DESC
+LIMIT 3;
+```
+
 
 
 
