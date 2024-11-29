@@ -453,5 +453,26 @@ FROM (
 - Bu so‘rov eng yuqori baholangan `10` talabaning `o‘rtacha` bahosini qaytaradi.
 
 
-
 # PRACTICS
+
+Here are some tasks based on the `SELECT` statement with the `WHERE` clause, along with a sample database structure:
+
+## SAMPLE TABLE: `employees`
+
+| id | name    | department | salary | hire_data   |
+|----|---------|------------|--------|-------------|
+| 1  | Alice   | HR         | 500    | 2021-01-15  |
+| 2  | Bob     | IT         | 7000   | 2020-03-20  |
+| 3  | Charlie | IT         | 6500   | 2019-07-01  |
+| 4  | Diana   | Marketing  | 6000   | 2022-05-12  |
+| 5  | Edward  | HR         | 5500   | 2020-09-30  |
+
+## TASKS
+
+1. Basic Filtering
+   - `IT` bo‘limida ishlaydigan xodimlarni toping.
+   - **Expected Output:** Rows with `Bob` and `Charlie`.
+
+2. Filtering with Numbers
+   - Maoshi `6000` dan katta bo‘lgan xodimlarni toping.
+   - Expected Output: Rows with Bob and Charlie.
