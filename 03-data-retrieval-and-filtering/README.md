@@ -399,4 +399,18 @@ LIMIT 5;
 ```
 - Bu so‘rov `students` jadvalidan birinchi `5` ta `row`ni qaytaradi.
 
+2. Using LIMIT with Sorting
+   - Birinchi eng yuqori baholangan `3` nafar talabani ko‘rish uchun:
+
+```sql
+SELECT id, name, score
+FROM students
+ORDER BY score DESC
+LIMIT 3;
+```
+
+- `ORDER BY score DESC`: Yozuvlarni eng yuqori bahodan pastga qarab tartiblaydi.
+- `LIMIT 3`: Faqat `3` ta natijani qaytaradi.
+
+
 # PRACTICS
