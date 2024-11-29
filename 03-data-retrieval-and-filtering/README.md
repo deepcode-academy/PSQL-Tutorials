@@ -263,8 +263,7 @@ ORDER BY column_name [ASC | DESC];
 ## EXAMPLES WITH EXPLANATION
 
 1. Simple Sorting
-
-Aytaylik, `students` jadvalimiz bor va unda quyidagi ma'lumotlar saqlanadi:
+   - Aytaylik, `students` jadvalimiz bor va unda quyidagi ma'lumotlar saqlanadi:
 
 | id | name      | score |
 |----|-----------|-------|
@@ -274,8 +273,7 @@ Aytaylik, `students` jadvalimiz bor va unda quyidagi ma'lumotlar saqlanadi:
 | 4  | Shirin    | 88    |
 
 - O'sish tartibida saralash
-
-Quyidagi `SQL` so'rovi ma'lumotlarni `score` ustuniga qarab o'sish tartibida saralaydi:
+  - Quyidagi `SQL` so'rovi ma'lumotlarni `score` ustuniga qarab o'sish tartibida saralaydi:
 
 ```sql
 SELECT * 
@@ -291,9 +289,8 @@ ORDER BY score ASC;
 | 4  | Shirin | 88    |
 | 2  | Umid   | 92    |
 
-- Kamayish tartibida saralash
-
-Quyidagi so'rov ma'lumotlarni `score` ustuniga qarab kamayish tartibida saralaydi:
+- Kamayish tartibida saralash 
+  - Quyidagi so'rov ma'lumotlarni `score` ustuniga qarab kamayish tartibida saralaydi:
 
 ```sql
 SELECT * 
@@ -311,9 +308,8 @@ ORDER BY score DESC;
 | 3  | Bekzod | 74    |
 
 
-2. Sorting by Multiple Columns
-
-Agar bir nechta ustunlar bo'yicha saralash kerak bo'lsa, ular ketma-ket yoziladi.
+2. Sorting by Multiple Columns 
+   - Agar bir nechta ustunlar bo'yicha saralash kerak bo'lsa, ular ketma-ket yoziladi.
 
 **Example:**
 
@@ -333,8 +329,7 @@ ORDER BY name ASC, score DESC;
 
 
 3. Limiting Results with Sorting
-
-Agar faqat eng yuqori `3` ta natijani olish kerak bo'lsa:
+   - Agar faqat eng yuqori `3` ta natijani olish kerak bo'lsa:
 
 **Example:**
 
@@ -352,8 +347,7 @@ LIMIT 3;
 | 1  | Ali    | 85    |
 
 4. Handling NULL Values
-
-Agar jadvalda `NULL` qiymatlar bo'lsa, PostgreSQL ularni saralashda oxirida yoki boshida joylashtiradi. Buni boshqarish uchun `NULLS FIRST` yoki `NULLS LAST` ishlatiladi.
+   - Agar jadvalda `NULL` qiymatlar bo'lsa, PostgreSQL ularni saralashda oxirida yoki boshida joylashtiradi. Buni boshqarish uchun `NULLS FIRST` yoki `NULLS LAST` ishlatiladi.
 
 **Example:**
 
