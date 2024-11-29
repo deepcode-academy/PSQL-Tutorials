@@ -106,3 +106,36 @@ SELECT JSON_AGG(department) AS departments
 FROM employees;
 ```
 
+6. Recursive Queries
+   - Rekursiv soʻrovlar `hierarchical` yoki `tree-structured` maʼlumotlar bilan ishlash imkonini beradi.
+
+**Example:**
+
+```sql
+WITH RECURSIVE employee_hierarchy AS (
+    SELECT employee_id, manager_id, 1 AS level
+    FROM employees
+    WHERE manager_id IS NULL
+    UNION ALL
+    SELECT e.employee_id, e.manager_id, eh.level + 1
+    FROM employees e
+    JOIN employee_hierarchy eh ON e.manager_id = eh.employee_id
+)
+SELECT * FROM employee_hierarchy;
+```
+
+Bu soʻrov `hierarchy of employees` va ularning darajasini shakllantiradi.
+
+7. Combining Data with `JOIN` and `Aggregates`
+   - `Aggregate Functions` bir nechta jadvallar bilan ishlashda ham foydali.
+
+**Example:**
+
+```sql
+SELECT d.department_name, COUNT(e.employee_id) AS total_employees
+FROM departments d
+LEFT JOIN employees e ON d.department_id = e.department_id
+GROUP BY d.department_name;
+```
+
+- Bu har bir bo‘limdagi ishchilar sonini, ishchi bo‘lmagan bo‘limlarni ham qo‘shib, chiqaradi.
