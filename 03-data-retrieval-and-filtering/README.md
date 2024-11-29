@@ -188,5 +188,21 @@ FROM users
 WHERE age > 25 AND city = 'Tashkent';
 ```
 
+4. Combining Conditions
+
+`AND`, `OR`, va `NOT` operatorlari birgalikda ishlatilishi mumkin. Shartlarni o'qish oson bo'lishi uchun qavslar ishlatiladi.
+
+```sql
+SELECT name, age, city
+FROM users
+WHERE (age > 30 AND city = 'Tashkent') OR NOT age = 25;
+```
+
+**Explanation:**
+
+- `30` yoshdan katta va `"Toshkent"` shahrida yashovchilar yoki
+- `25` yoshda bo'lmagan foydalanuvchilarni qaytaradi.
+
+
 
 # PRACTICS
