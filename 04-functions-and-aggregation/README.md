@@ -139,3 +139,28 @@ GROUP BY d.department_name;
 ```
 
 - Bu har bir bo‘limdagi ishchilar sonini, ishchi bo‘lmagan bo‘limlarni ham qo‘shib, chiqaradi.
+
+# GROUPING DATA WITH `GROUP BY`
+
+> [!NOTE]
+> `GROUP BY` operatori **PostgreSQL**da ma’lumotlarni guruhlash uchun ishlatiladi. Bu operator ko‘pincha `Aggregate Functions` (`COUNT()`, `SUM()`, `AVG()`, `MAX()`, `MIN()`) bilan birgalikda qo‘llaniladi
+
+**Syntax:**
+
+```sql
+SELECT column_name, aggregate_function(column_name)
+FROM table_name
+GROUP BY column_name;
+```
+
+## SIMPLE EXAMPLE: GROUPING EMPLOYEES BY DEPARTMENT
+
+**Table:** `employees`
+
+| id | name    | department | salary |
+|----|---------|------------|--------|
+| 1  | Alice   | HR         | 500    |
+| 2  | Bob     | IT         | 7000   |
+| 3  | Charlie | IT         | 6500   |
+| 4  | Diana   | Marketing  | 6000   |
+| 5  | Edward  | HR         | 5500   |
