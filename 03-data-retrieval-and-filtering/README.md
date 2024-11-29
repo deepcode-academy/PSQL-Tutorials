@@ -387,7 +387,7 @@ LIMIT number_of_rows;
 
 `number_of_rows`: Natijalar orasidan nechta yozuvni qaytarish kerakligini belgilaydi.
 
-1. Fetching the First 5 Rows
+1. Fetching the First `5 Rows`
    - Tasavvur qilaylik, bizda `students` jadvali bor, va u quyidagi ustunlarni o‘z ichiga oladi: `id`, `name`, va `score`.
 
 **Example:**
@@ -399,7 +399,7 @@ LIMIT 5;
 ```
 - Bu so‘rov `students` jadvalidan birinchi `5` ta `row`ni qaytaradi.
 
-2. Using LIMIT with Sorting
+2. Using `LIMIT` with Sorting
    - Birinchi eng yuqori baholangan `3` nafar talabani ko‘rish uchun:
 
 ```sql
@@ -411,6 +411,22 @@ LIMIT 3;
 
 - `ORDER BY score DESC`: Yozuvlarni eng yuqori bahodan pastga qarab tartiblaydi.
 - `LIMIT 3`: Faqat `3` ta natijani qaytaradi.
+
+3. Combining `LIMIT` and `OFFSET`
+   - `OFFSET` operatori natijalardagi maʼlum bir sonli yozuvlarni o‘tkazib yuborishga imkon beradi.
+   - Masalan, 6-`row`dan boshlab keyingi 5 ta `row`ni olish uchun:
+
+```sql
+SELECT id, name, score
+FROM students
+ORDER BY score DESC
+LIMIT 5 OFFSET 5;
+```
+
+- `LIMIT 5`: Faqat `5` ta `row`ni qaytaradi.
+- `OFFSET 5`: Birinchi `5` ta `row`ni o‘tkazib yuboradi.
+
+
 
 
 # PRACTICS
