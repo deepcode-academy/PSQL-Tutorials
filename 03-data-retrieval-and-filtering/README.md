@@ -473,6 +473,14 @@ Here are some tasks based on the `SELECT` statement with the `WHERE` clause, alo
    - `IT` bo‘limida ishlaydigan xodimlarni toping.
    - **Expected Output:** Rows with `Bob` and `Charlie`.
 
-2. Filtering with Numbers
+2. Filtering with `Numbers`
    - Maoshi `6000` dan katta bo‘lgan xodimlarni toping.
-   - Expected Output: Rows with Bob and Charlie.
+   - **Expected Output:** Rows with `Bob` and `Charlie`.
+
+3. Filtering with `Dates`
+   - 2020-yilning 1-yanvaridan keyin ishga qabul qilingan xodimlarni toping.
+   - **Expected Output:** Rows with `Alice`, `Diana`, and `Edward`.
+
+4. Combining Conditions
+   - `HR` bo‘limida ishlaydigan va maoshi `6000` dan kam bo‘lgan xodimlarni toping.
+   - **Expected Output:** Rows with `Alice` and `Edward`.
