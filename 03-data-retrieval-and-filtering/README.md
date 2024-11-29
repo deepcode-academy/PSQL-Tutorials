@@ -192,6 +192,8 @@ WHERE age > 25 AND city = 'Tashkent';
 
 `AND`, `OR`, va `NOT` operatorlari birgalikda ishlatilishi mumkin. Shartlarni o'qish oson bo'lishi uchun qavslar ishlatiladi.
 
+**Example:**
+
 ```sql
 SELECT name, age, city
 FROM users
@@ -203,6 +205,41 @@ WHERE (age > 30 AND city = 'Tashkent') OR NOT age = 25;
 - `30` yoshdan katta va `"Toshkent"` shahrida yashovchilar yoki
 - `25` yoshda bo'lmagan foydalanuvchilarni qaytaradi.
 
+5. Additional Operators
 
+`BETWEEN`: Ma'lum bir oraliqdagi qiymatlarni tanlash.
+
+**Example:**
+
+```sql
+SELECT name, age
+FROM users
+WHERE age BETWEEN 20 AND 30;
+```
+**Explanation:**
+
+- `20` dan `30` yoshgacha bo'lgan foydalanuvchilarni qaytaradi.
+
+`IN`: Bir nechta qiymatlar ro'yxatiga mos kelishini tekshiradi.
+
+```sql
+SELECT name, city
+FROM users
+WHERE city IN ('Tashkent', 'Samarkand', 'Bukhara');
+```
+**Explanation:**
+
+- Foydalanuvchilar "Toshkent", "Samarqand" yoki "Buxoro" shahrida yashashi kerak.
+
+`LIKE`: Qismiy moslikni tekshiradi (for string).
+
+- `%`: Belgilar ketma-ketligini ifodalaydi.
+- `_`: Bitta belgini bildiradi.
+
+```sql
+SELECT name
+FROM users
+WHERE name LIKE 'A%';
+```
 
 # PRACTICS
