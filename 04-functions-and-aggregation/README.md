@@ -95,3 +95,14 @@ FROM employees;
 SELECT employee_id, AGE(NOW(), hire_date) AS years_of_service
 FROM employees;
 ```
+
+- JSON Functions:
+  - `JSONB_EXTRACT_PATH_TEXT()`, `JSON_AGG()`
+
+**Example:**
+
+```sql
+SELECT JSON_AGG(department) AS departments
+FROM employees;
+```
+
