@@ -5,3 +5,6 @@
   - Grouping data with `GROUP BY`
   - Filtering grouped data with `HAVING`
 
+
+# USING PostgreSQL FUNCTIONS `COUNT`, `SUM`, `AVG`, `MIN`, `MAX`
+
