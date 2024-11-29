@@ -326,10 +326,30 @@ ORDER BY name ASC, score DESC;
 ```
 | id | name   | score |
 |----|--------|-------|
-| 1  | Ali    | 92    |
-| 3  | Bekzod | 88    |
-| 4  | Shirin | 85    |
-| 2  | Umid   | 74    |
+| 1  | Ali    | 85    |
+| 3  | Bekzod | 74    |
+| 4  | Shirin | 88    |
+| 2  | Umid   | 92    |
+
+
+3. Limiting Results with Sorting
+
+Agar faqat eng yuqori `3` ta natijani olish kerak bo'lsa:
+
+**Example:**
+
+```sql
+SELECT * 
+FROM students 
+ORDER BY score DESC 
+LIMIT 3;
+```
+
+| id | name   | score |
+|----|--------|-------|
+| 2  | Umid   | 92    |
+| 4  | Shirin | 88    |
+| 1  | Ali    | 85    |
 
 
 
