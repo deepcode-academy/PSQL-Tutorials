@@ -241,5 +241,8 @@ SELECT name
 FROM users
 WHERE name LIKE 'A%';
 ```
+**Explanation:**
+
+Ismi `"A"` harfi bilan boshlanadigan foydalanuvchilarni qaytaradi.
 
 # PRACTICS
