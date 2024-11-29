@@ -372,6 +372,20 @@ ORDER BY score ASC NULLS FIRST;
 | 4  | Shirin | 88    |
 | 2  | Umid   | 92    |
 
+# LIMITING RESULTS WITH `LIMIT`
+
+> [!NOTE]
+> `LIMIT` operatori maʼlumotlarni qaytarishda maʼlum bir son bilan cheklash uchun ishlatiladi. Bu, ayniqsa, ko‘p sonli natijalar bilan ishlaganda muhimdir, chunki `LIMIT` operatori faqat kerakli miqdordagi yozuvlarni qaytarishga imkon beradi.
+
+`LIMIT` Syntax
+
+```sql
+SELECT column1, column2, ...
+FROM table_name
+LIMIT number_of_rows;
+```
+
+`number_of_rows`: Natijalar orasidan nechta yozuvni qaytarish kerakligini belgilaydi.
 
 
 # PRACTICS
