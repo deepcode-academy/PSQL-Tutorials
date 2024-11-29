@@ -498,12 +498,12 @@ Here are some tasks based on the `SELECT` statement with the `WHERE` clause, alo
    - **Expected Output:** Row with `Alice`.
 
 8. Using `IN` Clause
-   - l
-   - Expected Output: Rows with Alice, Bob, Charlie, and Edward.
+   - `IT` yoki `HR` bo‘limida ishlaydigan xodimlarni toping.
+   - **Expected Output**: Rows with `Alice`, `Bob`, `Charlie`, and `Edward`.
 
 9. Using `BETWEEN` Clause
-   - l
-   - Expected Output: Rows with Alice, Diana, and Edward.
+   - Maoshi `5000` va `6000` orasida bo‘lgan xodimlarni toping.
+   - **Expected Output:** Rows with `Alice`, `Diana`, and `Edward`.
 
 10. Case Sensitivity in Filtering
    - l 
