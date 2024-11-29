@@ -159,8 +159,28 @@ GROUP BY column_name;
 
 | id | name    | department | salary |
 |----|---------|------------|--------|
-| 1  | Alice   | HR         | 500    |
+| 1  | Alice   | HR         | 5000   |
 | 2  | Bob     | IT         | 7000   |
-| 3  | Charlie | IT         | 6500   |
-| 4  | Diana   | Marketing  | 6000   |
-| 5  | Edward  | HR         | 5500   |
+| 3  | Charlie | IT         | 6000   |
+| 4  | Diana   | HR         | 5500   |
+| 5  | Eve     | Sales      | 8000    |
+
+**Goal:**
+
+Har bir bo‘limdagi ishchilar sonini aniqlash.
+
+**Query:**
+
+```sql
+SELECT department, COUNT(*) AS employee_count
+FROM employees
+GROUP BY department;
+```
+
+**Result:**
+
+| department | employee_count |
+|------------|----------------|
+| HR         | 2              |
+| IT         | 2              |
+| Sales      | 1              |
