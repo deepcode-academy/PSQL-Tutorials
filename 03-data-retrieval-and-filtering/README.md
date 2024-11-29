@@ -273,5 +273,24 @@ Aytaylik, `students` jadvalimiz bor va unda quyidagi ma'lumotlar saqlanadi:
 | 3  | Bekzod    | 74    |
 | 4  | Shirin    | 88    |
 
+- O'sish tartibida saralash
+
+Quyidagi `SQL` so'rovi ma'lumotlarni `score` ustuniga qarab o'sish tartibida saralaydi:
+
+```sql
+SELECT * 
+FROM students 
+ORDER BY score ASC;
+```
+**Result**:
+
+| id | name   | score |
+|----|--------|-------|
+| 1  | Bekzod | 74    |
+| 2  | Ali    | 85    |
+| 3  | Shirin | 88    |
+| 4  | Umid   | 92    |
+
+
 
 # PRACTICS
