@@ -73,4 +73,15 @@ WHERE total_salary > 500000;
 ```
 - Bu misolda umumiy ish haqlari hisoblanib, saralangan bo‘limlar chiqariladi.
 
+5. Advanced SQL Functions
+   - **PostgreSQL**da maʼlumotlarni boshqarish uchun juda koʻp qurilgan funksiyalar mavjud.
 
+- String Functions:
+  - `CONCAT()`, `SUBSTRING()`, `LOWER()`, `UPPER()`
+
+**Example:**
+
+```sql
+SELECT CONCAT(first_name, ' ', last_name) AS full_name
+FROM employees;
+```
