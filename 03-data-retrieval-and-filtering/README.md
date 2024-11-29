@@ -490,8 +490,8 @@ Here are some tasks based on the `SELECT` statement with the `WHERE` clause, alo
    - **Expected Output:** Rows with `Alice`, `Diana`, and `Edward`.
 
 6. Negating Conditions
-   - l
-   - Expected Output: Rows with Alice, Diana, and Edward.
+   - `IT` bo‘limida ishlamaydigan xodimlarni toping.
+   - **Expected Output:** Rows with `Alice`, `Diana`, and `Edward`.
 
 7. Using Wildcards `LIKE`
    - l
