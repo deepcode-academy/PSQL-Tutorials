@@ -437,6 +437,20 @@ ORDER BY score DESC
 LIMIT 3;
 ```
 
+5. `LIMIT` with `Aggregate Functions`
+   - Birinchi 10 ta talabaning o‘rtacha bahosini hisoblash:
+
+```sql
+SELECT AVG(score) AS average_score
+FROM (
+    SELECT score
+    FROM students
+    ORDER BY score DESC
+    LIMIT 10
+) AS top_students;
+```
+
+- Bu so‘rov eng yuqori baholangan `10` talabaning `o‘rtacha` bahosini qaytaradi.
 
 
 
