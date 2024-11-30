@@ -184,3 +184,21 @@ GROUP BY department;
 | HR         | 2              |
 | IT         | 2              |
 | Sales      | 1              |
+
+## USING AGGREGATE FUNCTIONS
+
+- Har bir bo‘limning o‘rtacha maoshi
+
+```sql
+SELECT department, AVG(salary) AS average_salary
+FROM employees
+GROUP BY department;
+```
+
+**Result:**
+
+| department | average_salary |
+|------------|----------------|
+| HR         | 5250           |
+| IT         | 6500           |
+| Sales      | 8000           |
