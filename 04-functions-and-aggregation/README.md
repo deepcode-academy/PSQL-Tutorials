@@ -217,3 +217,32 @@ GROUP BY department;
 | IT         | 7000           |
 | Sales      | 8000           |
 
+## GROUPING BY MULTIPLE COLUMNS
+
+| id | region | product | revenue |
+|----|--------|---------|---------|
+| 1  | North  | Laptop  | 15000   |
+| 2  | North  | Phone   | 20000   |
+| 3  | South  | Laptop	 | 12000   | 
+| 4  | South  | Phone   | 25000   | 
+| 5  | East   | Laptop  | 10000   | 
+
+**Goal:**
+
+- Har bir mintaqa va mahsulot bo‘yicha umumiy daromadni hisoblash.
+
+```sql
+SELECT region, product, SUM(revenue) AS total_revenue
+FROM sales
+GROUP BY region, product;
+```
+
+| region | product  | 	total_revenue |
+|--------|----------|----------------|
+| North  | Laptop   | 	15000         |
+| North  | Phone    | 	20000         |
+| South  | Laptop   | 	12000         |
+| South  | Phone    | 	25000         |
+| East   | Laptop   | 	10000         |
+
+
