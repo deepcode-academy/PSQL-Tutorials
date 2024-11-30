@@ -265,7 +265,10 @@ HAVING COUNT(*) > 1;
 | HR         | 2              |
 | IT         | 2              |
 
+# FILTERING GROUPED DATA WITH `HAVING`
 
+> [!NOTE]
+> SQLda HAVINGklauzasiGROUP BYorqali guruhlangan maʼlumotlarni filtrlash uchun ishlatiladi.WHEREklauzasidan farqli o‘laroq,HAVINGfaqat guruhlash va agregatsiya (masalan,COUNT(), SUM(), AVG(), MAX(), MIN()`)dan keyin qo‘llaniladi.
 
 
 
