@@ -246,3 +246,26 @@ GROUP BY region, product;
 | East   | Laptop   | 	10000         |
 
 
+## USING `HAVING` WITH `GROUP BY`
+
+- Har bir bo‘limdagi ishchilar soni `1` dan katta bo‘lgan holatlar
+- HAVING agregat funksiyalar natijasiga cheklov qo‘yish uchun ishlatiladi.
+
+```sql
+SELECT department, COUNT(*) AS employee_count
+FROM employees
+GROUP BY department
+HAVING COUNT(*) > 1;
+```
+
+**Result:**
+
+| department | employee_count |
+|------------|----------------|
+| HR         | 2              |
+| IT         | 2              |
+
+
+
+
+
