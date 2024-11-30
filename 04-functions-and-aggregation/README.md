@@ -202,3 +202,18 @@ GROUP BY department;
 | HR         | 5250           |
 | IT         | 6500           |
 | Sales      | 8000           |
+
+- Har bir bo‘limdagi eng katta maosh
+
+```sql
+SELECT department, MAX(salary) AS max_salary
+FROM employees
+GROUP BY department;
+```
+
+| department | average_salary |
+|------------|----------------|
+| HR         | 5500           |
+| IT         | 7000           |
+| Sales      | 8000           |
+
