@@ -270,9 +270,18 @@ HAVING COUNT(*) > 1;
 > [!NOTE]
 > SQLda `HAVING` clause `GROUP BY` orqali guruhlangan maʼlumotlarni filtrlash uchun ishlatiladi. `WHERE` clausedan farqli o‘laroq, `HAVING` faqat guruhlash va agregatsiya (masalan, `COUNT()`, `SUM()`, `AVG()`, `MAX()`, `MIN()`)dan keyin qo‘llaniladi.
 
+**Syntax:**
 
+```sql
+SELECT column1, column2, AGGREGATE_FUNCTION(column3)
+FROM table_name
+WHERE condition
+GROUP BY column1, column2
+HAVING aggregate_condition;
+```
 
+**Key Points:**
 
-
-
-
+1. `WHERE` - guruhlashdan oldin qatorlarni filtrlash uchun ishlatiladi.
+2. `GROUP BY` - qatorlarni belgilangan ustunlarga asoslangan holda guruhlash uchun ishlatiladi.
+3. `HAVING` - guruhlangan maʼlumotlarni agregatsiya funksiyalariga asoslangan holda filtrlash uchun ishlatiladi.
