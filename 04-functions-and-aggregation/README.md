@@ -285,3 +285,4 @@ HAVING aggregate_condition;
 1. `WHERE` - guruhlashdan oldin qatorlarni filtrlash uchun ishlatiladi.
 2. `GROUP BY` - qatorlarni belgilangan ustunlarga asoslangan holda guruhlash uchun ishlatiladi.
 3. `HAVING` - guruhlangan maʼlumotlarni agregatsiya funksiyalariga asoslangan holda filtrlash uchun ishlatiladi.
+
