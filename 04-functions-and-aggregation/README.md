@@ -290,7 +290,11 @@ HAVING aggregate_condition;
 
 **Table:** Sales
 
-| Salesperson | Region  | Sales |
-|-------------|---------|-------|
-| Alice       | East    | 500   |
-| Bob         | East	 | 700   |
+| Salesperson | Region | Sales |
+|-------------|--------|-------|
+| Alice       | East   | 500   |
+| Bob         | East	| 700   |
+| Alice       | West   | 300   |
+| Bob         | West   | 400   |
+| Alice       | East   | 200   |
+| Bob         | East   | 600   |
