@@ -307,3 +307,19 @@ FROM Sales
 GROUP BY Region
 HAVING SUM(Sales) > 1000;
 ```
+
+**Example 2:** Counting Employees in Departments
+
+**Table:** Employees
+
+| EmployeeID | Department | Salary |
+|------------|------------|--------|
+| 1          | IT         | 800    |
+| 2          | HR         | 500    |
+| 3          | IT         | 900    |
+| 4          | Sales      | 600    |
+| 5          | IT         | 700    |
+| 6          | Sales      | 500    |
+
+**Query:** 2 dan ortiq xodimga ega bo‘lgan bo‘limlarni ko‘rsating.
+
