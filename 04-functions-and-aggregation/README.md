@@ -298,3 +298,12 @@ HAVING aggregate_condition;
 | Bob         | West   | 400   |
 | Alice       | East   | 200   |
 | Bob         | East   | 600   |
+
+**Query:** Umumiy sotuv miqdori 1000 dan oshgan hududlarni ko‘rsating.
+
+```sql
+SELECT Region, SUM(Sales) AS Total_Sales
+FROM Sales
+GROUP BY Region
+HAVING SUM(Sales) > 1000;
+```
