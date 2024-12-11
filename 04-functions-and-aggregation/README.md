@@ -357,3 +357,20 @@ HAVING AVG(Salary) > 600;
 | Department | Average_Salary |
 |------------|----------------|
 | IT         | 800            |
+
+# Tasks
+
+1. COUNT Function:
+   - Task:
+     - **students** jadvalida nechta talaba borligini hisoblang.
+     - **students** jadvalidagi har bir guruh uchun nechta talaba borligini hisoblang (**group_id** ustuni bo'yicha).
+
+2. SUM Function:
+   - Task:
+     - **sales** jadvalida barcha buyurtmalarning umumiy qiymatini hisoblang.
+     - Har bir mijoz uchun (**customer_id**) buyurtmalarning umumiy qiymatini toping.
+
+3. AVG Function:
+   - Task:
+     - **products** jadvalidagi mahsulotlarning o'rtacha narxini hisoblang.
+     - Har bir toifaga (**category_id**) ko'ra mahsulotlarning o'rtacha narxini toping.
