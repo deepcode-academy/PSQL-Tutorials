@@ -335,3 +335,9 @@ FROM Employees
 GROUP BY Department
 HAVING COUNT(EmployeeID) > 2;
 ```
+
+**Result:**
+
+| Department | Employee_Count |
+|------------|----------------|
+| IT         | 3              |
