@@ -307,6 +307,12 @@ FROM Sales
 GROUP BY Region
 HAVING SUM(Sales) > 1000;
 ```
+**Result:**
+
+|Region| Total_Sales |
+|------|-------------|
+|East  | 2000        |
+
 
 **Example 2:** Counting Employees in Departments
 
@@ -323,3 +329,9 @@ HAVING SUM(Sales) > 1000;
 
 **Query:** 2 dan ortiq xodimga ega bo‘lgan bo‘limlarni ko‘rsating.
 
+```sql
+SELECT Department, COUNT(EmployeeID) AS Employee_Count
+FROM Employees
+GROUP BY Department
+HAVING COUNT(EmployeeID) > 2;
+```
