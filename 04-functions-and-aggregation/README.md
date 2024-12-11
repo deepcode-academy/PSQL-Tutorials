@@ -341,3 +341,19 @@ HAVING COUNT(EmployeeID) > 2;
 | Department | Employee_Count |
 |------------|----------------|
 | IT         | 3              |
+
+**Example 3:** Average Salary by Department
+
+**Query:** O‘rtacha maosh 600 dan oshgan bo‘limlarni ko‘rsating.
+
+```sql
+SELECT Department, AVG(Salary) AS Average_Salary
+FROM Employees
+GROUP BY Department
+HAVING AVG(Salary) > 600;
+```
+**Result:**
+
+| Department | Average_Salary |
+|------------|----------------|
+| IT         | 800            |
