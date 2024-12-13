@@ -19,6 +19,17 @@
 - `AVG()`: Calculates the average.
 - `MAX()` and `MIN()`: Find the highest and lowest values.
 
+| employee_id | first_name	 | last_name  | department | salary |
+|-------------|-------------|------------|------------|--------|
+| 1           | Ali         | Valiyev    | IT         | 3000   |
+| 2           | Sara        | Ahmedova   | HR         | 2500   |
+| 3           | Olim        | Nazarov    | IT         | 4000   |
+| 4           | Kamola      | Ismatova   | Finance    | 3500   |
+| 5           | Zafar       | Bekmurodov | Marketing  | 2000   |
+| 6           | Anvar       | Karimov    | IT         | 4500   |
+| 7           | Lola        | Tursunova  | HR         | 2700   |
+
+
 ```sql
 SELECT department, COUNT(*) AS employee_count, AVG(salary) AS avg_salary
 FROM employees
@@ -374,3 +385,10 @@ HAVING AVG(Salary) > 600;
    - Task:
      - **products** jadvalidagi mahsulotlarning o'rtacha narxini hisoblang.
      - Har bir toifaga (**category_id**) ko'ra mahsulotlarning o'rtacha narxini toping.
+
+4. MIN and MAX Functions:
+   - Task:
+     - **employees** jadvalida eng kam va eng yuqori oylik miqdorini toping.
+     - Har bir bo'limda (**department_id**) eng kam va eng yuqori oylikni aniqlang.
+
+5. 
