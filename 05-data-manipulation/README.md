@@ -22,3 +22,31 @@ WHERE condition;
   - `WHERE`: Qaysi malumotni yangilashni aniqlash uchun ishlatiladi. Agar `WHERE` shartini qo'shmasangiz, jadvaldagi barcha malumotlar yangilanadi.
   - **Conditions**: Agar kerak bo'lsa, bir nechta shartlarni birlashtirish uchun AND, OR mantiqiy operatorlarini ishlatish mumkin.
 
+1. Basic Update Example
+
+Bizda **students** degan jadval bor, quyidagi ustunlar bilan:
+
+- **id**: Talaba ID raqami
+- **name**: Talabaning ismi
+- **age**: Talabaning yoshi
+- **grade**: Talabaning darajasi
+
+| id | name  | age | grade |
+|----|-------|-----|-------|
+| 1  | Ali   | 18  | A     |
+| 2  | Vali  | 19  | B     |
+| 3  | Komil | 17  | C     |
+
+Endi, `id = 2` bo'lgan talabaning `grade` ustunini `A` ga o'zgartiramiz:
+
+```sql
+UPDATE students
+SET grade = 'A'
+WHERE id = 2;
+```
+
+| id | name  | age | grade |
+|----|-------|-----|-------|
+| 1  | Ali   | 18  | A     |
+| 2  | Vali  | 19  | A     |
+| 3  | Komil | 17  | C     |
