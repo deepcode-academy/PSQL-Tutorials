@@ -24,7 +24,7 @@ WHERE condition;
 
 1. Basic Update Example
 
-Bizda **students** degan jadval bor, quyidagi ustunlar bilan:
+Bizda `students` degan jadval bor, quyidagi ustunlar bilan:
 
 - **id**: Talaba ID raqami
 - **name**: Talabaning ismi
