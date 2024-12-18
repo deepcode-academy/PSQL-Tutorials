@@ -50,3 +50,21 @@ WHERE id = 2;
 | 1  | Ali   | 18  | A     |
 | 2  | Vali  | 19  | A     |
 | 3  | Komil | 17  | C     |
+
+
+2. Updating Multiple Columns
+
+Agar bir vaqtning o'zida bir nechta ustunlarni yangilash kerak bo'lsa:
+
+```sql
+UPDATE students
+SET age = 20, grade = 'B'
+WHERE name = 'Komil';
+```
+
+
+| id | name  | age | grade |
+|----|-------|-----|-------|
+| 1  | Ali   | 18  | A     |
+| 2  | Vali  | 19  | A     |
+| 3  | Komil | 20  | B     |
