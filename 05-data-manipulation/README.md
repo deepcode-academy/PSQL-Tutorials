@@ -83,3 +83,14 @@ SET grade = 'C';
 | 1  | Ali   | 18  | C     |
 | 2  | Vali  | 19  | C     |
 | 3  | Komil | 20  | C     |
+
+4. Conditional Updates with `AND` and `OR`
+
+`age > 18` va `grade = 'A'` bo'lgan talabalarning `grade` ni `B` ga o'zgartiramiz:
+
+```sql
+UPDATE students
+SET grade = 'B'
+WHERE age > 18 AND grade = 'A';
+```
+
