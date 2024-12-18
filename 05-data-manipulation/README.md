@@ -68,3 +68,18 @@ WHERE name = 'Komil';
 | 1  | Ali   | 18  | A     |
 | 2  | Vali  | 19  | A     |
 | 3  | Komil | 20  | B     |
+
+3. Updating All Rows
+
+Agar jadvaldagi barcha qatorlarni yangilash kerak bo'lsa:
+
+```sql
+UPDATE students
+SET grade = 'C';
+```
+
+| id | name  | age | grade |
+|----|-------|-----|-------|
+| 1  | Ali   | 18  | C     |
+| 2  | Vali  | 19  | C     |
+| 3  | Komil | 20  | C     |
