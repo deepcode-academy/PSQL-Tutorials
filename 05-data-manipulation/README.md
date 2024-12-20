@@ -24,7 +24,7 @@ WHERE condition;
 
 1. Basic Update Example
 
-Bizda `students` degan jadval bor, quyidagi ustunlar bilan:
+- Bizda `students` degan jadval bor, quyidagi ustunlar bilan:
 
 - **id**: Talaba ID raqami
 - **name**: Talabaning ismi
@@ -37,7 +37,7 @@ Bizda `students` degan jadval bor, quyidagi ustunlar bilan:
 | 2  | Vali  | 19  | B     |
 | 3  | Komil | 17  | C     |
 
-Endi, `id = 2` bo'lgan talabaning `grade` ustunini `A` ga o'zgartiramiz:
+- Endi, `id = 2` bo'lgan talabaning `grade` ustunini `A` ga o'zgartiramiz:
 
 ```sql
 UPDATE students
@@ -54,7 +54,7 @@ WHERE id = 2;
 
 2. Updating Multiple Columns
 
-Agar bir vaqtning o'zida bir nechta ustunlarni yangilash kerak bo'lsa:
+- Agar bir vaqtning o'zida bir nechta ustunlarni yangilash kerak bo'lsa:
 
 ```sql
 UPDATE students
@@ -71,7 +71,7 @@ WHERE name = 'Komil';
 
 3. Updating All Rows
 
-Agar jadvaldagi barcha qatorlarni yangilash kerak bo'lsa:
+- Agar jadvaldagi barcha qatorlarni yangilash kerak bo'lsa:
 
 ```sql
 UPDATE students
@@ -86,7 +86,7 @@ SET grade = 'C';
 
 4. Conditional Updates with `AND` and `OR`
 
-`age > 18` va `grade = 'A'` bo'lgan talabalarning `grade` ni `B` ga o'zgartiramiz:
+- `age > 18` va `grade = 'A'` bo'lgan talabalarning `grade` ni `B` ga o'zgartiramiz:
 
 ```sql
 UPDATE students
