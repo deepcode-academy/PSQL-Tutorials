@@ -94,3 +94,20 @@ SET grade = 'B'
 WHERE age > 18 AND grade = 'A';
 ```
 
+5. Updating with Subqueries
+
+- Boshqa jadval ma'lumotlaridan foydalanib qatorlarni yangilash mumkin.
+- students jadvalidagi `grade` ustunini `grades` jadvalidan olib yangilaymiz:
+
+| id | grade |
+|----|-------|
+| 1  | A     |
+| 2  | B     |
+| 3  | A     |
+
+
+```sql
+UPDATE students
+SET grade = (SELECT grade FROM grades WHERE grades.id = students.id);
+```
+
