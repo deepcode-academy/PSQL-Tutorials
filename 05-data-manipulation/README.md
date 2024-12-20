@@ -6,10 +6,12 @@
   - Managing data integrity with constraints (foreign keys, unique)
   - Transactions and rollback
 
+## Updating records with UPDATE
+
 > [!NOTE]
 > PostgreSQLda ma'lumotlarni yangilash uchun `UPDATE` operatoridan foydalaniladi. Bu operator jadvaldagi mavjud malumotlarni yangilash uchun ishlatiladi.
 
-## Syntax of UPDATE:
+### Syntax of UPDATE:
 
 ```sql
 UPDATE table_name
@@ -111,3 +113,21 @@ UPDATE students
 SET grade = (SELECT grade FROM grades WHERE grades.id = students.id);
 ```
 
+## Deleting records with DELETE
+
+> [!NOTE]
+> PostgreSQLda ma'lumotlarni o'chirish uchun `DELETE` operatoridan foydalaniladi.
+
+
+### Syntax of the DELETE Statement
+
+```sql
+DELETE FROM table_name
+WHERE condition;
+```
+
+- `table_name`: O'chirish amalga oshiriladigan jadval nomi.
+- `condition`: Qaysi satrlarni o'chirish kerakligini belgilaydigan shart.
+
+> [!CAUTION]
+> Agar `WHERE` sharti ko'rsatilmasa, jadvaldagi barcha yozuvlar o'chiriladi. Bunda ehtiyot bo'lish kerak!
