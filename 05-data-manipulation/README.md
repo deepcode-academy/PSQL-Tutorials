@@ -131,3 +131,11 @@ WHERE condition;
 
 > [!CAUTION]
 > Agar `WHERE` sharti ko'rsatilmasa, jadvaldagi barcha yozuvlar o'chiriladi. Bunda ehtiyot bo'lish kerak!
+
+| id | name    | age | grade |
+|----|---------|-----|-------|
+| 1  | Ali     | 20  | A     |
+| 2  | Dilshod | 22  | B     |
+| 3  | Shirin  | 19  | A     |
+| 4  | Zafar   | 21  | C     |
+
