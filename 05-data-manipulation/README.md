@@ -24,6 +24,12 @@ WHERE condition;
   - `WHERE`: Qaysi malumotni yangilashni aniqlash uchun ishlatiladi. Agar `WHERE` shartini qo'shmasangiz, jadvaldagi barcha malumotlar yangilanadi.
   - **Conditions**: Agar kerak bo'lsa, bir nechta shartlarni birlashtirish uchun AND, OR mantiqiy operatorlarini ishlatish mumkin.
 
+| client_id | first_name | last_name | date_of_birth | email                | phone         | address             | city      | country     | postal_code | registration_date | last_activity_date | balance | status |
+|-----------|------------|-----------|---------------|----------------------|---------------|---------------------|-----------|-------------|-------------|-------------------|--------------------|---------|--------|
+| 1         | Ali        | Karimov   | 1990-01-01    | ali.karimov@mail.uz  | +99890123456  | Tashkent, Block 15  | Tashkent  | Uzbekistan  | 100100      | 2024-01-01        | 2024-12-01         | 150.50  | TRUE   |
+
+
+
 1. Basic Update Example
 
 - Bizda `students` degan jadval bor, quyidagi ustunlar bilan:
