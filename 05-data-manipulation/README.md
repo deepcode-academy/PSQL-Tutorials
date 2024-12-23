@@ -24,9 +24,11 @@ WHERE condition;
   - `WHERE`: Qaysi malumotni yangilashni aniqlash uchun ishlatiladi. Agar `WHERE` shartini qo'shmasangiz, jadvaldagi barcha malumotlar yangilanadi.
   - **Conditions**: Agar kerak bo'lsa, bir nechta shartlarni birlashtirish uchun AND, OR mantiqiy operatorlarini ishlatish mumkin.
 
-| client_id | first_name | last_name | date_of_birth | email                | phone         | address             | city      | country     | postal_code | registration_date | last_activity_date | balance | status |
-|-----------|------------|-----------|---------------|----------------------|---------------|---------------------|-----------|-------------|-------------|-------------------|--------------------|---------|--------|
-| 1         | Ali        | Karimov   | 1990-01-01    | ali.karimov@mail.uz  | +99890123456  | Tashkent, Block 15  | Tashkent  | Uzbekistan  | 100100      | 2024-01-01        | 2024-12-01         | 150.50  | TRUE   |
+| client_id | first_name | last_name  | date_of_birth | email               | phone         | address            | city       | country     | postal_code | registration_date | last_activity_date | balance | status |
+|-----------|------------|------------|---------------|---------------------|---------------|--------------------|------------|-------------|-------------|-------------------|--------------------|---------|--------|
+| 1         | Ali        | Karimov    | 1990-01-01    | ali.karimov@mail.uz | +99890123456  | Tashkent, Block 15 | Tashkent   | Uzbekistan  | 100100      | 2024-01-01        | 2024-12-01         | 150.50  | TRUE   |
+| 2         | Dilnoza    | Tursunova  | 1985-05-12    | dilnoza@mail.uz     | +99890123457  | Samarkand, Block 7 | Samarkand  | Uzbekistan  | 140200      | 2024-02-15        | 2024-11-20         | 0.00    | FALSE  |
+| 3         | Bekzod     | Rasulov    | 1992-03-22    | bekzod@mail.uz      | +99890123458  | Bukhara, Block 9   | Bukhara    | Uzbekistan  | 200300      | 2024-05-10        | 2024-10-30         | 250.75  | TRUE   |
 
 
 
