@@ -70,17 +70,6 @@ SET phone = '+998930850955'
 WHERE city = 'Toshkent' AND status = TRUE;
 ```
 
-5. Updating with Subqueries
-
-- Boshqa jadval ma'lumotlaridan foydalanib qatorlarni yangilash mumkin.
-- students jadvalidagi `grade` ustunini `grades` jadvalidan olib yangilaymiz:
-
-
-```sql
-UPDATE students
-SET grade = (SELECT grade FROM grades WHERE grades.id = students.id);
-```
-
 ## Deleting records with DELETE
 
 > [!NOTE]
