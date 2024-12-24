@@ -31,89 +31,49 @@ WHERE condition;
 | 3         | Bekzod     | Rasulov    | 1992-03-22    | bekzod@mail.uz      | +99890123458  | Bukhara, Block 9   | Bukhara    | Uzbekistan  | 200300      | 2024-05-10        | 2024-10-30         | 250.75  | TRUE   |
 
 
-
 1. Basic Update Example
 
-- Bizda `students` degan jadval bor, quyidagi ustunlar bilan:
-
-- **id**: Talaba ID raqami
-- **name**: Talabaning ismi
-- **age**: Talabaning yoshi
-- **grade**: Talabaning darajasi
-
-| id | name  | age | grade |
-|----|-------|-----|-------|
-| 1  | Ali   | 18  | A     |
-| 2  | Vali  | 19  | B     |
-| 3  | Komil | 17  | C     |
-
-- Endi, `id = 2` bo'lgan talabaning `grade` ustunini `A` ga o'zgartiramiz:
+- `id = 2` bo'lgan clientni `city` ustunini `Navoiy` ga o'zgartiramiz:
 
 ```sql
-UPDATE students
-SET grade = 'A'
+UPDATE clients
+SET city = 'Navoiy'
 WHERE id = 2;
 ```
-
-| id | name  | age | grade |
-|----|-------|-----|-------|
-| 1  | Ali   | 18  | A     |
-| 2  | Vali  | 19  | A     |
-| 3  | Komil | 17  | C     |
-
 
 2. Updating Multiple Columns
 
 - Agar bir vaqtning o'zida bir nechta ustunlarni yangilash kerak bo'lsa:
 
 ```sql
-UPDATE students
-SET age = 20, grade = 'B'
-WHERE name = 'Komil';
+UPDATE clients
+SET city = 'Navoiy', balance = 200.75
+WHERE first_name = 'Ali';
 ```
-
-
-| id | name  | age | grade |
-|----|-------|-----|-------|
-| 1  | Ali   | 18  | A     |
-| 2  | Vali  | 19  | A     |
-| 3  | Komil | 20  | B     |
 
 3. Updating All Rows
 
 - Agar jadvaldagi barcha qatorlarni yangilash kerak bo'lsa:
 
 ```sql
-UPDATE students
+UPDATE clients
 SET grade = 'C';
 ```
-
-| id | name  | age | grade |
-|----|-------|-----|-------|
-| 1  | Ali   | 18  | C     |
-| 2  | Vali  | 19  | C     |
-| 3  | Komil | 20  | C     |
 
 4. Conditional Updates with `AND` and `OR`
 
 - `age > 18` va `grade = 'A'` bo'lgan talabalarning `grade` ni `B` ga o'zgartiramiz:
 
 ```sql
-UPDATE students
-SET grade = 'B'
-WHERE age > 18 AND grade = 'A';
+UPDATE clients
+SET phone = '+998930850955'
+WHERE city = 'Toshkent' AND status = TRUE;
 ```
 
 5. Updating with Subqueries
 
 - Boshqa jadval ma'lumotlaridan foydalanib qatorlarni yangilash mumkin.
 - students jadvalidagi `grade` ustunini `grades` jadvalidan olib yangilaymiz:
-
-| id | grade |
-|----|-------|
-| 1  | A     |
-| 2  | B     |
-| 3  | A     |
 
 
 ```sql
