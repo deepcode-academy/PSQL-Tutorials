@@ -47,7 +47,7 @@ WHERE id = 2;
 
 ```sql
 UPDATE clients
-SET city = 'Navoiy', balance = 200.75
+SET city = 'Navoiy', balance = 250.75
 WHERE first_name = 'Ali';
 ```
 
@@ -57,7 +57,7 @@ WHERE first_name = 'Ali';
 
 ```sql
 UPDATE clients
-SET grade = 'C';
+SET city = 'Navoiy';
 ```
 
 4. Conditional Updates with `AND` and `OR`
