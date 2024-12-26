@@ -108,7 +108,7 @@ DELETE FROM clients;
 
 ## Managing data integrity with constraints (foreign keys, unique)
 
-1. Foreign Key
+### Foreign Key
 
 - Foreign key bir jadvaldagi ustun boshqa jadvaldagi ustunga bog'liq bo'lishini ta'minlaydi. Bu jadvallarni bir biriga bog'lash uchun ishlatiladi ishlatiladi.
 
@@ -118,4 +118,31 @@ DELETE FROM clients;
 |-------------|-----------------|----------------------|
 | 1           | Anvar Aliyev    | aliyev@example.com   |
 | 2           | Nodira Karimova | karimova@example.com |
+
+### Orders Table
+
+| order_id | customer_id | order_date  | amount  |
+|----------|-------------|-------------|---------|
+| 1        | 1           | 2024-12-25  | 150.00  |
+| 2        | 2           | 2024-12-26  | 200.50  |
+
+
+```sql
+-- Creating the Customers table
+CREATE TABLE customers (
+    customer_id SERIAL PRIMARY KEY, -- Primary key
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL -- Email must be unique
+);
+
+-- Creating the Orders table
+CREATE TABLE orders (
+    order_id SERIAL PRIMARY KEY, -- Primary key
+    customer_id INT NOT NULL,
+    order_date DATE NOT NULL,
+    amount NUMERIC(10, 2) NOT NULL,
+    CONSTRAINT fk_customer FOREIGN KEY (customer_id)
+    REFERENCES customers (customer_id) ON DELETE CASCADE
+);
+```
 
