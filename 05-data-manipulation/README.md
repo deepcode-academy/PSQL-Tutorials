@@ -95,7 +95,7 @@ WHERE condition;
 
 ```sql
 DELETE FROM clients
-WHERE id = 2;
+WHERE client_id = 2;
 ```
 
 2. Deleting all records
