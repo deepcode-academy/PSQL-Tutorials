@@ -105,3 +105,17 @@ Agar barcha malumotlarni o'chirish kerak bo'lsa, `WHERE` sharti berilmaydi.
 ```sql
 DELETE FROM clients;
 ```
+
+## Managing data integrity with constraints (foreign keys, unique)
+
+1. Foreign Key
+
+- Foreign key bir jadvaldagi ustun boshqa jadvaldagi ustunga bog'liq bo'lishini ta'minlaydi. Bu jadvallarni bir biriga bog'lash uchun ishlatiladi ishlatiladi.
+
+### Customers Table
+
+| customer_id | name            | email                |
+|-------------|-----------------|----------------------|
+| 1           | Anvar Aliyev    | aliyev@example.com   |
+| 2           | Nodira Karimova | karimova@example.com |
+
