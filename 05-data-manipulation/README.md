@@ -148,8 +148,6 @@ CREATE TABLE orders (
 
 # PRACTICS
 
-
-### Task
 1. Sizda `students` nomli jadval mavjud. Jadvalda quyidagi ustunlar bor:
    - **id (integer)** - talabalar id raqamlari (PRIMARY KEY)
    - **name (varchar)** - talabaning ismi
@@ -169,6 +167,32 @@ CREATE TABLE orders (
 
 ### Tasks
 
-1. `Tashkent` shahrida yashovchi barcha talabalarni toping va ularning `grade` ustunini `B` ga o'zgartiring.
-2. Yoshi `20` yoki undan katta bo'lgan talabalarni toping va ularning yashash shahrini `Tashkent` ga o'zgartiring.
-3. `grade` ustuni `C` bo'lgan barcha talabalar uchun `age` ni `1` yoshga oshiring.
+- `Tashkent` shahrida yashovchi barcha talabalarni toping va ularning `grade` ustunini `B` ga o'zgartiring.
+- Yoshi `20` yoki undan katta bo'lgan talabalarni toping va ularning yashash shahrini `Tashkent` ga o'zgartiring.
+- `grade` ustuni `C` bo'lgan barcha talabalar uchun `age` ni `1` yoshga oshiring.
+
+
+2. Sizda `employees` nomli jadval bor. Jadvalda quyidagi ustunlar mavjud:
+   - **id (integer)** - xodimning id raqami (asosiy kalit, PRIMARY KEY)
+   - **name (varchar)** - xodimning ismi
+   - **department (varchar)** - xodim ishlaydigan bo'lim (masalan, HR, IT, Sales)
+   - **salary (integer)** - xodimning oyligi
+   - **experience (integer)** - xodimning ish tajribasi (yillarda)
+   - **city (varchar)** - xodim yashayotgan shahar
+
+| id | name     | department | salary | experience | city       |
+|----|----------|------------|--------|------------|------------|
+| 1  | Nodir    | IT         | 1200   | 3          | Tashkent   |
+| 2  | Malika   | HR         | 900    | 5          | Samarkand  |
+| 3  | Shoxruh  | Sales      | 1500   | 7          | Bukhara    |
+| 4  | Laylo    | IT         | 1000   | 2          | Nukus      |
+| 5  | Kamol    | HR         | 850    | 6          | Tashkent   |
+| 6  | Saida    | Sales      | 1100   | 4          | Andijan    |
+
+### Tasks
+- Toshkent shahridagi barcha xodimlarning oyliklarini `10%` ga oshiring.
+- Tajribasi `5` yildan oshgan xodimlarni toping va ularning bo'limini `"Senior"` qilib yangilang.
+- Oyligi `1000` dan kam bo'lgan barcha xodimlarni toping va ularning oyligini `950` ga o'zgartiring.
+- `"Sales"` bo'limida ishlaydigan xodimlarning shaharlarini `"Tashkent"` qilib yangilang.
+- `"IT"` bo'limida ishlaydigan, tajribasi `3` yildan kam bo'lgan xodimlarning oyliklarini `20%` ga oshiring.
+
