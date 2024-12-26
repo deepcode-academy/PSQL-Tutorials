@@ -183,6 +183,8 @@ CREATE TABLE orders (
    - **experience (integer)** - xodimning ish tajribasi (yillarda)
    - **city (varchar)** - xodim yashayotgan shahar
 
+### Data
+
 | id | name     | department | salary | experience | city       |
 |----|----------|------------|--------|------------|------------|
 | 1  | Nodir    | IT         | 1200   | 3          | Tashkent   |
@@ -199,3 +201,25 @@ CREATE TABLE orders (
 - `"Sales"` bo'limida ishlaydigan xodimlarning shaharlarini `"Tashkent"` qilib yangilang.
 - `"IT"` bo'limida ishlaydigan, tajribasi `3` yildan kam bo'lgan xodimlarning oyliklarini `20%` ga oshiring.
 
+## Task 3
+
+- Sizda `products` nomli jadval mavjud. Jadval quyidagi ustunlardan iborat:
+  - **id (integer)** - mahsulot ID (asosiy kalit, PRIMARY KEY)
+  - **name (varchar)** - mahsulot nomi
+  - **category (varchar)** - mahsulot kategoriyasi (masalan, Electronics, Clothing, Food)
+  - **price (integer)** - mahsulot narxi
+  - **quantity (integer)** - mahsulot ombordagi miqdori
+  - **supplier (varchar)** - yetkazib beruvchi nomi
+
+| id  | name       | category     | price | quantity | supplier      |
+|-----|------------|--------------|-------|----------|---------------|
+| 1   | Laptop     | Electronics  | 1200  | 10       | TechStore     |
+| 2   | T-Shirt    | Clothing     | 25    | 50       | FashionHub    |
+| 3   | Phone      | Electronics  | 800   | 5        | TechStore     |
+| 4   | Bread      | Food         | 2     | 100      | FoodMart      |
+| 5   | TV         | Electronics  | 500   | 2        | HomeAppliance |
+| 6   | Jacket     | Clothing     | 60    | 20       | FashionHub    |
+| 7   | Milk       | Food         | 1     | 200      | FoodMart      |
+| 8   | Tablet     | Electronics  | 300   | 0        | TechStore     |
+| 9   | Headphones | Electronics  | 50    | 15       | AudioWorld    |
+| 10  | Sneakers   | Clothing     | 80    | 0        | FashionHub    |
