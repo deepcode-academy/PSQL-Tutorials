@@ -148,7 +148,9 @@ CREATE TABLE orders (
 
 # PRACTICS
 
-1. Sizda `students` nomli jadval mavjud. Jadvalda quyidagi ustunlar bor:
+## Task 1
+
+- Sizda `students` nomli jadval mavjud. Jadvalda quyidagi ustunlar bor:
    - **id (integer)** - talabalar id raqamlari (PRIMARY KEY)
    - **name (varchar)** - talabaning ismi
    - **age (integer)** - talabaning yoshi
@@ -171,8 +173,9 @@ CREATE TABLE orders (
 - Yoshi `20` yoki undan katta bo'lgan talabalarni toping va ularning yashash shahrini `Tashkent` ga o'zgartiring.
 - `grade` ustuni `C` bo'lgan barcha talabalar uchun `age` ni `1` yoshga oshiring.
 
+## Task 2
 
-2. Sizda `employees` nomli jadval bor. Jadvalda quyidagi ustunlar mavjud:
+- Sizda `employees` nomli jadval bor. Jadvalda quyidagi ustunlar mavjud:
    - **id (integer)** - xodimning id raqami (asosiy kalit, PRIMARY KEY)
    - **name (varchar)** - xodimning ismi
    - **department (varchar)** - xodim ishlaydigan bo'lim (masalan, HR, IT, Sales)
