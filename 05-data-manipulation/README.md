@@ -223,3 +223,11 @@ CREATE TABLE orders (
 | 8   | Tablet     | Electronics  | 300   | 0        | TechStore     |
 | 9   | Headphones | Electronics  | 50    | 15       | AudioWorld    |
 | 10  | Sneakers   | Clothing     | 80    | 0        | FashionHub    |
+
+### Tasks
+
+- `quantity` 0 bo'lgan barcha mahsulotlarni o'chirib tashlang.
+- `Food` kategoriyasidagi `quantity` 50 dan kam bo'lgan mahsulotlarni o'chiring.
+- `TechStore` yetkazib beruvchidan bo'lgan va `price` 1000 dan yuqori mahsulotlarni o'chirib tashlang.
+- `Electronics` kategoriyasidagi `price` 100 dan kam bo'lgan barcha mahsulotlarni o'chirib tashlang.
+- `Clothing` kategoriyasidagi `price` 30 dan kam yoki teng bo'lgan mahsulotlarni o'chiring.
