@@ -38,7 +38,7 @@ WHERE condition;
 ```sql
 UPDATE clients
 SET city = 'Navoiy'
-WHERE id = 2;
+WHERE client_id = 2;
 ```
 
 2. Updating Multiple Columns
@@ -146,3 +146,8 @@ CREATE TABLE orders (
 );
 ```
 
+## Transactions and rollback
+
+### What are Transactions?
+
+Tranzaksiya — bu ma'lumotlar bazasida bir qancha buyruqlarni birgalikda bajarish uchun ishlatiladigan mantiqiy operatsiya birligi. Tranzaksiyalar asosiy maqsadi — ma'lumotlar bazasi yaxlitligini (integrity) va bog'liqligini ta'minlash.
