@@ -231,3 +231,37 @@ CREATE TABLE orders (
 - `TechStore` yetkazib beruvchidan bo'lgan va `price` 1000 dan yuqori mahsulotlarni o'chirib tashlang.
 - `Electronics` kategoriyasidagi `price` 100 dan kam bo'lgan barcha mahsulotlarni o'chirib tashlang.
 - `Clothing` kategoriyasidagi `price` 30 dan kam yoki teng bo'lgan mahsulotlarni o'chiring.
+
+
+## Task 4
+
+- Sizda students nomli jadval mavjud. Jadval quyidagi ustunlardan iborat:
+    - **id (integer)** - talaba ID (asosiy kalit, PRIMARY KEY)
+    - **name (varchar)** - talabaning ismi
+    - **age (integer)** - talabaning yoshi
+    - **gender (varchar)** - talabaning jinsi (Male, Female)
+    - **grade (integer)** - talabaning umumiy bahosi (0 dan 100 gacha)
+    - **city (varchar)** - talaba yashaydigan shahar
+    - **scholarship (varchar)** - talabaning stipendiyasi bor yoki yo'qligi (Yes, No)
+
+| id  | name    | age | gender	 | grade  | city      | scholarship |
+|-----|---------|-----|---------|--------|-----------|-------------|
+| 1   | Ali     | 19  | Male    | 85     | Tashkent  | Yes         |
+| 2   | Laylo   | 20  | Female	 | 90     | Samarkand | Yes         |
+| 3   | Jasur   | 18  | Male    | 40     | Bukhara   | No          |
+| 4   | Malika  | 22  | Female  | 75     | Tashkent  | Yes         |
+| 5   | Timur   | 21  | Male    | 50     | Andijan   | No          |
+| 6   | Zarina  | 20  | Female  | 30     | Tashkent  | No          |
+| 7   | Shoxruh | 19  | Male    | 65     | Nukus     | Yes         |
+| 8   | Nargiza | 23  | Female  | 70     | Bukhara   | No          |
+| 9   | Davron  | 20  | Male    | 55     | Tashkent  | No          |
+| 10  | Sabina  | 19  | Female  | 35     | Andijan   | No          |
+
+### Tasks
+
+- `grade` 50 dan past bo'lgan barcha talabalarni o'chiring.
+- `city` "Tashkent" bo'lgan va stipendiyasi yo'q (`scholarship = 'No'`) bo'lgan barcha talabalarni o'chiring.
+- `age` 20 dan katta va `grade` 60 dan yuqori bo'lgan barcha talabalarni o'chirib tashlang.
+- `scholarship` "Yes" bo'lgan va `city` "Samarkand" bo'lgan talabalarni o'chiring.
+- `gender` "Male" bo'lgan va `grade` 70 dan past bo'lgan barcha talabalarni o'chirib tashlang.
+- Barcha talabalarning ma'lumotlarini o'chiring, agar ular "Andijan" shahridan bo'lsa.
