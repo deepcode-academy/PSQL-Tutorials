@@ -62,7 +62,7 @@ SET city = 'Navoiy';
 
 4. Conditional Updates with `AND` and `OR`
 
-- `age > 18` va `grade = 'A'` bo'lgan talabalarning `grade` ni `B` ga o'zgartiramiz:
+- `city = 'Toshkent'` va `status = TRUE` bo'lgan clientning `phone` ustunini `+998930850955` ga o'zgartiramiz:
 
 ```sql
 UPDATE clients
