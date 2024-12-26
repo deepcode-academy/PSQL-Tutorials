@@ -146,8 +146,29 @@ CREATE TABLE orders (
 );
 ```
 
-## Transactions and rollback
+# PRACTICS
 
-### What are Transactions?
 
-Tranzaksiya — bu ma'lumotlar bazasida bir qancha buyruqlarni birgalikda bajarish uchun ishlatiladigan mantiqiy operatsiya birligi. Tranzaksiyalar asosiy maqsadi — ma'lumotlar bazasi yaxlitligini (integrity) va bog'liqligini ta'minlash.
+### Task
+1. Sizda `students` nomli jadval mavjud. Jadvalda quyidagi ustunlar bor:
+   - **id (integer)** - talabalar id raqamlari (PRIMARY KEY)
+   - **name (varchar)** - talabaning ismi
+   - **age (integer)** - talabaning yoshi
+   - **grade (varchar)** - talabaning bahosi (masalan, A, B, C, D)
+   - **city (varchar)** - talabaning yashash shahri
+
+### Data
+
+| id | name    | age | grade | city      |
+|----|---------|-----|-------|-----------|
+| 1  | Ali     | 19  | B     | Tashkent  |
+| 2  | Salim   | 18  | C     | Samarkand |
+| 3  | Malika  | 20  | A     | Bukhara   |
+| 4  | Shoxruh | 21  | D     | Tashkent  |
+| 5  | Laylo   | 22  | C     | Nukus     |
+
+### Tasks
+
+1. `Tashkent` shahrida yashovchi barcha talabalarni toping va ularning `grade` ustunini `B` ga o'zgartiring.
+2. Yoshi `20` yoki undan katta bo'lgan talabalarni toping va ularning yashash shahrini `Tashkent` ga o'zgartiring.
+3. `grade` ustuni `C` bo'lgan barcha talabalar uchun `age` ni `1` yoshga oshiring.
