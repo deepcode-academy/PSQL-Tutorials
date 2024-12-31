@@ -41,7 +41,7 @@ ON students.group_id = groups.group_id;
 
 ## LEFT JOIN
 
-- Chap jadvaldagi barcha ma'lumotlarni qaytaradi va o'ng jadvaldan mos kelmaydigan joylarga NULL qo'shadi.
+- Chap jadvaldagi barcha ma'lumotlarni qaytaradi va o'ng jadvaldan mos kelmaydigan joylarga `NULL` qo'shadi.
 
 ```sql
 SELECT students.student_id, students.name, groups.group_name
@@ -52,7 +52,7 @@ ON students.group_id = groups.group_id;
 
 ## RIGHT JOIN
 
-- O'ng jadvaldagi barcha ma'lumotlarni qaytaradi va chap jadvaldan mos kelmaydigan joylarga NULL qo'shadi.
+- O'ng jadvaldagi barcha ma'lumotlarni qaytaradi va chap jadvaldan mos kelmaydigan joylarga `NULL` qo'shadi.
 
 ```sql
 SELECT students.student_id, students.name, groups.group_name
@@ -60,3 +60,15 @@ FROM students
 RIGHT JOIN groups
 ON students.group_id = groups.group_id;
 ```
+
+## FULL JOIN
+
+- Ikkala jadvaldagi barcha ma'lumotlarni qaytaradi. Mos kelmagan joylarga `NULL` qo'shiladi.
+
+```sql
+SELECT students.student_id, students.name, groups.group_name
+FROM students
+FULL JOIN groups
+ON students.group_id = groups.group_id;
+```
+
