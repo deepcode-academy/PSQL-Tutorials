@@ -17,6 +17,14 @@
 | 3          | Hasan  | NULL     |
 | 4          | Kamola | 103      |
 
+
+| group_id | group_name  |
+|----------|-------------|
+| 101      | Matematika  |
+| 102      | Fizika      |
+| 103      | Informatika |
+| 104      | Biologiya   |
+
 ## INNER JOIN
 
 `INNER JOIN` faqat ikkala jadvalda mos keladigan ma'lumotlarni qaytaradi.
