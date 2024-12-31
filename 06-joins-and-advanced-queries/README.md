@@ -10,6 +10,8 @@
 > [!NOTE]
 > `JOIN` operatori SQLda ikki yoki undan ortiq jadvallarni bog'lash va ular orasidagi ma'lumotlarni birlashtirish uchun ishlatiladi. JOIN yordamida ma'lumotlar o'rtasidagi bog'lanishlarni tahlil qilib, kerakli ma'lumotlarni olish mumkin.
 
+- students table
+
 | student_id | name   | group_id |
 |------------|--------|----------|
 | 1          | Ali    | 101      |
@@ -17,6 +19,7 @@
 | 3          | Hasan  | NULL     |
 | 4          | Kamola | 103      |
 
+- group table
 
 | group_id | group_name  |
 |----------|-------------|
@@ -27,13 +30,33 @@
 
 ## INNER JOIN
 
-`INNER JOIN` faqat ikkala jadvalda mos keladigan ma'lumotlarni qaytaradi.
-
-### Syntax
+- Faqat ikkala jadvalda mos keladigan ma'lumotlarni qaytaradi.
 
 ```sql
-SELECT columns
-FROM table1
-INNER JOIN table2
-ON table1.column = table2.column;
+SELECT students.student_id, students.name, groups.group_name
+FROM students
+INNER JOIN groups
+ON students.group_id = groups.group_id;
+```
+
+## LEFT JOIN
+
+- Chap jadvaldagi barcha ma'lumotlarni qaytaradi va o'ng jadvaldan mos kelmaydigan joylarga NULL qo'shadi.
+
+```sql
+SELECT students.student_id, students.name, groups.group_name
+FROM students
+LEFT JOIN groups
+ON students.group_id = groups.group_id;
+```
+
+## RIGHT JOIN
+
+- O'ng jadvaldagi barcha ma'lumotlarni qaytaradi va chap jadvaldan mos kelmaydigan joylarga NULL qo'shadi.
+
+```sql
+SELECT students.student_id, students.name, groups.group_name
+FROM students
+RIGHT JOIN groups
+ON students.group_id = groups.group_id;
 ```
