@@ -10,6 +10,13 @@
 > [!NOTE]
 > `JOIN` operatori SQLda ikki yoki undan ortiq jadvallarni bog'lash va ular orasidagi ma'lumotlarni birlashtirish uchun ishlatiladi. JOIN yordamida ma'lumotlar o'rtasidagi bog'lanishlarni tahlil qilib, kerakli ma'lumotlarni olish mumkin.
 
+| student_id | name   | group_id |
+|------------|--------|----------|
+| 1          | Ali    | 101      |
+| 2          | Umid   | 102      |
+| 3          | Hasan  | NULL     |
+| 4          | Kamola | 103      |
+
 ## INNER JOIN
 
 `INNER JOIN` faqat ikkala jadvalda mos keladigan ma'lumotlarni qaytaradi.
