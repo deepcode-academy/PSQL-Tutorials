@@ -72,3 +72,30 @@ FULL JOIN groups
 ON students.group_id = groups.group_id;
 ```
 
+# Combining tables with joins
+
+> [!NOTE]
+> JOIN operatori yordamida ikki yoki undan ortiq jadvalni o'zaro bog'langan ustunlar (keys) orqali birlashtirish mumkin. Bu ma'lumotlar orasidagi mantiqiy bog'lanishni ko'rish imkonini beradi.
+
+
+## INNER JOIN
+
+- Bu `JOIN` faqat ikki jadvalda ham mos keladigan (bog'langan) ma'lumotlarni olib keladi.
+
+```sql
+SELECT students.name, groups.group_name
+FROM students
+INNER JOIN groups
+ON students.group_id = groups.group_id;
+```
+
+## LEFT JOIN
+
+- `LEFT JOIN` asosiy jadval (chapdagi jadval)dagi barcha yozuvlarni oladi va o'ng jadvaldagi mos keladigan yozuvlarni birlashtiradi. Agar mos kelmasa, `NULL` qiymatni qaytaradi.
+
+```sql
+SELECT students.name, groups.group_name
+FROM students
+LEFT JOIN groups
+ON students.group_id = groups.group_id;
+```
