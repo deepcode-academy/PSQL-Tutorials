@@ -7,6 +7,9 @@
 
 ## Types of joins: INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN
 
+> [!NOTE]
+> `JOIN` operatori SQLda ikki yoki undan ortiq jadvallarni bog'lash va ular orasidagi ma'lumotlarni birlashtirish uchun ishlatiladi. JOIN yordamida ma'lumotlar o'rtasidagi bog'lanishlarni tahlil qilib, kerakli ma'lumotlarni olish mumkin.
+
 ## INNER JOIN
 
 `INNER JOIN` faqat ikkala jadvalda mos keladigan ma'lumotlarni qaytaradi.
