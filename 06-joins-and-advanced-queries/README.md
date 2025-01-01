@@ -124,3 +124,17 @@ ON students.group_id = groups.group_id;
 
 # Subqueries and nested queries
 
+> [!NOTE]
+> SQLda `subqueries` (ichki so'rovlar) yoki `nested queries` (ichama-ich so'rovlar) boshqa bir so'rov ichida yoziladigan so'rovlar hisoblanadi. Subquery asosiy so'rov uchun kerakli ma'lumotni olishga yordam beradi. Subqueries SQL buyruqlarining `SELECT`, `FROM`, yoki `WHERE` qismida ishlatilishi mumkin.
+
+## Key Characteristics of Subqueries
+
+1. Subquery har doim qavslar `( )` ichida yozilishi kerak.
+2. Subquery `bitta qiymat`, `bitta qator` yoki `butun jadval`ni qaytarishi mumkin.
+3. U quyidagi joylarda ishlatiladi:
+   - `SELECT`: hisoblangan qiymatlarni olish uchun.
+   - `WHERE`: filterlash shartlarini belgilash uchun.
+   - `FROM`: vaqtinchalik jadval sifatida ishlatish uchun.
+4. Subqueries turlari:
+   - Uncorrelated Subqueries:
+   - Correlated Subqueries:
