@@ -99,3 +99,14 @@ FROM students
 LEFT JOIN groups
 ON students.group_id = groups.group_id;
 ```
+
+## RIGHT JOIN
+
+- `RIGHT JOIN` o'ng jadvaldagi barcha malumotlarni oladi va chap jadvaldagi mos keladigan malumotlarni birlashtiradi. Agar mos kelmasa, `NULL` qiymatni qaytaradi.
+
+```sql
+SELECT students.name, groups.group_name
+FROM students
+RIGHT JOIN groups
+ON students.group_id = groups.group_id;
+```
