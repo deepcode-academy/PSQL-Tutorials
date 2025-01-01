@@ -91,7 +91,7 @@ ON students.group_id = groups.group_id;
 
 ## LEFT JOIN
 
-- `LEFT JOIN` asosiy jadval (chapdagi jadval)dagi barcha yozuvlarni oladi va o'ng jadvaldagi mos keladigan yozuvlarni birlashtiradi. Agar mos kelmasa, `NULL` qiymatni qaytaradi.
+- `LEFT JOIN` asosiy jadval (chapdagi jadval)dagi barcha malumotlarni oladi va o'ng jadvaldagi mos keladigan malumotlarni birlashtiradi. Agar mos kelmasa, `NULL` qiymatni qaytaradi.
 
 ```sql
 SELECT students.name, groups.group_name
@@ -110,3 +110,7 @@ FROM students
 RIGHT JOIN groups
 ON students.group_id = groups.group_id;
 ```
+
+## FULL OUTER JOIN
+
+- `FULL OUTER JOIN` ikki jadvaldagi barcha malumotlarni oladi, mos kelmasa, `NULL` bilan to'ldiradi.
