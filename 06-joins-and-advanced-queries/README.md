@@ -10,7 +10,7 @@
 > [!NOTE]
 > `JOIN` operatori SQLda ikki yoki undan ortiq jadvallarni bog'lash va ular orasidagi ma'lumotlarni birlashtirish uchun ishlatiladi. JOIN yordamida ma'lumotlar o'rtasidagi bog'lanishlarni tahlil qilib, kerakli ma'lumotlarni olish mumkin.
 
-- students table
+`students` table
 
 | student_id | name   | group_id |
 |------------|--------|----------|
@@ -19,7 +19,7 @@
 | 3          | Hasan  | NULL     |
 | 4          | Kamola | 103      |
 
-- group table
+`groups` table
 
 | group_id | group_name  |
 |----------|-------------|
@@ -121,3 +121,6 @@ FROM students
 FULL OUTER JOIN groups
 ON students.group_id = groups.group_id;
 ```
+
+# Subqueries and nested queries
+
