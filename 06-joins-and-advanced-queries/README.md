@@ -167,3 +167,11 @@ ON students.group_id = groups.group_id;
 | 4             | Finance         | Aziza   | 
 | 5             | Operations      | Nigora  | 
 | 6             | Logistics       | Kamol   |
+
+
+- Xodimlarning bo‘lim nomlarini ko‘rsating. Faqat bo‘limi mavjud xodimlar chiqsin.
+- Xodimlar ro‘yxatini ularning bo‘lim nomi bilan ko‘rsating. Bo‘limi yo‘q xodimlar uchun "NULL" chiqsin.
+- Har bir bo‘limga tegishli xodimlarni yoki bo‘limda hech kim ishlamasa ham bo‘lim nomini ko‘rsating.
+- Har bir xodim va har bir bo‘lim haqida umumiy ma’lumotni ko‘rsating. Bog‘lanmagan ma’lumotlar ham chiqsin.
+- Har bir xodim va har bir bo‘lim haqida umumiy ma’lumotni ko‘rsating. Bog‘lanmagan ma’lumotlar ham chiqsin.
+- Har bir bo‘limda nechta xodim ishlashini ko‘rsating.
