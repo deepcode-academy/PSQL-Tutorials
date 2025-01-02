@@ -156,3 +156,14 @@ ON students.group_id = groups.group_id;
 | 8           | Karima  | 5             | 1350.00  | 2023-07-01  |
 | 9           | Sarvar  | NULL          | 1000.00  | 2021-01-15  |
 | 10          | Malika  | 3             | 1450.00  | 2022-10-25  |
+
+2. `departments` table
+
+| department_id | department_name | manager |
+|---------------|-----------------|---------|
+| 1             | HR              | Akbar   | 
+| 2             | IT              | Dilshod | 
+| 3             | Marketing       | Ravshan | 
+| 4             | Finance         | Aziza   | 
+| 5             | Operations      | Nigora  | 
+| 6             | Logistics       | Kamol   |
