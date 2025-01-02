@@ -138,3 +138,21 @@ ON students.group_id = groups.group_id;
 4. Subqueries turlari:
    - Uncorrelated Subqueries:
    - Correlated Subqueries:
+
+
+# TASKS
+
+1. `employees` table
+
+| employee_id | name    | department_id | salary   | join_date   |
+|-------------|---------|---------------|----------|-------------|
+| 1           | Ali     | 1             | 1200.50  | 2020-05-15  |
+| 2           | Vali    | 2             | 1500.00  | 2019-06-01  |
+| 3           | Sodiq   | NULL          | 1100.75  | 2021-08-20  |
+| 4           | Nozima  | 3             | 1300.00  | 2020-03-12  |
+| 5           | Shavkat | 1             | 1250.00  | 2018-11-23  |
+| 6           | Madina  | 4             | 1400.30  | 2022-02-10  |
+| 7           | Jasur   | 2             | 1600.45  | 2019-12-01  |
+| 8           | Karima  | 5             | 1350.00  | 2023-07-01  |
+| 9           | Sarvar  | NULL          | 1000.00  | 2021-01-15  |
+| 10          | Malika  | 3             | 1450.00  | 2022-10-25  |
