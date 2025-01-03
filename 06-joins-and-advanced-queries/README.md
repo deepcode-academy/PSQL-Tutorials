@@ -140,7 +140,7 @@ ON students.group_id = groups.group_id;
    - Correlated Subqueries:
 
 
-# TASKS
+# PRACTICS
 
 1. `employees` table
 
