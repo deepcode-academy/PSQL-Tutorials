@@ -184,3 +184,4 @@ SQL'da `EXPLAIN` buyrug'i so'rovning bajarilish rejasini ko'rsatadi. Bu, so'rovn
 ```sql
 EXPLAIN SELECT * FROM students WHERE age > 18;
 ```
+
