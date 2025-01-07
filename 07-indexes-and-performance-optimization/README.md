@@ -73,6 +73,42 @@ ON table_name (columns);
 **Example:**
 
 ```sql
-CREATE UNIQUE INDEX email_index
+CREATE UNIQUE INDEX my_email
 ON students (email);
+```
+
+## Creating Multi-Column Indexes
+
+Bir nechta ustunlarni o'z ichiga olgan indekslarni yaratish mumkin.
+
+**Syntax:**
+
+```sql
+CREATE INDEX index_name
+ON table_name (column1, column2);
+```
+
+**Example:**
+
+`name` va `age` ustunlari bo'yicha indeks yaratish:
+
+```sql
+CREATE INDEX name_age_index
+ON students (name, age);
+```
+
+## Dropping an Index
+
+Indekslarni o'chirish uchun `DROP INDEX` buyrug'i ishlatiladi.
+
+**Syntax:**
+
+```sql
+DROP INDEX index_name;
+```
+
+**Example:**
+
+```sql
+DROP INDEX name_index;
 ```
