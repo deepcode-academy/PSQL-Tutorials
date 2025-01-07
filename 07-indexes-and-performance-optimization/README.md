@@ -147,3 +147,28 @@ B-tree indeksi yordamida, ID bo'yicha qidiruv tezligini oshirish uchun quyidagi 
 ```
 
 B-tree indeksi ID bo'yicha tezkor qidiruvni amalga oshirish imkonini beradi, chunki ma'lumotlarni tartiblangan holda saqlaydi.
+
+## Hash Index
+
+Hash indeksi ma'lumotlarni biror-bir "hash" funksiyasi orqali tezkor qidirish uchun ishlatiladi. Har bir indekslanadigan qiymat uchun hash qiymati hisoblanadi va ma'lumotlar shu qiymatga mos joylarda saqlanadi. Hash indeksi ma'lumotlarga kirish vaqtini minimal darajaga tushiradi.
+
+- Features:
+  - Tezkor qidiruv imkonini beradi (yangi ma'lumotlarni tezda topish).
+  - Hash indeksi faqat oqish (read) operatsiyalari uchun mos, chunki bu indeks qidiruvni osonlashtiradi, ammo oraliq va interval qidiruvlarni qo'llab-quvvatlamaydi.
+  - O(1) murakkablikka ega, ya'ni ma'lumotlarni topishning vaqtini aniq belgilash mumkin.
+
+| ID | Name  |
+|----|-------|
+| 1  | Ali   |
+| 2  | Anvar |
+| 3  | Oydin |
+| 4  | Aziz  |
+
+Hash funksiyasi yordamida `ID` bo'yicha qiymatlar quyidagicha tarqatiladi:
+
+```markdown
+Hash(1) = 5
+Hash(2) = 3
+Hash(3) = 2
+Hash(4) = 8
+```
