@@ -42,3 +42,18 @@ ON table_name (columns);
 | 2  | Shahlo    | 20  | Tibbiyot    |
 | 3  | Dilshod   | 22  | Fizika      |
 
+`name` ustuni bo'yicha index yaratamiz.
+
+```sql
+CREATE INDEX my_index
+ON students (name);
+```
+
+## Viewing Indexes
+
+PostgreSQL indekslarni ko'rish uchun `\d` yoki `pg_indexes` jadvalidan foydalanish mumkin.
+
+```sql
+SELECT * FROM pg_indexes WHERE tablename = 'students';
+```
+
