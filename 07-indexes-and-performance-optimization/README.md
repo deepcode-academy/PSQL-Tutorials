@@ -172,3 +172,5 @@ Hash(2) = 3
 Hash(3) = 2
 Hash(4) = 8
 ```
+
+Har bir `ID` qiymatiga mos ravishda hash qiymati hisoblanadi va ma'lumotlar shu qiymat bo'yicha saqlanadi. Masalan, `ID=3` bo'yicha qidiruv, hash funksiyasi orqali to'g'ridan-to'g'ri 2 manzilini ko'rsatadi va shu joydan ma'lumot olinadi.
