@@ -112,3 +112,16 @@ DROP INDEX index_name;
 ```sql
 DROP INDEX name_index;
 ```
+
+# Types of indexes: `B-tree`, `hash`
+
+## B-tree (Balanced Tree) Index
+
+**B-tree** indeksi, asosan, ma'lumotlar bazalarida keng qo'llaniladi. **B-tree** indeksida ma'lumotlar tasodifiy tarzda joylashtirilmaydi, balki ular alohida tartibda saqlanadi, bu esa qidiruv, qo'shish va o'chirish amallarini bajarishni osonlashtiradi.
+
+- Features:
+  - Ma'lumotlar tartiblangan holda saqlanadi.
+  - O(log n) murakkablikka ega (qidiruv, qo'shish va o'chirish).
+  - Ma'lumotlar bazasida dinamik (ya'ni, yangi ma'lumot qo'shish yoki o'chirishda struktura o'zgaradi, lekin bu jarayon tez).
+  - Ma'lumotlar qidiruvining samaradorligini ta'minlash uchun ko'plab darajalar mavjud.
+
