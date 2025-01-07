@@ -36,11 +36,11 @@ ON table_name (columns);
 
 **students** table
 
-| id | name      | age | faculty     |
-|----|-----------|-----|-------------|
-| 1  | Javohir   | 21  | Informatika |
-| 2  | Shahlo    | 20  | Tibbiyot    |
-| 3  | Dilshod   | 22  | Fizika      |
+| id | name      | age | faculty     | email             |
+|----|-----------|-----|-------------|-------------------|
+| 1  | Javohir   | 21  | Informatika | javohir@gmail.com |
+| 2  | Shahlo    | 20  | Tibbiyot    | shahlo@gmail.com  |
+| 3  | Dilshod   | 22  | Fizika      | dilshod@gmail.com |
 
 `name` ustuni bo'yicha index yaratamiz.
 
@@ -57,3 +57,22 @@ PostgreSQL indekslarni ko'rish uchun `\d` yoki `pg_indexes` jadvalidan foydalani
 SELECT * FROM pg_indexes WHERE tablename = 'students';
 ```
 
+## Creating a Unique Index
+
+Unikal indeks bir xil qiymatga ega bo'lgan ma'lumotlar kirishini oldini oladi.
+
+**Syntax:**
+
+```sql
+CREATE UNIQUE INDEX index_name
+ON table_name (columns);
+```
+
+`email` ustuni uchun unikal indeks yaratish:
+
+**Example:**
+
+```sql
+CREATE UNIQUE INDEX email_index
+ON students (email);
+```
