@@ -174,3 +174,13 @@ Hash(4) = 8
 ```
 
 Har bir `ID` qiymatiga mos ravishda hash qiymati hisoblanadi va ma'lumotlar shu qiymat bo'yicha saqlanadi. Masalan, `ID=3` bo'yicha qidiruv, hash funksiyasi orqali to'g'ridan-to'g'ri 2 manzilini ko'rsatadi va shu joydan ma'lumot olinadi.
+
+# Understanding query plans with `EXPLAIN`
+
+SQL'da `EXPLAIN` buyrug'i so'rovning bajarilish rejasini ko'rsatadi. Bu, so'rovni optimallashtirish uchun juda muhim, chunki `EXPLAIN` yordamida so'rovning qanday bajarilishini va ma'lumotlar bazasi qanday metodlarni tanlayotganini tushunish mumkin. Bu buyruq bajariladigan so'rovning rejasini chiqaradi, masalan, qanday indekslar ishlatilayotgani, jadvalga qaysi usul bilan murojaat qilinayotgani va boshqalar.
+
+## Using `EXPLAIN`
+
+```sql
+EXPLAIN SELECT * FROM students WHERE age > 18;
+```
