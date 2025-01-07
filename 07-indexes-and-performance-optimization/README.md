@@ -125,3 +125,25 @@ DROP INDEX name_index;
   - Ma'lumotlar bazasida dinamik (ya'ni, yangi ma'lumot qo'shish yoki o'chirishda struktura o'zgaradi, lekin bu jarayon tez).
   - Ma'lumotlar qidiruvining samaradorligini ta'minlash uchun ko'plab darajalar mavjud.
 
+**Example:**
+
+Agar sizda quyidagi ma'lumotlar bo'lsa:
+
+| ID | Name  |
+|----|-------|
+| 1  | Ali   |
+| 2  | Anvar |
+| 3  | Oydin |
+| 4  | Aziz  |
+
+B-tree indeksi yordamida, ID bo'yicha qidiruv tezligini oshirish uchun quyidagi tarzda tartiblanadi:
+
+```markdown
+      3
+    /   \
+   2     4
+  /
+ 1
+```
+
+B-tree indeksi ID bo'yicha tezkor qidiruvni amalga oshirish imkonini beradi, chunki ma'lumotlarni tartiblangan holda saqlaydi.
