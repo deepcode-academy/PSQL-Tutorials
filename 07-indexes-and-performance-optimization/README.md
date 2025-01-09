@@ -181,7 +181,44 @@ SQL'da `EXPLAIN` buyrug'i so'rovning bajarilish rejasini ko'rsatadi. Bu, so'rovn
 
 ## Using `EXPLAIN`
 
+`EXPLAIN` buyrug'i so'rovning ma'lumotlar bazasida qanday bajarilishini ko'rsatadi.
+
 ```sql
 EXPLAIN SELECT * FROM students WHERE age > 18;
 ```
 
+Yuqoridagi buyruq so'rovni bajarishdan oldin ma'lumotlar bazasiga qanday strategiya ishlatish kerakligini tushunishga yordam beradi.
+
+## JOIN with another table
+
+```sql
+EXPLAIN SELECT employees.name, departments.name
+FROM employees
+JOIN departments ON employees.department_id = departments.id
+WHERE employees.age > 30;
+```
+
+Bu so'rovda ikkita jadval: `employees` va `departments` qo'shilmoqda. `EXPLAIN` yordamida uning bajarilish rejasini ko'rib chiqsak:
+
+- Seq Scan: Bu, ma'lumotlar bazasi jadvalni to'liq tekshiradi. Agar indeks mavjud bo'lmasa, jadvalning har bir qatori tekshiriladi.
+- Index Scan: Agar indeks mavjud bo'lsa, `EXPLAIN` indeksni ishlatish haqida ma'lumot beradi.
+- Nested Loop: Bu usul birinchi jadvalni tanlab, keyin ikkinchi jadvalni har bir qator uchun tekshiradi. Bu usul kichik jadvalga yaxshi ishlaydi.
+
+## Example of EXPLAIN Output
+
+```shell
+Seq Scan on employees  (cost=0.00..1000.00 rows=1000 width=32)
+  Filter: (age > 30)
+  ->  Index Scan using departments_pkey on departments  (cost=0.00..50.00 rows=10 width=8)
+```
+
+- Other Parameters:
+  - Cost: Bajarish uchun taxminiy xarajatlar. Bu, ma'lumotlar bazasining so'rovni bajarish uchun qancha resurs sarflayotganini ko'rsatadi.
+  - Rows: Qancha qator qaytarilishi taxmin qilinayotganini ko'rsatadi.
+  - Width: Qatorning o'rtacha o'lchami (baytlar bilan).
+
+- Optimizing Execution
+  - `EXPLAIN` orqali so'rovning qanday ishlashini ko'rib chiqqandan so'ng, kerakli optimallashtirishni amalga oshirish mumkin.
+    - Indekslar qo'shish
+    - Jadvalni to'liq tekshirish o'rniga indekslarni ishlatishni tanlash
+    - `JOIN` usullarini optimallashtirish
