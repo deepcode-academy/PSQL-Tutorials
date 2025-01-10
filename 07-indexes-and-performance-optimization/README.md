@@ -222,3 +222,24 @@ Seq Scan on employees  (cost=0.00..1000.00 rows=1000 width=32)
     - Indekslar qo'shish
     - Jadvalni to'liq tekshirish o'rniga indekslarni ishlatishni tanlash
     - `JOIN` usullarini optimallashtirish
+
+# PRACTICS
+
+users table
+
+|id|first_name|last_name|birth_date|gender|phone|address|faculty|year|average_grade|created_at|
+|--|----------|---------|----------|------|-----|-------|-------|----|-------------|----------|
+|1|John|Doe|2001-07-15
+
+| id | first_name | last_name | Birth Date | Gender | Phone        | Address            | Faculty           | 	Year | Grade | Created At         |
+|----|------------|-----------|------------|--------|--------------|--------------------|-------------------|-------|-------|--------------------|
+| 1  | John       | Doe       | 2001-07-15 | M      | +1234567890  | New York, USA      | Computer Science  | 3     | 89.50 | (auto-generated)   |
+| 2  | Jane       | Smith     | 2002-02-10 | F      | +9876543210  | Los Angeles, USA   | Mathematics       | 2     | 92.10 | (auto-generated)   |
+| 3  | Alice      | Johnson   | 2000-11-20 | F      | +1122334455  | Chicago, USA       | Physics           | 4     | 88.90 | (auto-generated)   |
+| 4  | Bob        | Williams  | 2003-04-05 | M      | +9988776655  | San Francisco, USA | Engineering       | 1     | 76.40 | (auto-generated)   |
+| 5  | Emily      | Brown     | 2001-09-25 | F      | +6677889900  | Seattle, USA       | Biology           | 3     | 91.30 | (auto-generated)   |
+| 6  | Michael    | Davis     | 2002-12-18 | M      | +5544332211  | Boston, USA        | History           | 2     | 84.70 | (auto-generated)   |
+| 7  | Sophia     | Garcia    | 2001-03-30 | F      | +4433221100  | Miami, USA         | Chemistry         | 4     | 87.20 | (auto-generated)   |
+| 8  | Chris      | Martinez  | 2003-06-12 | M      | +3322110044  | Houston, USA       | Economics         | 1     | 79.50 | (auto-generated)   |
+| 9  | Olivia     | Rodriguez | 2002-01-22 | F      | +9988002211  | Austin, USA        | Art               | 3     | 93.80 | (auto-generated)   |
+| 10 | Ethan      | Wilson    | 2000-08-08 | M      | +1122330055  | Denver, USA        | Law               | 4     | 85.10 | (auto-generated)   |
