@@ -227,10 +227,6 @@ Seq Scan on employees  (cost=0.00..1000.00 rows=1000 width=32)
 
 users table
 
-|id|first_name|last_name|birth_date|gender|phone|address|faculty|year|average_grade|created_at|
-|--|----------|---------|----------|------|-----|-------|-------|----|-------------|----------|
-|1|John|Doe|2001-07-15
-
 | id | first_name | last_name | Birth Date | Gender | Phone        | Address            | Faculty           | 	Year | Grade | Created At         |
 |----|------------|-----------|------------|--------|--------------|--------------------|-------------------|-------|-------|--------------------|
 | 1  | John       | Doe       | 2001-07-15 | M      | +1234567890  | New York, USA      | Computer Science  | 3     | 89.50 | (auto-generated)   |
