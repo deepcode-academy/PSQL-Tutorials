@@ -225,7 +225,7 @@ Seq Scan on employees  (cost=0.00..1000.00 rows=1000 width=32)
 
 # PRACTICS
 
-users table
+`users` table
 
 | id | first_name | last_name | Birth Date | Gender | Phone        | Address            | Faculty           | 	Year | Grade | Created At         |
 |----|------------|-----------|------------|--------|--------------|--------------------|-------------------|-------|-------|--------------------|
