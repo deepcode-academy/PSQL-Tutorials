@@ -13,3 +13,14 @@ PostgreSQLda functions va stored procedure yozish ma'lumotlar bazasida takrorlan
 
 PostgreSQL funksiyalari odatda `PL/pgSQL` tilida yoziladi. Ular aniq vazifalarni bajaradi va qiymat qaytaradi. 
 
+## Syntax for Creating a Function
+
+```sql
+CREATE OR REPLACE FUNCTION function_name(parameter_name data_type)
+RETURNS return_type AS $$
+BEGIN
+    -- Function logic
+    RETURN return_value;
+END;
+$$ LANGUAGE plpgsql;
+```
