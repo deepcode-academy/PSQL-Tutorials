@@ -24,3 +24,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 ```
+
+## Simple Example
+
+```sql
+
+```
