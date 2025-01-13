@@ -40,3 +40,6 @@ $$ LANGUAGE plpgsql;
 ```sql
 
 ```
+
+
+# PRACTICS
