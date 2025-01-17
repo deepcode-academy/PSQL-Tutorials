@@ -66,3 +66,10 @@ finally:
         connection.close()  # Ulanishni yopish
         print("Ulanish yopildi.")
 ```
+- `cursor = connection.cursor()`: cursor obyekti orqali SQL buyruqlari bajariladi.
+- `CREATE TABLE`: SQL buyrug'i orqali `users` jadvali yaratiladi.
+  - `id SERIAL PRIMARY KEY`: `id` ustuni asosiy kalit bo'lib, avtomatik raqamlanadi.
+  - `name VARCHAR(100)`: `name` ustuni matn saqlaydi (100 ta belgigacha).
+  - `age INT`: `age` ustuni butun son saqlaydi.
+- `cursor.execute`: SQL buyrug'ini bajaradi.
+- `connection.commit()`: O'zgarishlarni tasdiqlaydi (ma'lumotlar bazasiga saqlaydi).
