@@ -73,3 +73,42 @@ finally:
   - `age INT`: `age` ustuni butun son saqlaydi.
 - `cursor.execute`: SQL buyrug'ini bajaradi.
 - `connection.commit()`: O'zgarishlarni tasdiqlaydi (ma'lumotlar bazasiga saqlaydi).
+
+3. Ma'lumot kiritish
+
+```python
+import psycopg2
+
+try:
+    connection = psycopg2.connect(
+        database="testdb",
+        user="postgres",
+        password="12345",
+        host="localhost",
+        port="5432"
+    )
+    cursor = connection.cursor()
+
+    # Ma'lumot qo'shish
+    insert_query = """
+    INSERT INTO users (name, age) VALUES ('Ali', 25), ('Vali', 30);
+    """
+    cursor.execute(insert_query)  # SQL so'rovini bajarish
+    connection.commit()  # Kiritilgan ma'lumotlarni saqlash
+    print("Ma'lumotlar muvaffaqiyatli qo'shildi.")
+
+except Exception as error:
+    print("Xato yuz berdi:", error)
+
+finally:
+    if connection:
+        cursor.close()
+        connection.close()
+        print("Ulanish yopildi.")
+```
+
+- `INSERT INTO`: Jadvalga yangi ma'lumotlarni qo'shish.
+  - `users (name, age)`: Bu yerda `users` jadvaliga `name` va `age` qiymatlari kiritilmoqda.
+  - `('Ali', 25), ('Vali', 30)`: Har bir qator uchun nom va yosh kiritilmoqda.
+- `cursor.execute`: Kursor SQL so'rovini bajaradi.
+- `connection.commit()`: Kiritilgan ma'lumotlarni tasdiqlaydi.
