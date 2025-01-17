@@ -112,3 +112,42 @@ finally:
   - `('Ali', 25), ('Vali', 30)`: Har bir qator uchun nom va yosh kiritilmoqda.
 - `cursor.execute`: Kursor SQL so'rovini bajaradi.
 - `connection.commit()`: Kiritilgan ma'lumotlarni tasdiqlaydi.
+
+4. Ma'lumotlarni o'qish
+
+```python
+import psycopg2
+
+try:
+    connection = psycopg2.connect(
+        database="testdb",
+        user="postgres",
+        password="12345",
+        host="localhost",
+        port="5432"
+    )
+    cursor = connection.cursor()
+
+    # Ma'lumotlarni o'qish
+    select_query = "SELECT * FROM users;"
+    cursor.execute(select_query)  # SQL so'rovini bajarish
+    records = cursor.fetchall()  # Barcha natijalarni olish
+
+    print("Ma'lumotlar:")
+    for row in records:  # Har bir qatorni chop etish
+        print(f"ID: {row[0]}, Name: {row[1]}, Age: {row[2]}")
+
+except Exception as error:
+    print("Xato yuz berdi:", error)
+
+finally:
+    if connection:
+        cursor.close()
+        connection.close()
+        print("Ulanish yopildi.")
+```
+
+- `SELECT * FROM users;`: `users` jadvalidan barcha ustunlarni o'qish.
+- `cursor.fetchall()`: Barcha qatorlarni ro'yxat sifatida qaytaradi.
+- `for row in records`: Har bir qatorni row orqali ko'rib chiqadi.
+- `row[0], row[1], row[2]`: Jadvalning `id`, `name`, va `age` ustunlari qiymatlarini aks ettiradi.
