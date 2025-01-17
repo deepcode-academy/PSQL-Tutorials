@@ -25,3 +25,44 @@ finally:
         connection.close()
         print("Ulanish yopildi.")
 ```
+
+- `psycopg2.connect`: Ushbu funksiya PostgreSQL serveriga ulanishni amalga oshiradi. U `database`, `user`, `password`, `host`, va `port` ma'lumotlarini qabul qiladi.
+- `try-except`: Agar ulanishda xatolik yuz bersa, foydalanuvchi xato haqida xabar oladi.
+- `finally`: Har doim bajariladi. Bu yerda ulanish (connection) yopiladi.
+
+2. PostgreSQL jadval yaratish
+
+```python
+import psycopg2
+
+try:
+    connection = psycopg2.connect(
+        database="testdb",
+        user="postgres",
+        password="12345",
+        host="localhost",
+        port="5432"
+    )
+    cursor = connection.cursor()  # SQL buyruqlarini bajarish uchun kursor yaratish
+
+    # Jadval yaratish SQL so'rovi
+    create_table_query = """
+    CREATE TABLE users (
+        id SERIAL PRIMARY KEY,   # Avtomatik o'suvchi `id` ustuni (asosiy kalit)
+        name VARCHAR(100),       # 100 belgigacha bo'lgan matnli `name` ustuni
+        age INT                  # Butun sonlarni qabul qiluvchi `age` ustuni
+    );
+    """
+    cursor.execute(create_table_query)  # SQL so'rovini bajarish
+    connection.commit()  # Jadvalni yaratishni tasdiqlash
+    print("Jadval muvaffaqiyatli yaratildi.")
+
+except Exception as error:
+    print("Xato yuz berdi:", error)
+
+finally:
+    if connection:
+        cursor.close()  # Kursorni yopish
+        connection.close()  # Ulanishni yopish
+        print("Ulanish yopildi.")
+```
