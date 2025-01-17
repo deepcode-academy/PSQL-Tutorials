@@ -151,3 +151,39 @@ finally:
 - `cursor.fetchall()`: Barcha qatorlarni ro'yxat sifatida qaytaradi.
 - `for row in records`: Har bir qatorni row orqali ko'rib chiqadi.
 - `row[0], row[1], row[2]`: Jadvalning `id`, `name`, va `age` ustunlari qiymatlarini aks ettiradi.
+
+5. Ma'lumotlarni yangilash
+
+```python
+import psycopg2
+
+try:
+    connection = psycopg2.connect(
+        database="testdb",
+        user="postgres",
+        password="12345",
+        host="localhost",
+        port="5432"
+    )
+    cursor = connection.cursor()
+
+    # Ma'lumotni yangilash
+    update_query = "UPDATE users SET age = 26 WHERE name = 'Ali';"
+    cursor.execute(update_query)  # SQL buyrug'ini bajarish
+    connection.commit()  # O'zgarishlarni saqlash
+    print("Ma'lumot muvaffaqiyatli yangilandi.")
+
+except Exception as error:
+    print("Xato yuz berdi:", error)
+
+finally:
+    if connection:
+        cursor.close()
+        connection.close()
+        print("Ulanish yopildi.")
+```
+
+- `UPDATE users`: users jadvalidagi ma'lumotlarni yangilash.
+  - `SET age = 26`: age ustunini 26 ga o'zgartirish.
+  - `WHERE name = 'Ali'`: Faqat name ustunidagi Ali bo'lgan qatorni yangilash.
+- `connection.commit()`: Yangilanishni tasdiqlash.
