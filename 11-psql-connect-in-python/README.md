@@ -183,7 +183,42 @@ finally:
         print("Ulanish yopildi.")
 ```
 
-- `UPDATE users`: users jadvalidagi ma'lumotlarni yangilash.
-  - `SET age = 26`: age ustunini 26 ga o'zgartirish.
-  - `WHERE name = 'Ali'`: Faqat name ustunidagi Ali bo'lgan qatorni yangilash.
+- `UPDATE users`: `users` jadvalidagi ma'lumotlarni yangilash.
+  - `SET age = 26`: `age` ustunini `26` ga o'zgartirish.
+  - `WHERE name = 'Ali'`: Faqat `name` ustunidagi `Ali` bo'lgan qatorni yangilash.
 - `connection.commit()`: Yangilanishni tasdiqlash.
+
+6. Ma'lumotlarni o'chirish
+
+```python
+import psycopg2
+
+try:
+    connection = psycopg2.connect(
+        database="testdb",
+        user="postgres",
+        password="12345",
+        host="localhost",
+        port="5432"
+    )
+    cursor = connection.cursor()
+
+    # Ma'lumotlarni o'chirish
+    delete_query = "DELETE FROM users WHERE name = 'Ali';"
+    cursor.execute(delete_query)  # SQL buyrug'ini bajarish
+    connection.commit()  # O'zgarishlarni tasdiqlash
+    print("Ma'lumot muvaffaqiyatli o'chirildi.")
+
+except Exception as error:
+    print("Xato yuz berdi:", error)
+
+finally:
+    if connection:
+        cursor.close()
+        connection.close()
+        print("Ulanish yopildi.")
+```
+
+- `DELETE FROM users`: users jadvalidan ma'lumotlarni o'chirish.
+  - `WHERE name = 'Ali'`: Faqat `name` ustunida `Ali` bo'lgan qatorni o'chiradi.
+- `connection.commit()`: O'chirishni tasdiqlaydi.
