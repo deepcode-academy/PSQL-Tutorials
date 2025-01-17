@@ -1,6 +1,6 @@
 # Connect PostgreSQL to Python
 
-1. Connecting to the PostgreSQL Server
+## Connecting to the PostgreSQL Server
 
 ```python
 import psycopg2
@@ -30,7 +30,7 @@ finally:
 - `try-except`: Agar ulanishda xatolik yuz bersa, foydalanuvchi xato haqida xabar oladi.
 - `finally`: Har doim bajariladi. Bu yerda ulanish (connection) yopiladi.
 
-2. Creating a PostgreSQL Table
+## Creating a PostgreSQL Table
 
 ```python
 import psycopg2
@@ -74,7 +74,7 @@ finally:
 - `cursor.execute`: SQL buyrug'ini bajaradi.
 - `connection.commit()`: O'zgarishlarni tasdiqlaydi (ma'lumotlar bazasiga saqlaydi).
 
-3. Inserting Data
+## Inserting Data
 
 ```python
 import psycopg2
@@ -113,7 +113,7 @@ finally:
 - `cursor.execute`: Kursor SQL so'rovini bajaradi.
 - `connection.commit()`: Kiritilgan ma'lumotlarni tasdiqlaydi.
 
-4. Reading Data
+## Reading Data
 
 ```python
 import psycopg2
@@ -152,7 +152,7 @@ finally:
 - `for row in records`: Har bir qatorni row orqali ko'rib chiqadi.
 - `row[0], row[1], row[2]`: Jadvalning `id`, `name`, va `age` ustunlari qiymatlarini aks ettiradi.
 
-5. Updating Data
+## Updating Data
 
 ```python
 import psycopg2
@@ -188,7 +188,7 @@ finally:
   - `WHERE name = 'Ali'`: Faqat `name` ustunidagi `Ali` bo'lgan qatorni yangilash.
 - `connection.commit()`: Yangilanishni tasdiqlash.
 
-6. Deleting Data
+## Deleting Data
 
 ```python
 import psycopg2
