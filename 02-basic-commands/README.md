@@ -1,11 +1,5 @@
 # Basic SQL Commands in PostgreSQL
 
-- Topics:
-  - `databases`, `tables`, `rows` va `columns` haqida tushuncha
-  - Data types in `PostgreSQL`
-  - Asosiy `SQL` buyruqlari: `CREATE DATABASE`, `CREATE TABLE`, `DROP`, `INSERT`, `SELECT`
-  - Primary keys and constraints
-
 > [!NOTE]
 > `Databases`, `tables`, `rows` va `columns` — bu `SQL` va ma'lumotlar bazalari boshqaruvi tizimlarining asosiy tushunchalar hisoblanadi.
 
