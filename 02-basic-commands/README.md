@@ -12,17 +12,20 @@
 📌 **Database** — bu katta ma'lumotlar ombori. U yerda turli xil ma'lumotlar tartib bilan saqlanadi. Katta ma'lumotlarni bir joyda saqlab, ularni tezda topish, o‘zgartirish va boshqarish uchun kerak.
 
 
-2. Table
+### ❇️ TABLE
+
    - **Table** — ma'lumotlarni `struktura` shaklida saqlash uchun ma'lumotlar bazasidagi asosiy obyektlardan biri. Har bir jadvalda columns(ustunlar) va rows(qatorlar) mavjud bo'lib, ularning yordamida ma'lumotlarni `tartiblangan` shaklda saqlash va ularni `tezkor topish` mumkin. 
 
      - **Masalan:** Talabalar jadvali quyidagi ma'lumotlarni o'zida saqlashi mumkin: `talabalar ID` raqami, `ism`, `familiya`, `yosh` va `guruh`.
 
-3. Column
+### ❇️ COLUMN
+
    - **Column** — jadvalda saqlanadigan `ma'lumotlarning turini` belgilaydigan element. Har bir ustun jadvaldagi ma'lumotlarga ma'lum bir tavsif beradi va unda ma'lum turdagi ma'lumotlar (`raqamlar`, `matn`, `sana` va h.k.) saqlanadi. 
 
    - **Masalan:** `ism`, `familiya` va `yosh` — bu talabalar jadvalidagi ustunlardir.
 
-4. Row
+### ❇️ ROW
+
     - **Row** — jadvaldagi ma'lumotlarning bir birlikdagi ko'rinishi bo'lib, har bir qator alohida bir yozuvni ifodalaydi. 
     - **Masalan:** talabalar jadvalida har bir qator bitta talaba haqida ma'lumot saqlaydi: talaba `ID` raqami, `ismi`, `yoshi` va `guruh`.
 
