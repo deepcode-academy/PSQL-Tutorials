@@ -154,21 +154,22 @@ CREATE TABLE employees (
 );
 ```
 
-`DECIMAL` yoki `NUMERIC`: Yuksak aniqlikka ega haqiqiy sonlar, masalan, valyutalarni saqlashda foydalidir.
+#### ✳️ DECIMAL OR NUMERIC
 
-**Sintaksis:** 
+📌 **DECIMAL yoki NUMERIC** — bu aniq o‘nlik kasr sonlarni saqlash uchun ishlatiladigan ma'lumot turi. Bu turda aniqlik (precision) va kasr sonlar soni (scale) aniq belgilanadi.
+
+
+```sql
+-- Example nomli jadval yaratilyapti
+CREATE TABLE Example (
+    price DECIMAL(8, 2)
+);
+```
 
 - `DECIMAL`(**precision**, **scale**)
   - **Precision:** Jami raqamlar soni.
   - **Scale:** Kasr qismidagi raqamlar soni.
 
-**Example:**
-
-```sql
-CREATE TABLE Example (
-    price DECIMAL(10, 2)
-);
-```
 
 `REAL`: 4 baytli haqiqiy son (single precision floating point).
 
