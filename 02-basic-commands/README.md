@@ -26,7 +26,7 @@
 
 
 
-Agar bizda `students` nomli jadval bo'lsa, uning tarkibi quyidagicha bo'lishi mumkin:
+📌 Agar bizda `students` nomli jadval bo'lsa, uning tarkibi quyidagicha bo'lishi mumkin:
 
 |ID | Name        | Surname       | Age    | Class |
 |---|-------------|---------------|--------|-------|
