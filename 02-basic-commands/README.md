@@ -121,13 +121,36 @@ CREATE TABLE transactions (
 ```
 
 
-`SMALLINT` (int2): 2 baytli butun sonlar (−32,768 dan +32,767 gacha).
+#### ✳️ SMALLINT
 
-**Example:**
+📌 **SMALLINT (int2)** — bu 2 baytli butun son turi bo‘lib, kichik diapazondagi butun sonlarni saqlash uchun ishlatiladi.
+
+🎯 Oddiy **SMALLINT** turidagi ustun yaratish uchun **example** jadvali:
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+-- Bu jadvalda faqat bitta ustun bor: small_num
+-- small_num ustuni SMALLINT (kichik butun son) tipida bo‘ladi
+CREATE TABLE example (
     small_num SMALLINT
+);
+```
+
+🎯 Xodimlarning lavozim darajasini saqlash uchun.
+
+```sql
+-- employees nomli jadval yaratilyapti
+CREATE TABLE employees (
+    
+    -- id ustuni: har bir xodimning ID raqami
+    id INTEGER PRIMARY KEY,
+    
+    -- name ustuni: xodimning ismi
+    name VARCHAR(50),
+    
+    -- level ustuni: xodimning lavozim darajasi
+    -- Odatda bu 1 dan 10 gacha bo‘lgan kichik son bo‘ladi
+    level SMALLINT
 );
 ```
 
