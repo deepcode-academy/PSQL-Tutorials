@@ -14,7 +14,7 @@
 
 ### ❇️ TABLE
 
-   - **Table** — ma'lumotlarni `struktura` shaklida saqlash uchun ma'lumotlar bazasidagi asosiy obyektlardan biri. Har bir jadvalda columns(ustunlar) va rows(qatorlar) mavjud bo'lib, ularning yordamida ma'lumotlarni `tartiblangan` shaklda saqlash va ularni `tezkor topish` mumkin. 
+📌 **Table** — ma'lumotlarni ustunlar va qatorlarda tartibli saqlash va kerakli ma'lumotni tez topish uchun ishlatiladigan asosiy obyekt.
 
      - **Masalan:** Talabalar jadvali quyidagi ma'lumotlarni o'zida saqlashi mumkin: `talabalar ID` raqami, `ism`, `familiya`, `yosh` va `guruh`.
 
