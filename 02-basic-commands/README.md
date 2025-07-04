@@ -16,11 +16,9 @@
 
 📌 **Table** — ma'lumotlarni ustunlar va qatorlarda tartibli saqlash va kerakli ma'lumotni tez topish uchun ishlatiladigan asosiy obyekt.
 
-     - **Masalan:** Talabalar jadvali quyidagi ma'lumotlarni o'zida saqlashi mumkin: `talabalar ID` raqami, `ism`, `familiya`, `yosh` va `guruh`.
-
 ### ❇️ COLUMN
 
-   - **Column** — jadvalda saqlanadigan `ma'lumotlarning turini` belgilaydigan element. Har bir ustun jadvaldagi ma'lumotlarga ma'lum bir tavsif beradi va unda ma'lum turdagi ma'lumotlar (`raqamlar`, `matn`, `sana` va h.k.) saqlanadi. 
+📌 **Column** — jadvaldagi ma'lumotlarning turini belgilovchi element bo‘lib, unda faqat ma'lum turdagi ma'lumotlar (masalan, raqam, matn, sana va boshqalar) saqlanadi.
 
    - **Masalan:** `ism`, `familiya` va `yosh` — bu talabalar jadvalidagi ustunlardir.
 
