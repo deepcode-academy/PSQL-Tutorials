@@ -176,13 +176,34 @@ CREATE TABLE example (
   - **Scale:** Kasr qismidagi raqamlar soni.
 
 
-`REAL`: 4 baytli haqiqiy son (single precision floating point).
+#### ✳️ REAL
+
+📌 **REAL** — bu 4 baytli haqiqiy son (floating point) turi bo‘lib, o‘nlik kasr sonlarni taxminiy aniqlikda saqlaydi.
 
 **Example:**
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+-- value ustuni REAL tipida, bu ustun haqiqiy sonlarni saqlaydi
+CREATE TABLE example (
     value REAL
+);
+```
+
+🎯 ob-havo ma’lumotlari jadvali:
+
+```sql
+-- weather_data nomli jadval yaratilyapti
+CREATE TABLE weather_data (
+    
+    -- id: har bir yozuv uchun ID
+    id INTEGER PRIMARY KEY,
+    
+    -- temperature: harorat, REAL tipida
+    temperature REAL,
+    
+    -- humidity: namlik foizi, REAL tipida
+    humidity REAL
 );
 ```
 
