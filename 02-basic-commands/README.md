@@ -37,10 +37,9 @@
 - **Columns** - `ID`, `Name`, `Surname`, `Age`, `Class`.
 - **Rows** - har bir talaba haqida ma'lumotni ifodalovchi yozuvlar.
 
-# DATA TYPES IN `PostgreSQL`
+## ✅ DATA TYPES
 
-> [!NOTE]
-> PostgreSQLda data types(ma'lumot turlari) ma'lumotlar bazasidagi ustunlar uchun qiymatlarni saqlash va ishlov berishning turli usullarini ta'minlaydi. Quyida PostgreSQLda ishlatiladigan asosiy ma'lumot turlari keltirilgan:
+📌 PostgreSQLda ma'lumot turlari (**data types**) ustunlarda saqlanadigan ma'lumotlarning turini belgilaydi va ular bilan qanday ishlash mumkinligini aniqlaydi.
 
 
 1. Numeric Data Types(Raqamli ma'lumot turlari)
