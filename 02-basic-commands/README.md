@@ -18,8 +18,6 @@
 
 📌 **Column** — jadvaldagi ma'lumotlarning turini belgilovchi element bo‘lib, unda faqat ma'lum turdagi ma'lumotlar (masalan, raqam, matn, sana va boshqalar) saqlanadi.
 
-   - **Masalan:** `ism`, `familiya` va `yosh` — bu talabalar jadvalidagi ustunlardir.
-
 ### ❇️ ROW
 
 📌 **Row** — bu jadvaldagi bitta ma'lumot to‘plami bo‘lib, u biror shaxs, buyum yoki hodisa haqida to‘liq ma'lumotni ifodalaydi.
