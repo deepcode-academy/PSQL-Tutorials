@@ -158,10 +158,15 @@ CREATE TABLE employees (
 
 📌 **DECIMAL yoki NUMERIC** — bu aniq o‘nlik kasr sonlarni saqlash uchun ishlatiladigan ma'lumot turi. Bu turda aniqlik (precision) va kasr sonlar soni (scale) aniq belgilanadi.
 
+🎯 **example** jadvali bilan amaliy misol
 
 ```sql
 -- Example nomli jadval yaratilyapti
-CREATE TABLE Example (
+CREATE TABLE example (
+    
+    -- price ustuni yaratilmoqda
+    -- Mahsulot yoki xizmat narxini saqlash uchun ishlatiladi
+    -- DECIMAL(8, 2) tipida bo‘lib, maksimal qiymat 999999.99 bo‘lishi mumkin
     price DECIMAL(8, 2)
 );
 ```
