@@ -42,15 +42,43 @@
 📌 PostgreSQLda ma'lumot turlari (**data types**) ustunlarda saqlanadigan ma'lumotlarning turini belgilaydi va ular bilan qanday ishlash mumkinligini aniqlaydi.
 
 
-1. Numeric Data Types(Raqamli ma'lumot turlari)
+### ❇️ NUMBER
 
-`INTEGER` (int, int4): 4 baytli butun sonlar (−2,147,483,648 dan +2,147,483,647 gacha).
+#### ✳️ INTEGER
 
-**Example:**
+📌 **INTEGER (int, int4)** — bu 4 baytli butun son turi bo‘lib, −2,147,483,648 dan +2,147,483,647 gacha bo‘lgan sonlarni saqlaydi.
+
+🎯 Oddiy ma’lumot saqlash uchun **example** jadvali yaratish
 
 ```sql
+-- Example nomli jadval yaratilyapti
+-- Bu jadvalda faqat bitta ustun bor: num
+-- num ustuni INTEGER (butun son) tipida bo‘ladi
 CREATE TABLE Example (
     num INTEGER
+);
+```
+
+🎯 Talabalar haqidagi ma’lumotlarni saqlash uchun **students** jadvali yaratish
+
+```sql
+-- students nomli jadval yaratilyapti
+CREATE TABLE students (
+    
+    -- id ustuni yaratilmoqda
+    -- Har bir talabaning yagona (unique) identifikatori sifatida ishlatiladi
+    -- INTEGER tipida bo‘ladi va PRIMARY KEY (asosiy kalit)
+    id INTEGER PRIMARY KEY,
+    
+    -- name ustuni yaratilmoqda
+    -- Talabaning ismini saqlaydi
+    -- Maksimal uzunligi 50 belgidan iborat bo‘lishi mumkin
+    name VARCHAR(50),
+    
+    -- age ustuni yaratilmoqda
+    -- Talabaning yoshini saqlaydi
+    -- INTEGER (butun son) tipida bo‘ladi
+    age INTEGER
 );
 ```
 
