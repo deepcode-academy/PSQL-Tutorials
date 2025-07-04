@@ -2,8 +2,6 @@
 
 # 🧩 2-DARS BASIC COMMANDS
 
-> [!NOTE]
-> `Databases`, `tables`, `rows` va `columns` — bu `SQL` va ma'lumotlar bazalari boshqaruvi tizimlarining asosiy tushunchalar hisoblanadi.
 
 ## ✅ DATABASES, TABLES, COLUMNS VA ROWS HAQIDA TUSHUNCHA
 
@@ -27,7 +25,6 @@
 📌 **Row** — bu jadvaldagi bitta ma'lumot to‘plami bo‘lib, u biror shaxs, buyum yoki hodisa haqida to‘liq ma'lumotni ifodalaydi.
 
 
-**Example:**
 
 Agar bizda `students` nomli jadval bo'lsa, uning tarkibi quyidagicha bo'lishi mumkin:
 
