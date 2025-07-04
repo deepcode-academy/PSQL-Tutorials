@@ -44,6 +44,8 @@
 
 ### ❇️ NUMBER
 
+📌 **NUMBER** — bu SQL ma'lumotlar bazasida sonlarni saqlash uchun ishlatiladigan asosiy ma'lumot turi hisoblanadi. NUMBER turlari yordamida butun sonlar, o‘nlik sonlar va boshqa raqamli qiymatlar saqlanadi.
+
 #### ✳️ INTEGER
 
 📌 **INTEGER (int, int4)** — bu 4 baytli butun son turi bo‘lib, −2,147,483,648 dan +2,147,483,647 gacha bo‘lgan sonlarni saqlaydi.
