@@ -84,15 +84,42 @@ CREATE TABLE students (
 );
 ```
 
-`BIGINT` (int8): 8 baytli butun sonlar (−9,223,372,036,854,775,808 dan +9,223,372,036,854,775,807 gacha).
+#### ✳️ BIGINT 
 
-**Example:**
+📌 **BIGINT (int8)** — bu 8 baytli butun son turi bo‘lib, juda katta butun sonlarni saqlash uchun ishlatiladi.
+
+🎯 Oddiy **BIGINT** turidagi ustun yaratish uchun Example jadvali.
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+-- Bu jadvalda faqat bitta ustun bor: big_num
+-- big_num ustuni BIGINT (katta butun son) tipida bo‘ladi
+CREATE TABLE example (
     big_num BIGINT
 );
 ```
+🎯 Bank tranzaktsiyalarini saqlash uchun jadval yaratish
+
+```sql
+-- transactions nomli jadval yaratilyapti
+CREATE TABLE transactions (
+    
+    -- transaction_id ustuni yaratilmoqda
+    -- Har bir tranzaktsiyaga noyob raqam beriladi
+    -- Katta qiymatlarni saqlash uchun BIGINT ishlatiladi
+    transaction_id BIGINT PRIMARY KEY,
+    
+    -- amount ustuni yaratilmoqda
+    -- Tranzaksiya summasini saqlaydi
+    -- BIGINT ishlatilmoqda, chunki ba'zi hollarda juda katta summalar bo‘lishi mumkin
+    amount BIGINT,
+    
+    -- description ustuni yaratilmoqda
+    -- Tranzaksiya haqida qisqa izoh
+    description VARCHAR(100)
+);
+```
+
 
 `SMALLINT` (int2): 2 baytli butun sonlar (−32,768 dan +32,767 gacha).
 
