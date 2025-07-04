@@ -24,8 +24,8 @@
 
 ### ❇️ ROW
 
-    - **Row** — jadvaldagi ma'lumotlarning bir birlikdagi ko'rinishi bo'lib, har bir qator alohida bir yozuvni ifodalaydi. 
-    - **Masalan:** talabalar jadvalida har bir qator bitta talaba haqida ma'lumot saqlaydi: talaba `ID` raqami, `ismi`, `yoshi` va `guruh`.
+📌 **Row** — bu jadvaldagi bitta ma'lumot to‘plami bo‘lib, u biror shaxs, buyum yoki hodisa haqida to‘liq ma'lumotni ifodalaydi.
+
 
 **Example:**
 
