@@ -190,7 +190,7 @@ CREATE TABLE example (
 );
 ```
 
-🎯 ob-havo ma’lumotlari jadvali:
+🎯 Ob-havo ma’lumotlari jadvali:
 
 ```sql
 -- weather_data nomli jadval yaratilyapti
