@@ -207,12 +207,19 @@ CREATE TABLE weather_data (
 );
 ```
 
-`DOUBLE PRECISION`: 8 baytli haqiqiy son (double precision floating point).
+#### ✳️ DOUBLE PRECISION
 
-**Example:**
+**DOUBLE PRECISION** — bu 8 baytli aniqroq suzuvchi nuqtali haqiqiy sonlarni saqlash uchun ishlatiladigan ma'lumot turi, katta va kichik onlik sonlarni aniqlik bilan saqlaydi.
+
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+CREATE TABLE example (
+
+    -- value ustuni yaratilmoqda
+    -- Bu ustun DOUBLE PRECISION tipida bo‘ladi
+    -- 8 baytli haqiqiy sonlarni (floating point) saqlaydi
+    -- Katta aniqlikka ega kasr sonlarni saqlash uchun ishlatiladi
     value DOUBLE PRECISION
 );
 ```
