@@ -224,14 +224,21 @@ CREATE TABLE example (
 );
 ```
 
-2.  Text Data Types(Matnli ma'lumot turlari)
+### ❇️ TEXT TYPE
 
-`CHAR(n)`: Sabit uzunlikdagi matn. Agar matn uzunligi `n` dan qisqa bo'lsa, qolgan joylar bo'shliq bilan to'ldiriladi.
+#### ✳️ CHAR(N)
 
-**Example:**
+**CHAR(n)** — bu aniq uzunlikdagi matn turi, matn uzunligi n dan qisqa bo‘lsa, qolgan qismlar avtomatik bo‘sh joy (space) bilan to‘ldiriladi.
+
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+CREATE TABLE example (
+
+    -- code ustuni yaratilmoqda
+    -- CHAR(5) - bu ustun sabit (belgilangan) uzunlikdagi matn saqlaydi
+    -- Har doim 5 ta belgi joy ajratiladi
+    -- Agar kiritilgan matn 5 ta belgidan kam bo‘lsa, qolgan joylar bo‘sh joy (space) bilan to‘ldiriladi
     code CHAR(5)
 );
 ```
