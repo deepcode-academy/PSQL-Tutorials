@@ -243,12 +243,20 @@ CREATE TABLE example (
 );
 ```
 
-`VARCHAR(n)`: O'zgaruvchan uzunlikdagi matn. Maksimal uzunlik `n` bilan belgilangan.
+#### ✳️ VARCHAR(N)
 
-**Example:**
+**VARCHAR(n)** — bu o‘zgaruvchan uzunlikdagi matn turi, matn uzunligi qancha bo‘lsa, shuncha joy egallaydi, lekin maksimal uzunlik n dan oshmaydi.
+
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+CREATE TABLE example (
+
+    -- name ustuni yaratilmoqda
+    -- VARCHAR(50) - bu ustun o‘zgaruvchan uzunlikdagi matn saqlaydi
+    -- Maksimal uzunlik 50 ta belgi bilan cheklanadi
+    -- Kiritilgan matn qancha uzunlikda bo‘lsa, shuncha joy egallaydi
+    -- CHAR bilan farqi: bo‘sh joy bilan to‘ldirilmaydi, faqat kerakli joy egallanadi
     name VARCHAR(50)
 );
 ```
