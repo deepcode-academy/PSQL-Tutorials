@@ -180,7 +180,6 @@ CREATE TABLE example (
 
 📌 **REAL** — bu 4 baytli haqiqiy son (floating point) turi bo‘lib, o‘nlik kasr sonlarni taxminiy aniqlikda saqlaydi.
 
-**Example:**
 
 ```sql
 -- Example nomli jadval yaratilyapti
