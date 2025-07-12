@@ -260,12 +260,20 @@ CREATE TABLE example (
 );
 ```
 
-`TEXT`: Cheksiz uzunlikdagi matn. Bu turingizdagi matnning uzunligi chegaralanmagan.
+#### ✳️ TEXT
+
+`TEXT` - bu cheksiz uzunlikdagi matn saqlash uchun ishlatiladigan ma'lumotlar turi. Matn uzunligi chegaralanmagan, ya'ni istalgan uzunlikdagi yozuvlar saqlanishi mumkin. **VARCHAR(N)** dan farqli ravishda maksimal uzunlik ko‘rsatilmaydi.
 
 **Example:**
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+CREATE TABLE example (
+
+    -- description ustuni yaratilmoqda
+    -- TEXT - bu ustun cheksiz uzunlikdagi matn saqlaydi
+    -- Matn uzunligi oldindan belgilab qo‘yilmaydi
+    -- Juda katta (katta hajmli) matnlar uchun qulay
     description TEXT
 );
 ```
