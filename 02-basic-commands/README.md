@@ -331,34 +331,55 @@ CREATE TABLE example (
 );
 ```
 
-`TIMESTAMPTZ`: Sana va vaqt (soat mintaqasi bilan).
+#### ✳️ TIMESTAMPTZ
 
-**Example:**
+**TIMESTAMPTZ** (Timestamp with Time Zone) — bu sana va vaqtni soat mintaqasi bilan birga saqlaydigan ma'lumotlar turi. Yil, oy, kun, soat, daqiqa, soniya va vaqt zonasi (UTC+05, UTC-03 va h.k.) birgalikda saqlanadi. Bu tur ko‘pincha global loyihalarda, foydalanuvchining aniq vaqtini belgilash uchun ishlatiladi.
+
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+CREATE TABLE example (
+
+    -- event_time ustuni yaratilmoqda
+    -- TIMESTAMPTZ - bu ustun sana, vaqt va vaqt mintaqasini birga saqlaydi
+    -- Masalan: '2025-07-13 18:45:00+05:00'
+    -- Bu vaqt UTC+5 mintaqasiga tegishli ekanligini bildiradi
     event_time TIMESTAMPTZ
 );
 ```
 
-`INTERVAL`: Vaqt oralig'ini saqlash (masalan, 1 kun, 3 soat).
+#### ✳️ INTERVAL
 
-**Example:**
+**INTERVAL** — bu vaqt oralig‘ini (davrni) saqlovchi ma'lumotlar turi. Masalan: 1 kun, 3 soat, 2 oy 15 kun, 1 yil 5 oy 10 kun 4 soat 30 daqiqa kabi qiymatlar saqlanishi mumkin. Bu tur vaqtlar orasidagi farqni ifodalash yoki vaqt ustiga qo‘shish/ayirishda ishlatiladi.
+
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+CREATE TABLE example (
+
+    -- duration ustuni yaratilmoqda
+    -- INTERVAL - bu ustun vaqt oralig‘ini saqlaydi
+    -- Masalan: '1 day', '3 hours', '2 months 15 days' kabi qiymatlar
     duration INTERVAL
 );
 ```
 
-4. Boolean Data Type(Mantiqiy ma'lumot turlari )
+### ❇️ BOOLEAN TYPE
 
-`BOOLEAN`: `TRUE`, `FALSE` yoki `NULL` qiymatlarini saqlash.
+#### ✳️ BOOLEAN
 
-**Example:**
+**BOOLEAN** — bu mantiqiy (true/false) qiymatlarni saqlovchi ma'lumotlar turi. Faqatgina TRUE, FALSE yoki NULL qiymatlarni qabul qiladi. Ko‘pincha holatni bildiruvchi ustunlarda ishlatiladi (masalan: foydalanuvchi faolmi yoki yo‘qmi).
+
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+CREATE TABLE example (
+
+    -- is_active ustuni yaratilmoqda
+    -- BOOLEAN - bu ustun TRUE yoki FALSE qiymatlarini saqlaydi
+    -- TRUE - agar holat faol bo‘lsa
+    -- FALSE - agar holat faol bo‘lmasa
+    -- NULL - agar holat noma’lum bo‘lsa
     is_active BOOLEAN
 );
 ```
