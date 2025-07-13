@@ -264,7 +264,6 @@ CREATE TABLE example (
 
 `TEXT` - bu cheksiz uzunlikdagi matn saqlash uchun ishlatiladigan ma'lumotlar turi. Matn uzunligi chegaralanmagan, ya'ni istalgan uzunlikdagi yozuvlar saqlanishi mumkin. **VARCHAR(N)** dan farqli ravishda maksimal uzunlik ko‘rsatilmaydi.
 
-**Example:**
 
 ```sql
 -- Example nomli jadval yaratilyapti
@@ -278,14 +277,21 @@ CREATE TABLE example (
 );
 ```
 
-3. Date and Time Data Types(Sana va vaqt ma'lumot turlari)
+### ❇️ DATE AND TIME TYPES
 
-`DATE`: Faqat sana (yil, oy, kun).
+#### ✳️ DATE
 
-**Example:**
+`DATE` - bu faqat sana (yil, oy, kun) ni saqlaydigan ma'lumotlar turi.
+DATE turi vaqtni (soat, daqiqa, soniya) o‘z ichiga olmaydi — faqatgina sana qismi saqlanadi.
+
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+CREATE TABLE example (
+
+    -- birth_date ustuni yaratilmoqda
+    -- DATE - bu ustun faqat sanani (yil, oy, kun) saqlaydi
+    -- Vaqt qismi (soat, daqiqa, soniya) bu yerda mavjud emas
     birth_date DATE
 );
 ```
