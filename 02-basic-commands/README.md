@@ -477,14 +477,20 @@ CREATE TABLE example (
 );
 ```
 
-9. Ma'lumotlar turlari bilan bog'liq boshqa turdagi turlar
+### ❇️ SERIAL AND BIGSERIAL TYPES
 
-`SERIAL`: Avtomatik ravishda raqamlar yaratish uchun ishlatiladi (asosan asosiy kalit sifatida).
+#### ✳️ SERIAL
 
-**Example:**
+**SERIAL** — bu avtomatik ravishda o‘sib boruvchi butun son qiymatlarni yaratish uchun ishlatiladigan ma'lumot turi. Ko‘pincha asosiy kalit (primary key) sifatida ishlatiladi. Har bir yangi yozuv qo‘shilganda qiymat avtomatik tarzda 1 taga ortadi. SERIAL bu INTEGER ustuniga AUTO INCREMENT xususiyatini qo‘shadi.
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+CREATE TABLE example (
+
+    -- id ustuni yaratilmoqda
+    -- SERIAL - bu ustun avtomatik ravishda raqam hosil qiladi
+    -- Har bir yangi yozuv uchun qiymat avtomatik 1 taga ortadi
+    -- PRIMARY KEY - bu ustun asosiy kalit (noyob va NULL bo‘lmaydi)
     id SERIAL PRIMARY KEY
 );
 ```
