@@ -313,12 +313,20 @@ CREATE TABLE example (
 );
 ```
 
-`TIMESTAMP`: Sana va vaqt birgalikda (yil, oy, kun, soat, daqiqa, soniya).
+#### ✳️ TIMESTAMP
 
-**Example:**
+**TIMESTAMP** — bu sana va vaqtni birgalikda saqlovchi ma'lumotlar turi. Yil, oy, kun va soat, daqiqa, soniya birga saqlanadi. Ko‘pincha yozilgan vaqtni, o‘zgartirilgan vaqtni avtomatik yozib borishda ishlatiladi.
+
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+CREATE TABLE example (
+
+    -- created_at ustuni yaratilmoqda
+    -- TIMESTAMP - bu ustun sana va vaqtni birgalikda saqlaydi
+    -- Sana: yil, oy, kun
+    -- Vaqt: soat, daqiqa, soniya
+    -- Masalan: '2025-07-13 22:30:15' kabi qiymat saqlanadi
     created_at TIMESTAMP
 );
 ```
