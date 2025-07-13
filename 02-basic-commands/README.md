@@ -495,12 +495,19 @@ CREATE TABLE example (
 );
 ```
 
-`BIGSERIAL`: Katta avtomatik raqamlar yaratish uchun ishlatiladi.
+#### ✳️ BIGSERIAL
 
-**Example:**
+**BIGSERIAL** — bu katta hajmdagi avtomatik o‘suvchi butun sonlarni yaratish uchun ishlatiladigan ma'lumot turi. SERIAL turiga o‘xshaydi, lekin katta raqamlar (64-bitgacha) bilan ishlash imkonini beradi. Ko‘pincha millionlab yozuvlar yoki katta hajmli bazalar uchun asosiy kalit (primary key) sifatida qo‘llaniladi.
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+CREATE TABLE example (
+
+    -- id ustuni yaratilmoqda
+    -- BIGSERIAL - bu ustun avtomatik tarzda katta raqamlar yaratadi
+    -- Har bir yangi yozuv uchun qiymat avtomatik 1 taga ortadi
+    -- PRIMARY KEY - bu ustun asosiy kalit hisoblanadi
+    -- Katta hajmli ma'lumotlar bazalari uchun mos
     id BIGSERIAL PRIMARY KEY
 );
 ```
