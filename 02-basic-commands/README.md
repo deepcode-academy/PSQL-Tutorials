@@ -403,48 +403,76 @@ CREATE TABLE example (
 );
 ```
 
-6. `JSON` va `JSONB` ma'lumot turlari (JSON Data Types)
+### ❇️ JSON AND JSONB TYPES
 
-`JSON`: JSON formatidagi ma'lumotlarni saqlash.
+#### ✳️ JSON
 
-**Example:**
+**JSON** — bu JSON (JavaScript Object Notation) formatidagi tuzilgan ma'lumotlarni saqlovchi ma'lumot turi. Strukturaviy (nested) ma'lumotlarni, juftlik ko‘rinishidagi (kalit:qiymat) yozuvlarni saqlash uchun ishlatiladi. PostgreSQL JSON ustunlarida ma'lumotlarni o‘qish, izlash va o‘zgartirish uchun maxsus funksiyalarni qo‘llab-quvvatlaydi.
+
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+CREATE TABLE example (
+
+    -- data ustuni yaratilmoqda
+    -- JSON - bu ustun JSON formatidagi strukturalangan ma'lumotni saqlaydi
+    -- Masalan: {'name': 'Umid', 'age': 25} kabi
+    -- Kalit-qiymat juftliklari ko‘rinishida saqlanadi
     data JSON
 );
 ```
 
-`JSONB`: `JSON` formatidagi ma'lumotlarni binary formatda saqlash (tezroq ishlash uchun).
+#### ✳️ JSONB
 
-**Example:**
+**JSONB** — bu JSON formatidagi ma'lumotlarni binary (ikkilik) formatda saqlovchi ma'lumot turi. JSON turiga o‘xshaydi, lekin JSONB tezroq ishlaydi, indekslash imkoniyatiga ega va tartiblanmagan (unordered) ko‘rinishda saqlanadi. Katta hajmdagi va murakkab tuzilgan JSON ma'lumotlar bilan samarali ishlash uchun tavsiya etiladi.
+
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+CREATE TABLE example (
+
+    -- data ustuni yaratilmoqda
+    -- JSONB - bu ustun JSON formatidagi ma'lumotni binary ko‘rinishda saqlaydi
+    -- JSON ga nisbatan ko‘proq imkoniyat va tezlik taqdim etadi
+    -- Masalan: {'product': 'laptop', 'price': 1500} kabi ma'lumotlar
     data JSONB
 );
 ```
 
-7. Yagona identifikatorlar (`UUID`)
+### ❇️ UUID TYPE
 
-`UUID`: Unikal identifikatorlarni saqlash uchun ishlatiladi. Bu tur, global darajada noyob bo'lgan identifikatorlarni yaratadi.
+#### ✳️ UUID
 
-**Example:**
+**UUID (Universally Unique Identifier)** — bu butun dunyo bo‘yicha yagona (noyob) identifikatorlarni saqlash uchun ishlatiladigan ma'lumot turi. Ko‘pincha foydalanuvchi ID, mahsulot ID yoki boshqa unikal elementlarni aniqlashda ishlatiladi. UUID qiymatlari 128-bitli bo‘ladi va tasodifiy yoki belgilangan algoritm asosida yaratiladi.
+
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+CREATE TABLE example (
+
+    -- user_id ustuni yaratilmoqda
+    -- UUID - bu ustun noyob identifikatorlarni saqlaydi
+    -- Masalan: 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11'
+    -- Har bir qiymat global darajada noyob bo‘ladi
     user_id UUID
 );
 ```
 
-8. Binar ma'lumot turlari (Binary Data Types)
+### ❇️ BINARY DATA TYPES
 
-`BYTEA`: Binary (2-lik) ma'lumotlarni saqlash uchun ishlatiladi (masalan, rasm yoki fayl).
+#### ✳️ BYTEA
 
-**Example:**
+**BYTEA (Byte Array)** — bu binary (ikkilik) ma'lumotlarni saqlash uchun ishlatiladigan ma'lumot turi. Masalan, rasmlar, video, audio, fayllar, shifrlangan ma'lumotlar yoki boshqa raqamli kontent saqlashda ishlatiladi. Saqlangan ma'lumotlar ikkilamchi (2-lik) ko‘rinishda bazaga yoziladi.
+
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+CREATE TABLE example (
+
+    -- image ustuni yaratilmoqda
+    -- BYTEA - bu ustun binary (ikkilik) ma'lumotlarni saqlaydi
+    -- Masalan: rasm, fayl, video, audio va h.k.
+    -- Ma'lumotlar 2-lik ko‘rinishda saqlanadi
     image BYTEA
 );
 ```
