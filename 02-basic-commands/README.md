@@ -530,18 +530,14 @@ CREATE TABLE example (
 
 `\d table_name` - jadvalga ulanish
 
-## CREATE DATABASE
-`CREATE DATABASE`: Yangi database yaratadi.
+### ❇️ CREATE DATABASE
 
-`\c database_name;` - databasega ulanish
+**CREATE DATABASE**: Yangi database yaratish.
+
+**\c database_name;** - databasega ulanish
 
 ```sql
-CREATE DATABASE database_name;
-```
-
-**Example:**
-```sql
-CREATE DATABASE School;
+CREATE DATABASE university;
 ```
 
 
