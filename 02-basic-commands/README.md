@@ -262,7 +262,7 @@ CREATE TABLE example (
 
 #### ✳️ TEXT
 
-`TEXT` - bu cheksiz uzunlikdagi matn saqlash uchun ishlatiladigan ma'lumotlar turi. Matn uzunligi chegaralanmagan, ya'ni istalgan uzunlikdagi yozuvlar saqlanishi mumkin. **VARCHAR(N)** dan farqli ravishda maksimal uzunlik ko‘rsatilmaydi.
+**TEXT** - bu cheksiz uzunlikdagi matn saqlash uchun ishlatiladigan ma'lumotlar turi. Matn uzunligi chegaralanmagan, ya'ni istalgan uzunlikdagi yozuvlar saqlanishi mumkin. **VARCHAR(N)** dan farqli ravishda maksimal uzunlik ko‘rsatilmaydi.
 
 
 ```sql
@@ -281,8 +281,7 @@ CREATE TABLE example (
 
 #### ✳️ DATE
 
-`DATE` - bu faqat sana (yil, oy, kun) ni saqlaydigan ma'lumotlar turi.
-DATE turi vaqtni (soat, daqiqa, soniya) o‘z ichiga olmaydi — faqatgina sana qismi saqlanadi.
+**DATE** - bu faqat sana (yil, oy, kun) ni saqlaydigan ma'lumotlar turi. DATE turi vaqtni (soat, daqiqa, soniya) o‘z ichiga olmaydi — faqatgina sana qismi saqlanadi.
 
 
 ```sql
@@ -296,12 +295,20 @@ CREATE TABLE example (
 );
 ```
 
-`TIME`: Faqat vaqt (soat, daqiqa, soniya).
+#### ✳️ TIME
 
-**Example:**
+**TIME** — bu faqat vaqt (soat, daqiqa, soniya) ni saqlaydigan ma'lumotlar turi.
+Bu turda sana (yil, oy, kun) saqlanmaydi — faqat kun ichidagi vaqt ifodalanadi.
+
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+CREATE TABLE example (
+
+    -- work_start ustuni yaratilmoqda
+    -- TIME - bu ustun faqat vaqtni (soat, daqiqa, soniya) saqlaydi
+    -- Sana (yil, oy, kun) bu yerda mavjud emas
+    -- Masalan: '08:30:00', '17:45:30' kabi qiymatlar saqlanadi
     work_start TIME
 );
 ```
