@@ -384,14 +384,21 @@ CREATE TABLE example (
 );
 ```
 
-5. Array Data Types(Ma'lumotlar to'plamlari)
+### ❇️ ARRAY TYPE
 
-`ARRAY`: Bir xil turdagi bir nechta qiymatlarni saqlash uchun array (massiv) turidan foydalanish mumkin.
+#### ✳️ ARRAY
 
-**Example:**
+**ARRAY** — bu bir xil turdagi bir nechta qiymatlarni bitta ustun ichida saqlash imkonini beruvchi massiv (array) ma'lumot turi. Massivdagi barcha elementlar bir xil ma'lumot turiga ega bo‘lishi kerak (masalan: INTEGER[], TEXT[]).
+
 
 ```sql
-CREATE TABLE Example (
+-- Example nomli jadval yaratilyapti
+CREATE TABLE example (
+
+    -- scores ustuni yaratilmoqda
+    -- INTEGER[] - bu ustun butun sonlardan iborat massivni saqlaydi
+    -- Masalan: {90, 85, 78} kabi qiymatlar
+    -- Har bir qiymat massiv ichida, bir xil turda bo'lishi shart
     scores INTEGER[]
 );
 ```
