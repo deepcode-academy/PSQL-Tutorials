@@ -512,15 +512,16 @@ CREATE TABLE example (
 );
 ```
 
-# Asosiy `SQL` buyruqlari: `CREATE DATABASE`, `CREATE TABLE`, `DROP`, `INSERT`, `SELECT`
+## ✅ ASOSIY SQL BUYRUQLARI: CREATE DATABASE, CREATE TABLE, DROP, INSERT, SELECT
 
 `\h` - SQL dagi buyruqlarni chiqarish
-
 `\?`  - PSQL ni ishlatish uchun buyruqlar
-
 `\q` - dasturdan chiqish
-
 `\l` - database larni ko'rish
+`\! cls` - terminalni tozalash
+`\c database_name` - ma'lumotlar bazasiga ulanish
+`\dt` - jadvalni ko'rish
+`\d table_name` - jadvalga ulanish
 
 ## CREATE DATABASE
 `CREATE DATABASE`: Yangi database yaratadi.
