@@ -1,4 +1,4 @@
-# Ma'lumotlar bazasiga kirish
+# 🐘 Ma'lumotlar bazasiga kirish
 
 ## Ma'lumotlar bazasi (Database) nima?
 
