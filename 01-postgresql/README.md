@@ -1,4 +1,4 @@
-# PostgreSQL
+# 🐘 PostgreSQL
 
 - Topics
   - `Relational databases` va `PostgreSQL` haqida tushuncha
