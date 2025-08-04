@@ -1,4 +1,4 @@
-# Data Retrieval and Filtering
+# 🐘 Data Retrieval and Filtering
 
 - Topics:
   - `SELECT` statement with `WHERE` clause
