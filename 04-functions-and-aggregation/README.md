@@ -1,4 +1,4 @@
-# Advanced Data Retrieval with Functions and Aggregation
+# 🐘 Advanced Data Retrieval with Functions and Aggregation
 
 - Topics:
   - Using PostgreSQL functions `COUNT`, `SUM`, `AVG`, `MIN`, `MAX`
