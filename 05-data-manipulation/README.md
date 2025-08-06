@@ -1,4 +1,4 @@
-# Data Manipulation
+# 🐘 Data Manipulation
 
 - Topics:
   - Updating records with `UPDATE`
