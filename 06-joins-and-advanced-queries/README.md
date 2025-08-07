@@ -1,4 +1,4 @@
-# Joins and Advanced Queries
+# 🐘 Joins and Advanced Queries
 
 - Topics:
   - Types of joins: `INNER JOIN`, `LEFT JOIN`, `RIGHT JOIN`, `FULL JOIN`
