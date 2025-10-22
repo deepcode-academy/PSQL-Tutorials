@@ -3,24 +3,71 @@
 # 🧩 2-DARS BASIC COMMANDS
 
 
-## ✅ DATABASES, TABLES, COLUMNS VA ROWS HAQIDA TUSHUNCHA
+## ✅ DATABASE, TABLE, COLUMN va ROW haqida sodda tushuncha
 
-### ❇️ DATABASE
+---
 
-📌 **Database** — bu katta ma'lumotlar ombori. U yerda turli xil ma'lumotlar tartib bilan saqlanadi. Katta ma'lumotlarni bir joyda saqlab, ularni tezda topish, o‘zgartirish va boshqarish uchun kerak.
+### 💾 **DATABASE (Ma’lumotlar bazasi)**
 
+📘 **Database** — bu **katta ma’lumotlar saqlanadigan joy**.  
+U kompyuter xotirasidagi **katta fayl**ga o‘xshaydi, lekin ichida ma’lumotlar **tartibli va boshqariladigan** holda saqlanadi.
 
-### ❇️ TABLE
+**Masalan:**
+- Maktabda o‘quvchilar haqida ma’lumotlar  
+- Internet do‘konida mahsulotlar ro‘yxati  
+- Ijtimoiy tarmoqda foydalanuvchilar profillari  
 
-📌 **Table** — ma'lumotlarni ustunlar va qatorlarda tartibli saqlash va kerakli ma'lumotni tez topish uchun ishlatiladigan asosiy obyekt.
+🧩 Ya’ni **database** — bu **ma’lumotlar uchun uy**.
 
-### ❇️ COLUMN
+---
 
-📌 **Column** — jadvaldagi ma'lumotlarning turini belgilovchi element bo‘lib, unda faqat ma'lum turdagi ma'lumotlar (masalan, raqam, matn, sana va boshqalar) saqlanadi.
+### 🧮 **TABLE (Jadval)**
 
-### ❇️ ROW
+📋 **Table** — bu **database** ichidagi bitta bo‘lim yoki varaq.  
+Har bir table **ma’lum bir turdagi ma’lumotni** saqlaydi.
 
-📌 **Row** — bu jadvaldagi bitta ma'lumot to‘plami bo‘lib, u biror shaxs, buyum yoki hodisa haqida to‘liq ma'lumotni ifodalaydi.
+**Masalan:**
+- `Students` — o‘quvchilar haqida ma’lumot  
+- `Courses` — kurslar haqida ma’lumot  
+- `Teachers` — o‘qituvchilar haqida ma’lumot  
+
+🔹 Table — bu **Exceldagi jadval**ga o‘xshaydi:  
+unda **ustunlar (columns)** va **qatorlar (rows)** bo‘ladi.
+
+---
+
+### 📊 **COLUMN (Ustun)**
+
+📗 **Column** — bu jadvaldagi **ma’lumot turi**ni bildiradi.  
+Har bir column faqat **bitta turdagi ma’lumotni** saqlaydi.
+
+**Masalan, `Students` jadvali uchun:**
+
+| Column nomi | Ma’lumot turi | Tavsif |
+|--------------|----------------|--------|
+| `id` | Raqam (integer) | O‘quvchining raqami |
+| `name` | Matn (text) | O‘quvchining ismi |
+| `age` | Raqam (integer) | O‘quvchining yoshi |
+| `email` | Matn (text) | O‘quvchining elektron pochtasi |
+
+🔹 Column — bu **jadvaldagi ustun nomi va turi**, ya’ni “qaysi ma’lumot saqlanadi” degan savolga javob beradi.
+
+---
+
+### 🧍 **ROW (Qator)**
+
+📙 **Row** — bu jadvaldagi **bitta to‘liq ma’lumot yozuvi**.  
+Har bir row biror shaxs, buyum yoki hodisani ifodalaydi.
+
+**Masalan:**
+
+| id | name  | age | email              |
+|----|-------|-----|--------------------|
+| 1  | Umid  | 20  | umid@gmail.com     |
+
+Bu qator (row) — **bitta o‘quvchi** haqida to‘liq ma’lumot.
+
+🔹 Har bir **row** — bu **columnlar**da belgilangan joylarga **ma’lumotni to‘ldirish** natijasidir.
 
 
 
