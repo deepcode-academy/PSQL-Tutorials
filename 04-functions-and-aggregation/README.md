@@ -1,394 +1,1215 @@
-# 🐘 Advanced Data Retrieval with Functions and Aggregation
+# 🐘 04-DARS: FUNKSIYALAR VA AGREGAT OPERATSIYALAR
 
-- Topics:
-  - Using PostgreSQL functions `COUNT`, `SUM`, `AVG`, `MIN`, `MAX`
-  - Grouping data with `GROUP BY`
-  - Filtering grouped data with `HAVING`
+## 📋 MAVZU REJASI
 
-> [!NOTE]
-> **PostgreSQL**da murakkab soʻrovlar va maʼlumotlarni samarali boshqarish `aggregation functions` hamda `advanced functions`ni ishlatishni talab qiladi.
+- [Agregat funksiyalar asoslari](#-agregat-funksiyalar-asoslari)
+- [COUNT - Sanash](#-count---sanash)
+- [SUM - Yig'indi](#-sum---yigindi)
+- [AVG - O'rtacha](#-avg---ortacha)
+- [MIN va MAX - Eng kichik va katta](#-min-va-max---eng-kichik-va-katta)
+- [GROUP BY - Guruhlash](#-group-by---guruhlash)
+- [HAVING - Guruhlangan ma'lumotlarni filtrlash](#-having---guruhlangan-malumotlarni-filtrlash)
+- [String funksiyalari](#-string-funksiyalari)
+- [Sana va vaqt funksiyalari](#-sana-va-vaqt-funksiyalari)
+- [Amaliy mashg'ulot](#-amaliy-mashgulot)
 
+---
 
-# USING PostgreSQL FUNCTIONS `COUNT`, `SUM`, `AVG`, `MIN`, `MAX`
+## 🎯 DARS MAQSADI
 
-1. Aggregate Functions
-    - Agregatsiya funksiyalari bir necha qator ustida hisob-kitob olib boradi va bitta natija qaytaradi.
+Ushbu darsda siz quyidagilarni o'rganasiz:
 
-- `COUNT()`: Counts rows.
-- `SUM()`: Calculates the total sum.
-- `AVG()`: Calculates the average.
-- `MAX()` and `MIN()`: Find the highest and lowest values.
+✅ Agregat funksiyalar (COUNT, SUM, AVG, MIN, MAX)  
+✅ GROUP BY bilan ma'lumotlarni guruhlash  
+✅ HAVING bilan filtrlash  
+✅ String funksiyalari (CONCAT, UPPER, LOWER, LENGTH)  
+✅ Sana/vaqt funksiyalari (NOW, AGE, DATE_PART)  
+✅ Matematik funksiyalar  
+✅ Real proyektlarda qo'llash
 
-| employee_id | first_name	 | last_name  | department | salary |
-|-------------|-------------|------------|------------|--------|
-| 1           | Ali         | Valiyev    | IT         | 3000   |
-| 2           | Sara        | Ahmedova   | HR         | 2500   |
-| 3           | Olim        | Nazarov    | IT         | 4000   |
-| 4           | Kamola      | Ismatova   | Finance    | 3500   |
-| 5           | Zafar       | Bekmurodov | Marketing  | 2000   |
-| 6           | Anvar       | Karimov    | IT         | 4500   |
-| 7           | Lola        | Tursunova  | HR         | 2700   |
+---
 
+## 📊 AGREGAT FUNKSIYALAR ASOSLARI
+
+### 📌 Agregat funksiya nima?
+
+**Agregat funksiya** — bir nechta qatorlardan **bitta natija** qaytaradigan funksiya.
+
+**Real hayotdan misol:**
+
+Tasavvur qiling, do'konda oylik hisobot:
+- 📊 Nechta mahsulot sotildi? → **COUNT**
+- 💰 Umumiy daromad qancha? → **SUM**
+- 📈 O'rtacha sotish narxi? → **AVG**
+- 🏆 Eng qimmat mahsulot? → **MAX**
+- 💸 Eng arzon mahsulot? → **MIN**
+
+### 🎯 Asosiy Agregat Funksiyalar
+
+| Funksiya | Ma'nosi | Ishlatish |
+|----------|---------|-----------|
+| `COUNT()` | Sanash | Qatorlar sonini hisoblash |
+| `SUM()` | Yig'indi | Raqamlarni qo'shish |
+| `AVG()` | O'rtacha | O'rtacha qiymat |
+| `MIN()` | Minimum | Eng kichik qiymat |
+| `MAX()` | Maksimum | Eng katta qiymat |
+
+### 💻 Test Ma'lumotlar
+
+Keling, real do'kon example bilan ishlaylik:
 
 ```sql
-SELECT department, COUNT(*) AS employee_count, AVG(salary) AS avg_salary
-FROM employees
-GROUP BY department
-ORDER BY avg_salary DESC;
+-- Test jadvali
+CREATE TABLE sotuvlar (
+    id SERIAL PRIMARY KEY,
+    mahsulot VARCHAR(100),
+    kategoriya VARCHAR(50),
+    narx DECIMAL(10, 2),
+    soni INTEGER,
+    sana DATE
+);
+
+-- Ma'lumot qo'shish
+INSERT INTO sotuvlar (mahsulot, kategoriya, narx, soni, sana) VALUES
+    ('Laptop HP', 'Elektronika', 5000000, 2, '2026-01-15'),
+    ('iPhone 15', 'Elektronika', 12000000, 1, '2026-01-16'),
+    ('Samsung TV', 'Elektronika', 3500000, 3, '2026-01-17'),
+    ('Nike Shoes', 'Kiyim', 750000, 5, '2026-01-15'),
+    ('Adidas T-shirt', 'Kiyim', 150000, 10, '2026-01-16'),
+    ('Levi Jeans', 'Kiyim', 400000, 7, '2026-01-18'),
+    ('PostgreSQL Book', 'Kitob', 250000, 4, '2026-01-19'),
+    ('Python Book', 'Kitob', 300000, 6, '2026-01-20');
 ```
-- Bu soʻrov bo‘limlar bo‘yicha xodimlarni `guruhlab`, ularning sonini va `o‘rtacha ish haqini` hisoblaydi.
 
-2. Filtering Aggregated Data
-   - Agregatsiyalangan maʼlumotlarni filtrlash uchun `HAVING` operatoridan foydalaniladi.
+**Yaratilgan jadval:**
 
-**Example:**
+```
+┌────┬──────────────────┬─────────────┬───────────┬──────┬────────────┐
+│ id │ mahsulot         │ kategoriya  │ narx      │ soni │ sana       │
+├────┼──────────────────┼─────────────┼───────────┼──────┼────────────┤
+│ 1  │ Laptop HP        │ Elektronika │ 5000000   │ 2    │ 2026-01-15 │
+│ 2  │ iPhone 15        │ Elektronika │ 12000000  │ 1    │ 2026-01-16 │
+│ 3  │ Samsung TV       │ Elektronika │ 3500000   │ 3    │ 2026-01-17 │
+│ 4  │ Nike Shoes       │ Kiyim       │ 750000    │ 5    │ 2026-01-15 │
+│ 5  │ Adidas T-shirt   │ Kiyim       │ 150000    │ 10   │ 2026-01-16 │
+│ 6  │ Levi Jeans       │ Kiyim       │ 400000    │ 7    │ 2026-01-18 │
+│ 7  │ PostgreSQL Book  │ Kitob       │ 250000    │ 4    │ 2026-01-19 │
+│ 8  │ Python Book      │ Kitob       │ 300000    │ 6    │ 2026-01-20 │
+└────┴──────────────────┴─────────────┴───────────┴──────┴────────────┘
+```
+
+---
+
+## 🔢 COUNT - SANASH
+
+### 📌 COUNT() nima?
+
+**COUNT()** — qatorlar **sonini** hisoblaydi.
+
+### 💻 Sintaksis
 
 ```sql
-SELECT department, SUM(salary) AS total_salary
-FROM employees
-GROUP BY department
-HAVING SUM(salary) > 500000;
+-- Barcha qatorlar
+COUNT(*)
+
+-- NULL bo'lmaganlar
+COUNT(column_name)
+
+-- Noyob qiymatlar
+COUNT(DISTINCT column_name)
 ```
-- Bu soʻrov umumiy ish haqi `500,000` dan yuqori boʻlgan bo‘limlarni chiqaradi.
 
-3. Window Functions
-   - Window functions operate on a set of rows related to the current row but do not reduce the result
+### 🧪 Misollar
 
-**Example:**
+#### 1️⃣ Barcha qatorlarni sanash
+
+```sql
+-- Jami nechta sotuv bo'lgan?
+SELECT COUNT(*) AS "Jami sotuvlar" 
+FROM sotuvlar;
+```
+
+**Natija:**
+```
+ Jami sotuvlar
+---------------
+            8
+```
+
+#### 2️⃣ Shartli sanash
+
+```sql
+-- Elektronika kategoriyasida nechta mahsulot?
+SELECT COUNT(*) AS "Elektronika mahsulotlari" 
+FROM sotuvlar 
+WHERE kategoriya = 'Elektronika';
+```
+
+**Natija:**
+```
+ Elektronika mahsulotlari
+--------------------------
+                        3
+```
+
+#### 3️⃣ DISTINCT bilan
+
+```sql
+-- Necha xil kategoriya bor?
+SELECT COUNT(DISTINCT kategoriya) AS "Kategoriyalar soni" 
+FROM sotuvlar;
+```
+
+**Natija:**
+```
+ Kategoriyalar soni
+--------------------
+                  3
+```
+
+```sql
+-- Har bir kategoriyada nechta mahsulot?
+SELECT 
+    kategoriya,
+    COUNT(*) AS "Mahsulotlar soni"
+FROM sotuvlar
+GROUP BY kategoriya
+ORDER BY COUNT(*) DESC;
+```
+
+**Natija:**
+```
+ kategoriya  | Mahsulotlar soni
+-------------+------------------
+ Elektronika |                3
+ Kiyim       |                3
+ Kitob       |                2
+```
+
+---
+
+## ➕ SUM - YIG'INDI
+
+### 📌 SUM() nima?
+
+**SUM()** — raqamli qiymatlarning **yig'indisini** hisoblaydi.
+
+### 💻 Misollar
+
+#### 1️⃣ Umumiy daromad
+
+```sql
+-- Barcha sotuvlarning umumiy qiymati
+SELECT SUM(narx * soni) AS "Umumiy daromad" 
+FROM sotuvlar;
+```
+
+**Natija:**
+```
+ Umumiy daromad
+----------------
+      35400000
+```
+
+**Tushuntirish:**
+```
+Laptop HP:        5,000,000 × 2  = 10,000,000
+iPhone 15:       12,000,000 × 1  = 12,000,000
+Samsung TV:       3,500,000 × 3  = 10,500,000
+Nike Shoes:         750,000 × 5  =  3,750,000
+Adidas T-shirt:     150,000 × 10 =  1,500,000
+Levi Jeans:         400,000 × 7  =  2,800,000
+PostgreSQL Book:    250,000 × 4  =  1,000,000
+Python Book:        300,000 × 6  =  1,800,000
+                                  -----------
+                                   43,350,000 ← Xato! Qarang!
+```
+
+**To'g'ri hisoblash:**
 
 ```sql
 SELECT 
-    employee_id,
-    department,
-    salary,
-    RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS rank
-FROM employees;
+    mahsulot,
+    narx,
+    soni,
+    narx * soni AS "Summa"
+FROM sotuvlar;
 ```
 
-- Bu soʻrov har bir bo‘limdagi ishchilarni ish haqi boʻyicha tartiblaydi.
-
-4. Using Common Table Expressions `CTEs`
-   - `CTE` murakkab soʻrovlarni soddalashtiradi va tushunishni osonlashtiradi.
-
-**Example:**
+#### 2️⃣ Kategoriya bo'yicha daromad
 
 ```sql
-WITH department_salaries AS (
-    SELECT department, SUM(salary) AS total_salary
-    FROM employees
-    GROUP BY department
-)
-SELECT department
-FROM department_salaries
-WHERE total_salary > 500000;
-```
-- Bu misolda umumiy ish haqlari hisoblanib, saralangan bo‘limlar chiqariladi.
-
-5. Advanced SQL Functions
-   - **PostgreSQL**da maʼlumotlarni boshqarish uchun juda koʻp qurilgan funksiyalar mavjud.
-
-- String Functions:
-  - `CONCAT()`, `SUBSTRING()`, `LOWER()`, `UPPER()`
-
-**Example:**
-
-```sql
-SELECT CONCAT(first_name, ' ', last_name) AS full_name
-FROM employees;
+-- Har bir kategoriyaning daromadi
+SELECT 
+    kategoriya,
+    SUM(narx * soni) AS "Kategoriya daromadi"
+FROM sotuvlar
+GROUP BY kategoriya
+ORDER BY "Kategoriya daromadi" DESC;
 ```
 
-- Date/Time Functions:
-  - `NOW()`, `AGE()`, `DATE_PART()`
-
-**Example:**
-
-```sql
-SELECT employee_id, AGE(NOW(), hire_date) AS years_of_service
-FROM employees;
+**Natija:**
+```
+ kategoriya  | Kategoriya daromadi
+-------------+---------------------
+ Elektronika |            32500000
+ Kiyim       |             8050000
+ Kitob       |             2800000
 ```
 
-- JSON Functions:
-  - `JSONB_EXTRACT_PATH_TEXT()`, `JSON_AGG()`
-
-**Example:**
+#### 3️⃣ Jami sotilgan mahsulotlar
 
 ```sql
-SELECT JSON_AGG(department) AS departments
-FROM employees;
+-- Nechta dona mahsulot sotilgan?
+SELECT SUM(soni) AS "Jami sotilgan donalar" 
+FROM sotuvlar;
 ```
 
-6. Recursive Queries
-   - Rekursiv soʻrovlar `hierarchical` yoki `tree-structured` maʼlumotlar bilan ishlash imkonini beradi.
-
-**Example:**
-
-```sql
-WITH RECURSIVE employee_hierarchy AS (
-    SELECT employee_id, manager_id, 1 AS level
-    FROM employees
-    WHERE manager_id IS NULL
-    UNION ALL
-    SELECT e.employee_id, e.manager_id, eh.level + 1
-    FROM employees e
-    JOIN employee_hierarchy eh ON e.manager_id = eh.employee_id
-)
-SELECT * FROM employee_hierarchy;
+**Natija:**
+```
+ Jami sotilgan donalar
+-----------------------
+                    38
 ```
 
-Bu soʻrov `hierarchy of employees` va ularning darajasini shakllantiradi.
+---
 
-7. Combining Data with `JOIN` and `Aggregates`
-   - `Aggregate Functions` bir nechta jadvallar bilan ishlashda ham foydali.
+## 📊 AVG - O'RTACHA
 
-**Example:**
+### 📌 AVG() nima?
+
+**AVG()** — **o'rtacha qiymat**ni hisoblaydi.
+
+### 💻 Misollar
+
+#### 1️⃣ O'rtacha narx
 
 ```sql
-SELECT d.department_name, COUNT(e.employee_id) AS total_employees
-FROM departments d
-LEFT JOIN employees e ON d.department_id = e.department_id
-GROUP BY d.department_name;
+-- Mahsulotlarning o'rtacha narxi
+SELECT 
+    ROUND(AVG(narx), 2) AS "O'rtacha narx"
+FROM sotuvlar;
 ```
 
-- Bu har bir bo‘limdagi ishchilar sonini, ishchi bo‘lmagan bo‘limlarni ham qo‘shib, chiqaradi.
+**Natija:**
+```
+ O'rtacha narx
+---------------
+    2793750.00
+```
 
-# GROUPING DATA WITH `GROUP BY`
-
-> [!NOTE]
-> `GROUP BY` operatori **PostgreSQL**da ma’lumotlarni guruhlash uchun ishlatiladi. Bu operator ko‘pincha `Aggregate Functions` (`COUNT()`, `SUM()`, `AVG()`, `MAX()`, `MIN()`) bilan birgalikda qo‘llaniladi
-
-**Syntax:**
+#### 2️⃣ Kategoriya bo'yicha o'rtacha
 
 ```sql
-SELECT column_name, aggregate_function(column_name)
+-- Har bir kategoriyaning o'rtacha narxi
+SELECT 
+    kategoriya,
+    ROUND(AVG(narx), 2) AS "O'rtacha narx",
+    ROUND(AVG(soni), 2) AS "O'rtacha soni"
+FROM sotuvlar
+GROUP BY kategoriya
+ORDER BY "O'rtacha narx" DESC;
+```
+
+**Natija:**
+```
+ kategoriya  | O'rtacha narx | O'rtacha soni
+-------------+---------------+---------------
+ Elektronika |    6833333.33 |          2.00
+ Kiyim       |     433333.33 |          7.33
+ Kitob       |     275000.00 |          5.00
+```
+
+#### 3️⃣ MIN, MAX va AVG birga
+
+```sql
+-- Statistika
+SELECT 
+    kategoriya,
+    COUNT(*) AS "Mahsulotlar",
+    MIN(narx) AS "Min narx",
+    ROUND(AVG(narx), 0) AS "O'rtacha",
+    MAX(narx) AS "Max narx"
+FROM sotuvlar
+GROUP BY kategoriya;
+```
+
+**Natija:**
+```
+ kategoriya  | Mahsulotlar | Min narx  | O'rtacha | Max narx
+-------------+-------------+-----------+----------+-----------
+ Elektronika |           3 |  3500000  |  6833333 | 12000000
+ Kiyim       |           3 |   150000  |   433333 |   750000
+ Kitob       |           2 |   250000  |   275000 |   300000
+```
+
+---
+
+## ⬆️⬇️ MIN VA MAX - ENG KICHIK VA KATTA
+
+### 📌 MIN() va MAX() nima?
+
+- **MIN()** — eng **kichik** qiymat
+- **MAX()** — eng **katta** qiymat
+
+### 💻 Misollar
+
+#### 1️⃣ Eng arzon va qimmat
+
+```sql
+-- Eng arzon mahsulot
+SELECT 
+    mahsulot,
+    narx
+FROM sotuvlar
+WHERE narx = (SELECT MIN(narx) FROM sotuvlar);
+```
+
+**Natija:**
+```
+    mahsulot     |  narx
+-----------------+--------
+ Adidas T-shirt  | 150000
+```
+
+```sql
+-- Eng qimmat mahsulot
+SELECT 
+    mahsulot,
+    narx
+FROM sotuvlar
+WHERE narx = (SELECT MAX(narx) FROM sotuvlar);
+```
+
+**Natija:**
+```
+  mahsulot  |   narx
+------------+-----------
+ iPhone 15  | 12000000
+```
+
+#### 2️⃣ Har kategoriyada eng qimmat
+
+```sql
+-- Har bir kategoriyada eng qimmat mahsulot
+SELECT 
+    kategoriya,
+    MAX(narx) AS "Eng qimmat mahsulot narxi"
+FROM sotuvlar
+GROUP BY kategoriya;
+```
+
+**Natija:**
+```
+ kategoriya  | Eng qimmat mahsulot narxi
+-------------+---------------------------
+ Elektronika |                 12000000
+ Kiyim       |                   750000
+ Kitob       |                   300000
+```
+
+---
+
+## 📦 GROUP BY - GURUHLASH
+
+### 📌 GROUP BY nima?
+
+**GROUP BY** — ma'lumotlarni **guruhlar**ga ajratadi va har bir guruh uchun hisob-kitob qiladi.
+
+### 💻 Sintaksis
+
+```sql
+SELECT 
+    column1,
+    AGGREGATE_FUNCTION(column2)
 FROM table_name
-GROUP BY column_name;
+GROUP BY column1;
 ```
 
-## SIMPLE EXAMPLE: GROUPING EMPLOYEES BY DEPARTMENT
+### 🧪 Misollar
 
-**Table:** `employees`
-
-| id | name    | department | salary |
-|----|---------|------------|--------|
-| 1  | Alice   | HR         | 5000   |
-| 2  | Bob     | IT         | 7000   |
-| 3  | Charlie | IT         | 6000   |
-| 4  | Diana   | HR         | 5500   |
-| 5  | Eve     | Sales      | 8000    |
-
-**Goal:**
-
-Har bir bo‘limdagi ishchilar sonini aniqlash.
-
-**Query:**
+#### 1️⃣ Oddiy guruhlash
 
 ```sql
-SELECT department, COUNT(*) AS employee_count
-FROM employees
-GROUP BY department;
+-- Har bir kategoriyada nechta mahsulot?
+SELECT 
+    kategoriya,
+    COUNT(*) AS "Soni"
+FROM sotuvlar
+GROUP BY kategoriya;
 ```
 
-**Result:**
+**Natija:**
+```
+ kategoriya  | Soni
+-------------+------
+ Elektronika |    3
+ Kiyim       |    3
+ Kitob       |    2
+```
 
-| department | employee_count |
-|------------|----------------|
-| HR         | 2              |
-| IT         | 2              |
-| Sales      | 1              |
-
-## USING AGGREGATE FUNCTIONS
-
-- Har bir bo‘limning o‘rtacha maoshi
+#### 2️⃣ Bir nechta agregat funksiya
 
 ```sql
-SELECT department, AVG(salary) AS average_salary
-FROM employees
-GROUP BY department;
+-- To'liq statistika
+SELECT 
+    kategoriya,
+    COUNT(*) AS "Mahsulotlar soni",
+    SUM(soni) AS "Jami sotilgan",
+    SUM(narx * soni) AS "Daromad",
+    ROUND(AVG(narx), 0) AS "O'rtacha narx"
+FROM sotuvlar
+GROUP BY kategoriya
+ORDER BY "Daromad" DESC;
 ```
 
-**Result:**
+**Natija:**
+```
+ kategoriya  | Mahsulotlar soni | Jami sotilgan |  Daromad  | O'rtacha narx
+-------------+------------------+---------------+-----------+---------------
+ Elektronika |                3 |             6 | 32500000  |       6833333
+ Kiyim       |                3 |            22 |  8050000  |        433333
+ Kitob       |                2 |            10 |  2800000  |        275000
+```
 
-| department | average_salary |
-|------------|----------------|
-| HR         | 5250           |
-| IT         | 6500           |
-| Sales      | 8000           |
-
-- Har bir bo‘limdagi eng katta maosh
+#### 3️⃣ Bir nechta ustun bo'yicha
 
 ```sql
-SELECT department, MAX(salary) AS max_salary
-FROM employees
-GROUP BY department;
+-- Kategoriya va sana bo'yicha
+SELECT 
+    kategoriya,
+    sana,
+    COUNT(*) AS "Sotuvlar soni",
+    SUM(narx * soni) AS "Kun daromadi"
+FROM sotuvlar
+GROUP BY kategoriya, sana
+ORDER BY sana, kategoriya;
 ```
 
-| department | average_salary |
-|------------|----------------|
-| HR         | 5500           |
-| IT         | 7000           |
-| Sales      | 8000           |
+**Natija:**
+```
+ kategoriya  |    sana    | Sotuvlar soni | Kun daromadi
+-------------+------------+---------------+--------------
+ Elektronika | 2026-01-15 |             1 |     10000000
+ Kiyim       | 2026-01-15 |             1 |      3750000
+ Elektronika | 2026-01-16 |             1 |     12000000
+ Kiyim       | 2026-01-16 |             1 |      1500000
+ Elektronika | 2026-01-17 |             1 |     10500000
+ Kiyim       | 2026-01-18 |             1 |      2800000
+ Kitob       | 2026-01-19 |             1 |      1000000
+ Kitob       | 2026-01-20 |             1 |      1800000
+```
 
-## GROUPING BY MULTIPLE COLUMNS
+---
 
-| id | region | product | revenue |
-|----|--------|---------|---------|
-| 1  | North  | Laptop  | 15000   |
-| 2  | North  | Phone   | 20000   |
-| 3  | South  | Laptop	 | 12000   | 
-| 4  | South  | Phone   | 25000   | 
-| 5  | East   | Laptop  | 10000   | 
+## 🔍 HAVING - GURUHLANGAN MA'LUMOTLARNI FILTRLASH
 
-**Goal:**
+### 📌 HAVING nima?
 
-- Har bir mintaqa va mahsulot bo‘yicha umumiy daromadni hisoblash.
+**HAVING** — `GROUP BY` dan **keyin** filtrlash uchun ishlatiladi.
+
+**WHERE vs HAVING:**
+
+| WHERE | HAVING |
+|-------|--------|
+| GROUP BY **dan oldin** | GROUP BY **dan keyin** |
+| Oddiy qatorlarni filtrlaydi | Guruhlangan natijalarni filtrlaydi |
+| Agregat funksiyalarsiz | Agregat funksiyalar bilan |
+
+### 💻 Misollar
+
+#### 1️⃣ Daromad bo'yicha filtrlash
 
 ```sql
-SELECT region, product, SUM(revenue) AS total_revenue
-FROM sales
-GROUP BY region, product;
+-- Daromadi 5,000,000 dan yuqori kategoriyalar
+SELECT 
+    kategoriya,
+    SUM(narx * soni) AS "Daromad"
+FROM sotuvlar
+GROUP BY kategoriya
+HAVING SUM(narx * soni) > 5000000
+ORDER BY "Daromad" DESC;
 ```
 
-| region | product  | 	total_revenue |
-|--------|----------|----------------|
-| North  | Laptop   | 	15000         |
-| North  | Phone    | 	20000         |
-| South  | Laptop   | 	12000         |
-| South  | Phone    | 	25000         |
-| East   | Laptop   | 	10000         |
+**Natija:**
+```
+ kategoriya  |  Daromad
+-------------+-----------
+ Elektronika | 32500000
+ Kiyim       |  8050000
+```
 
-
-## USING `HAVING` WITH `GROUP BY`
-
-- Har bir bo‘limdagi ishchilar soni `1` dan katta bo‘lgan holatlar
-- HAVING agregat funksiyalar natijasiga cheklov qo‘yish uchun ishlatiladi.
+#### 2️⃣ 2+ mahsulot bo'lgan kategoriyalar
 
 ```sql
-SELECT department, COUNT(*) AS employee_count
-FROM employees
-GROUP BY department
-HAVING COUNT(*) > 1;
+-- Kamida 3 ta mahsulot bo'lgan kategoriyalar
+SELECT 
+    kategoriya,
+    COUNT(*) AS "Mahsulotlar soni",
+    SUM(narx * soni) AS "Daromad"
+FROM sotuvlar
+GROUP BY kategoriya
+HAVING COUNT(*) >= 3;
 ```
 
-**Result:**
+**Natija:**
+```
+ kategoriya  | Mahsulotlar soni |  Daromad
+-------------+------------------+-----------
+ Elektronika |                3 | 32500000
+ Kiyim       |                3 |  8050000
+```
 
-| department | employee_count |
-|------------|----------------|
-| HR         | 2              |
-| IT         | 2              |
-
-# FILTERING GROUPED DATA WITH `HAVING`
-
-> [!NOTE]
-> SQLda `HAVING` clause `GROUP BY` orqali guruhlangan maʼlumotlarni filtrlash uchun ishlatiladi. `WHERE` clausedan farqli o‘laroq, `HAVING` faqat guruhlash va agregatsiya (masalan, `COUNT()`, `SUM()`, `AVG()`, `MAX()`, `MIN()`)dan keyin qo‘llaniladi.
-
-**Syntax:**
+#### 3️⃣ WHERE va HAVING birga
 
 ```sql
-SELECT column1, column2, AGGREGATE_FUNCTION(column3)
-FROM table_name
-WHERE condition
-GROUP BY column1, column2
-HAVING aggregate_condition;
+-- 2026-01-16 dan keyin, daromadi 2,000,000 dan yuqori
+SELECT 
+    kategoriya,
+    COUNT(*) AS "Mahsulotlar",
+    SUM(narx * soni) AS "Daromad"
+FROM sotuvlar
+WHERE sana > '2026-01-16'
+GROUP BY kategoriya
+HAVING SUM(narx * soni) > 2000000
+ORDER BY "Daromad" DESC;
 ```
 
-**Key Points:**
+**Natija:**
+```
+ kategoriya  | Mahsulotlar |  Daromad
+-------------+-------------+-----------
+ Elektronika |           1 | 10500000
+ Kiyim       |           1 |  2800000
+ Kitob       |           2 |  2800000
+```
 
-1. `WHERE` - guruhlashdan oldin qatorlarni filtrlash uchun ishlatiladi.
-2. `GROUP BY` - qatorlarni belgilangan ustunlarga asoslangan holda guruhlash uchun ishlatiladi.
-3. `HAVING` - guruhlangan maʼlumotlarni agregatsiya funksiyalariga asoslangan holda filtrlash uchun ishlatiladi.
+---
 
-**Example 1:** Filtering Sales Data
+## 🔤 STRING FUNKSIYALARI
 
-**Table:** Sales
+### 📌 Asosiy String Funksiyalari
 
-| Salesperson | Region | Sales |
-|-------------|--------|-------|
-| Alice       | East   | 500   |
-| Bob         | East	| 700   |
-| Alice       | West   | 300   |
-| Bob         | West   | 400   |
-| Alice       | East   | 200   |
-| Bob         | East   | 600   |
+| Funksiya | Ma'nosi | Misol |
+|----------|---------|-------|
+| `CONCAT()` | Birlashtirish | `'Ali' + ' ' + 'Valiyev'` |
+| `UPPER()` | Katta harfga | `'hello' → 'HELLO'` |
+| `LOWER()` | Kichik harfga | `'HELLO' → 'hello'` |
+| `LENGTH()` | Uzunlik | `'Hello' → 5` |
+| `SUBSTRING()` | Qism olish | `'Hello' → 'ell'` |
+| `TRIM()` | Bo'sh joyni olib tashlash | `' Hello ' → 'Hello'` |
+| `REPLACE()` | Almashtirish | `'Hello' → 'Hallo'` |
 
-**Query:** Umumiy sotuv miqdori 1000 dan oshgan hududlarni ko‘rsating.
+### 💻 Misollar
+
+#### 1️⃣ CONCAT - Birlashtirish
 
 ```sql
-SELECT Region, SUM(Sales) AS Total_Sales
-FROM Sales
-GROUP BY Region
-HAVING SUM(Sales) > 1000;
+-- Mahsulot va kategoriyani birlashtirish
+SELECT 
+    CONCAT(mahsulot, ' (', kategoriya, ')') AS "To'liq nom",
+    narx
+FROM sotuvlar
+LIMIT 5;
 ```
-**Result:**
 
-|Region| Total_Sales |
-|------|-------------|
-|East  | 2000        |
+**Natija:**
+```
+        To'liq nom         |   narx
+---------------------------+-----------
+ Laptop HP (Elektronika)   |  5000000
+ iPhone 15 (Elektronika)   | 12000000
+ Samsung TV (Elektronika)  |  3500000
+ Nike Shoes (Kiyim)        |   750000
+ Adidas T-shirt (Kiyim)    |   150000
+```
 
-
-**Example 2:** Counting Employees in Departments
-
-**Table:** Employees
-
-| EmployeeID | Department | Salary |
-|------------|------------|--------|
-| 1          | IT         | 800    |
-| 2          | HR         | 500    |
-| 3          | IT         | 900    |
-| 4          | Sales      | 600    |
-| 5          | IT         | 700    |
-| 6          | Sales      | 500    |
-
-**Query:** 2 dan ortiq xodimga ega bo‘lgan bo‘limlarni ko‘rsating.
+#### 2️⃣ UPPER va LOWER
 
 ```sql
-SELECT Department, COUNT(EmployeeID) AS Employee_Count
-FROM Employees
-GROUP BY Department
-HAVING COUNT(EmployeeID) > 2;
+-- Katta va kichik harflar
+SELECT 
+    mahsulot,
+    UPPER(mahsulot) AS "KATTA HARF",
+    LOWER(mahsulot) AS "kichik harf"
+FROM sotuvlar
+WHERE kategoriya = 'Kitob';
 ```
 
-**Result:**
+**Natija:**
+```
+     mahsulot      |    KATTA HARF     |   kichik harf
+-------------------+-------------------+-------------------
+ PostgreSQL Book   | POSTGRESQL BOOK   | postgresql book
+ Python Book       | PYTHON BOOK       | python book
+```
 
-| Department | Employee_Count |
-|------------|----------------|
-| IT         | 3              |
-
-**Example 3:** Average Salary by Department
-
-**Query:** O‘rtacha maosh 600 dan oshgan bo‘limlarni ko‘rsating.
+#### 3️⃣ LENGTH - Uzunlik
 
 ```sql
-SELECT Department, AVG(Salary) AS Average_Salary
-FROM Employees
-GROUP BY Department
-HAVING AVG(Salary) > 600;
+-- Mahsulot nomining uzunligi
+SELECT 
+    mahsulot,
+    LENGTH(mahsulot) AS "Nom uzunligi"
+FROM sotuvlar
+ORDER BY LENGTH(mahsulot) DESC;
 ```
-**Result:**
 
-| Department | Average_Salary |
-|------------|----------------|
-| IT         | 800            |
+#### 4️⃣ SUBSTRING - Qism olish
 
-# Tasks
+```sql
+-- Birinchi 10 belgini olish
+SELECT 
+    mahsulot,
+    SUBSTRING(mahsulot FROM 1 FOR 10) AS "Qisqa nom"
+FROM sotuvlar;
+```
 
-1. COUNT Function:
-   - Task:
-     - **students** jadvalida nechta talaba borligini hisoblang.
-     - **students** jadvalidagi har bir guruh uchun nechta talaba borligini hisoblang (**group_id** ustuni bo'yicha).
+**Natija:**
+```
+     mahsulot      | Qisqa nom
+-------------------+------------
+ Laptop HP         | Laptop HP
+ iPhone 15         | iPhone 15
+ Samsung TV        | Samsung TV
+ Nike Shoes        | Nike Shoes
+ Adidas T-shirt    | Adidas T-s
+```
 
-2. SUM Function:
-   - Task:
-     - **sales** jadvalida barcha buyurtmalarning umumiy qiymatini hisoblang.
-     - Har bir mijoz uchun (**customer_id**) buyurtmalarning umumiy qiymatini toping.
+#### 5️⃣ REPLACE - Almashtirish
 
-3. AVG Function:
-   - Task:
-     - **products** jadvalidagi mahsulotlarning o'rtacha narxini hisoblang.
-     - Har bir toifaga (**category_id**) ko'ra mahsulotlarning o'rtacha narxini toping.
+```sql
+-- 'Book' so'zini 'Kitob'ga almashtirish
+SELECT 
+    mahsulot,
+    REPLACE(mahsulot, 'Book', 'Kitob') AS "O'zbekcha"
+FROM sotuvlar
+WHERE mahsulot LIKE '%Book%';
+```
 
-4. MIN and MAX Functions:
-   - Task:
-     - **employees** jadvalida eng kam va eng yuqori oylik miqdorini toping.
-     - Har bir bo'limda (**department_id**) eng kam va eng yuqori oylikni aniqlang.
+**Natija:**
+```
+     mahsulot      |     O'zbekcha
+-------------------+-------------------
+ PostgreSQL Book   | PostgreSQL Kitob
+ Python Book       | Python Kitob
+```
 
-5. 
+---
+
+## 📅 SANA VA VAQT FUNKSIYALARI
+
+### 📌 Asosiy Funksiyalar
+
+| Funksiya | Ma'nosi | Misol |
+|----------|---------|-------|
+| `NOW()` | Hozirgi vaqt | `2026-01-22 23:45:00` |
+| `CURRENT_DATE` | Bugungi sana | `2026-01-22` |
+| `CURRENT_TIME` | Hozirgi vaqt | `23:45:00` |
+| `AGE()` | Farq hisoblash | `25 years 3 mons` |
+| `DATE_PART()` | Qismini olish | `2026` |
+| `EXTRACT()` | Qiymat olish | `1` |
+
+### 💻 Misollar
+
+#### 1️⃣ Hozirgi vaqt
+
+```sql
+-- Bugun va hozir
+SELECT 
+    CURRENT_DATE AS "Bugun",
+    CURRENT_TIME AS "Hozir",
+    NOW() AS "Bugun va hozir";
+```
+
+**Natija:**
+```
+   Bugun    |    Hozir     |    Bugun va hozir
+------------+--------------+----------------------
+ 2026-01-22 | 23:45:30     | 2026-01-22 23:45:30
+```
+
+#### 2️⃣ Necha kun oldin sotilgan?
+
+```sql
+-- Mahsulot qachon sotilgan va necha kun bo'ldi?
+SELECT 
+    mahsulot,
+    sana AS "Sotilgan sana",
+    CURRENT_DATE - sana AS "Necha kun oldin"
+FROM sotuvlar
+ORDER BY sana DESC;
+```
+
+**Natija:**
+```
+     mahsulot      | Sotilgan sana | Necha kun oldin
+-------------------+---------------+-----------------
+ Python Book       | 2026-01-20    |               2
+ PostgreSQL Book   | 2026-01-19    |               3
+ Levi Jeans        | 2026-01-18    |               4
+ Samsung TV        | 2026-01-17    |               5
+```
+
+#### 3️⃣ AGE - Aniq farq
+
+```sql
+-- Aniq vaqt farqi
+SELECT 
+    mahsulot,
+    sana,
+    AGE(CURRENT_DATE, sana) AS "Vaqt farqi"
+FROM sotuvlar
+WHERE kategoriya = 'Elektronika';
+```
+
+**Natija:**
+```
+   mahsulot   |    sana    |  Vaqt farqi
+--------------+------------+--------------
+ Laptop HP    | 2026-01-15 | 7 days
+ iPhone 15    | 2026-01-16 | 6 days
+ Samsung TV   | 2026-01-17 | 5 days
+```
+
+#### 4️⃣ DATE_PART - Qismini olish
+
+```sql
+-- Yil, oy, kunni ajratish
+SELECT 
+    mahsulot,
+    sana,
+    DATE_PART('year', sana) AS "Yil",
+    DATE_PART('month', sana) AS "Oy",
+    DATE_PART('day', sana) AS "Kun"
+FROM sotuvlar
+LIMIT 5;
+```
+
+**Natija:**
+```
+     mahsulot      |    sana    | Yil  | Oy | Kun
+-------------------+------------+------+----+-----
+ Laptop HP         | 2026-01-15 | 2026 |  1 |  15
+ iPhone 15         | 2026-01-16 | 2026 |  1 |  16
+ Samsung TV        | 2026-01-17 | 2026 |  1 |  17
+```
+
+#### 5️⃣ Hafta bo'yicha guruhlash
+
+```sql
+-- Hafta injidan sanash (Yakshanba = 0)
+SELECT 
+    DATE_PART('dow', sana) AS "Hafta kuni",
+    CASE DATE_PART('dow', sana)
+        WHEN 0 THEN 'Yakshanba'
+        WHEN 1 THEN 'Dushanba'
+        WHEN 2 THEN 'Seshanba'
+        WHEN 3 THEN 'Chorshanba'
+        WHEN 4 THEN 'Payshanba'
+        WHEN 5 THEN 'Juma'
+        WHEN 6 THEN 'Shanba'
+    END AS "Kun nomi",
+    COUNT(*) AS "Sotuvlar soni"
+FROM sotuvlar
+GROUP BY DATE_PART('dow', sana)
+ORDER BY DATE_PART('dow', sana);
+```
+
+---
+
+## 🎓 AMALIY MASHG'ULOT
+
+### 📊 Test Ma'lumotlar
+
+Quyidagi jadval bilan ishlang:
+
+```sql
+CREATE TABLE xodimlar (
+    id SERIAL PRIMARY KEY,
+    ism VARCHAR(50),
+    familiya VARCHAR(50),
+    lavozim VARCHAR(100),
+    bo'lim VARCHAR(50),
+    maosh DECIMAL(10, 2),
+    ish_boshlagan_sana DATE,
+    shahar VARCHAR(50)
+);
+
+INSERT INTO xodimlar (ism, familiya, lavozim, bo'lim, maosh, ish_boshlagan_sana, shahar) VALUES
+    ('Ali', 'Valiyev', 'Backend Developer', 'IT', 8000000, '2021-01-15', 'Toshkent'),
+    ('Madina', 'Karimova', 'Frontend Developer', 'IT', 7500000, '2021-03-20', 'Toshkent'),
+    ('Bekzod', 'Tursunov', 'Senior Developer', 'IT', 12000000, '2019-07-01', 'Samarqand'),
+    ('Dilnoza', 'Rahimova', 'Marketing Manager', 'Marketing', 7000000, '2022-05-12', 'Buxoro'),
+    ('Sardor', 'Ahmedov', 'Junior Developer', 'IT', 4500000, '2023-09-30', 'Toshkent'),
+    ('Zarina', 'Yusupova', 'Accountant', 'Finance', 6000000, '2021-11-10', 'Toshkent'),
+    ('Abbos', 'Rustamov', 'Data Analyst', 'IT', 7500000, '2020-06-15', 'Farg\'ona'),
+    ('Feruza', 'Qodirova', 'Sales Manager', 'Sales', 6500000, '2022-02-01', 'Toshkent'),
+    ('Jasur', 'Mirzayev', 'HR Manager', 'HR', 5500000, '2020-03-15', 'Toshkent'),
+    ('Kamola', 'Ergasheva', 'PR Manager', 'Marketing', 6000000, '2021-08-20', 'Samarqand');
+```
+
+**Yaratilgan jadval:**
+
+```
+┌────┬─────────┬───────────┬─────────────────────┬───────────┬──────────┬────────────────────┬───────────┐
+│ id │ ism     │ familiya  │ lavozim             │ bo'lim    │ maosh    │ ish_boshlagan_sana │ shahar    │
+├────┼─────────┼───────────┼─────────────────────┼───────────┼──────────┼────────────────────┼───────────┤
+│ 1  │ Ali     │ Valiyev   │ Backend Developer   │ IT        │ 8000000  │ 2021-01-15         │ Toshkent  │
+│ 2  │ Madina  │ Karimova  │ Frontend Developer  │ IT        │ 7500000  │ 2021-03-20         │ Toshkent  │
+│ 3  │ Bekzod  │ Tursunov  │ Senior Developer    │ IT        │ 12000000 │ 2019-07-01         │ Samarqand │
+│ 4  │ Dilnoza │ Rahimova  │ Marketing Manager   │ Marketing │ 7000000  │ 2022-05-12         │ Buxoro    │
+│ 5  │ Sardor  │ Ahmedov   │ Junior Developer    │ IT        │ 4500000  │ 2023-09-30         │ Toshkent  │
+│ 6  │ Zarina  │ Yusupova  │ Accountant          │ Finance   │ 6000000  │ 2021-11-10         │ Toshkent  │
+│ 7  │ Abbos   │ Rustamov  │ Data Analyst        │ IT        │ 7500000  │ 2020-06-15         │ Farg'ona  │
+│ 8  │ Feruza  │ Qodirova  │ Sales Manager       │ Sales     │ 6500000  │ 2022-02-01         │ Toshkent  │
+│ 9  │ Jasur   │ Mirzayev  │ HR Manager          │ HR        │ 5500000  │ 2020-03-15         │ Toshkent  │
+│ 10 │ Kamola  │ Ergasheva │ PR Manager          │ Marketing │ 6000000  │ 2021-08-20         │ Samarqand │
+└────┴─────────┴───────────┴─────────────────────┴───────────┴──────────┴────────────────────┴───────────┘
+```
+
+### ✏️ Topshiriqlar
+
+#### Topshiriq 1: COUNT - Asosiy
+
+**Savol:**
+1. Jami nechta xodim bor?
+2. IT bo'limida nechta xodim bor?
+3. Toshkentda yashaydigan xodimlar soni?
+
+<details>
+<summary><b>📖 Javob</b></summary>
+
+```sql
+-- 1. Jami xodimlar
+SELECT COUNT(*) AS "Jami xodimlar" FROM xodimlar;
+
+-- 2. IT bo'limi
+SELECT COUNT(*) AS "IT xodimlari" 
+FROM xodimlar 
+WHERE bo'lim = 'IT';
+
+-- 3. Toshkent
+SELECT COUNT(*) AS "Toshkent xodimlari" 
+FROM xodimlar 
+WHERE shahar = 'Toshkent';
+```
+
+**Natija:**
+```
+ Jami xodimlar
+---------------
+            10
+
+ IT xodimlari
+--------------
+             5
+
+ Toshkent xodimlari
+--------------------
+                  6
+```
+</details>
+
+---
+
+#### Topshiriq 2: SUM va AVG
+
+**Savol:**
+1. Barcha xodimlarning umumiy maoshi qancha?
+2. O'rtacha maosh qancha?
+3. IT bo'limining umumiy va o'rtacha maoshi?
+
+<details>
+<summary><b>📖 Javob</b></summary>
+
+```sql
+-- 1. Umumiy maosh
+SELECT SUM(maosh) AS "Umumiy maosh" FROM xodimlar;
+
+-- 2. O'rtacha maosh
+SELECT ROUND(AVG(maosh), 0) AS "O'rtacha maosh" FROM xodimlar;
+
+-- 3. IT bo'limi
+SELECT 
+    SUM(maosh) AS "Umumiy maosh",
+    ROUND(AVG(maosh), 0) AS "O'rtacha maosh"
+FROM xodimlar
+WHERE bo'lim = 'IT';
+```
+
+**Natija:**
+```
+ Umumiy maosh
+--------------
+     76000000
+
+ O'rtacha maosh
+----------------
+        7600000
+
+ Umumiy maosh | O'rtacha maosh
+--------------+----------------
+     39500000 |        7900000
+```
+</details>
+
+---
+
+#### Topshiriq 3: MIN va MAX
+
+**Savol:**
+1. Eng kam va eng yuqori maosh qancha?
+2. Qaysi xodim eng ko'p maosh oladi?
+3. Har bir bo'limdagi eng yuqori maosh?
+
+<details>
+<summary><b>📖 Javob</b></summary>
+
+```sql
+-- 1. Min va Max
+SELECT 
+    MIN(maosh) AS "Eng kam maosh",
+    MAX(maosh) AS "Eng yuqori maosh"
+FROM xodimlar;
+
+-- 2. Eng ko'p maosh oluvchi
+SELECT ism, familiya, lavozim, maosh
+FROM xodimlar
+WHERE maosh = (SELECT MAX(maosh) FROM xodimlar);
+
+-- 3. Bo'lim bo'yicha
+SELECT 
+    bo'lim,
+    MAX(maosh) AS "Eng yuqori maosh"
+FROM xodimlar
+GROUP BY bo'lim
+ORDER BY "Eng yuqori maosh" DESC;
+```
+</details>
+
+---
+
+#### Topshiriq 4: GROUP BY
+
+**Savol:**
+1. Har bir bo'limda nechta xodim bor?
+2. Har bir shaharda nechta xodim bor?
+3. Bo'lim bo'yicha to'liq statistika (soni, umumiy maosh, o'rtacha)?
+
+<details>
+<summary><b>📖 Javob</b></summary>
+
+```sql
+-- 1. Bo'lim bo'yicha
+SELECT 
+    bo'lim,
+    COUNT(*) AS "Xodimlar soni"
+FROM xodimlar
+GROUP BY bo'lim
+ORDER BY "Xodimlar soni" DESC;
+
+-- 2. Shahar bo'yicha
+SELECT 
+    shahar,
+    COUNT(*) AS "Xodimlar soni"
+FROM xodimlar
+GROUP BY shahar
+ORDER BY "Xodimlar soni" DESC;
+
+-- 3. To'liq statistika
+SELECT 
+    bo'lim,
+    COUNT(*) AS "Soni",
+    SUM(maosh) AS "Umumiy maosh",
+    ROUND(AVG(maosh), 0) AS "O'rtacha maosh",
+    MIN(maosh) AS "Min",
+    MAX(maosh) AS "Max"
+FROM xodimlar
+GROUP BY bo'lim
+ORDER BY "Umumiy maosh" DESC;
+```
+
+**Natija:**
+```
+  bo'lim   | Soni | Umumiy maosh | O'rtacha maosh |   Min    |   Max
+-----------+------+--------------+----------------+----------+----------
+ IT        |    5 |     39500000 |        7900000 |  4500000 | 12000000
+ Marketing |    2 |     13000000 |        6500000 |  6000000 |  7000000
+ Finance   |    1 |      6000000 |        6000000 |  6000000 |  6000000
+ Sales     |    1 |      6500000 |        6500000 |  6500000 |  6500000
+ HR        |    1 |      5500000 |        5500000 |  5500000 |  5500000
+```
+</details>
+
+---
+
+#### Topshiriq 5: HAVING
+
+**Savol:**
+1. Umumiy maoshi 10,000,000 dan yuqori bo'lgan bo'limlar?
+2. 2+ xodim bo'lgan bo'limlar?
+3. O'rtacha maoshi 7,000,000 dan yuqori bo'limlar?
+
+<details>
+<summary><b>📖 Javob</b></summary>
+
+```sql
+-- 1. Umumiy maosh bo'yicha
+SELECT 
+    bo'lim,
+    COUNT(*) AS "Xodimlar",
+    SUM(maosh) AS "Umumiy maosh"
+FROM xodimlar
+GROUP BY bo'lim
+HAVING SUM(maosh) > 10000000
+ORDER BY "Umumiy maosh" DESC;
+
+-- 2. 2+ xodim
+SELECT 
+    bo'lim,
+    COUNT(*) AS "Xodimlar soni"
+FROM xodimlar
+GROUP BY bo'lim
+HAVING COUNT(*) >= 2;
+
+-- 3. O'rtacha maosh
+SELECT 
+    bo'lim,
+    COUNT(*) AS "Xodimlar",
+    ROUND(AVG(maosh), 0) AS "O'rtacha maosh"
+FROM xodimlar
+GROUP BY bo'lim
+HAVING AVG(maosh) > 7000000
+ORDER BY "O'rtacha maosh" DESC;
+```
+</details>
+
+---
+
+#### Topshiriq 6: String Funksiyalari
+
+**Savol:**
+1. Xodimlarning to'liq ismi (ISM + FAMILIYA)?
+2. Email yarating (ism.familiya@company.uz)?
+3. Lavozimi "Manager" so'zi bilan tugaydiganlar?
+
+<details>
+<summary><b>📖 Javob</b></summary>
+
+```sql
+-- 1. To'liq ism
+SELECT 
+    CONCAT(ism, ' ', familiya) AS "To'liq ism",
+    lavozim
+FROM xodimlar;
+
+-- 2. Email
+SELECT 
+    ism,
+    familiya,
+    LOWER(CONCAT(ism, '.', familiya, '@company.uz')) AS "Email"
+FROM xodimlar;
+
+-- 3. Manager lavozimlar
+SELECT 
+    CONCAT(ism, ' ', familiya) AS "To'liq ism",
+    lavozim
+FROM xodimlar
+WHERE lavozim LIKE '%Manager';
+```
+</details>
+
+---
+
+#### Topshiriq 7: Sana Funksiyalari
+
+**Savol:**
+1. Har bir xodim necha yil ishlagan?
+2. 2021-yilda ishga kirganlar?
+3. 3+ yil ishlagan xodimlar?
+
+<details>
+<summary><b>📖 Javob</b></summary>
+
+```sql
+-- 1. Ish tajribasi
+SELECT 
+    CONCAT(ism, ' ', familiya) AS "Xodim",
+    ish_boshlagan_sana,
+    DATE_PART('year', AGE(CURRENT_DATE, ish_boshlagan_sana)) AS "Yillar",
+    DATE_PART('month', AGE(CURRENT_DATE, ish_boshlagan_sana)) AS "Oylar"
+FROM xodimlar
+ORDER BY ish_boshlangan_sana;
+
+-- 2. 2021-yil
+SELECT 
+    CONCAT(ism, ' ', familiya) AS "Xodim",
+    lavozim,
+    ish_boshlagan_sana
+FROM xodimlar
+WHERE DATE_PART('year', ish_boshlagan_sana) = 2021;
+
+-- 3. 3+ yil tajriba
+SELECT 
+    CONCAT(ism, ' ', familiya) AS "Xodim",
+    lavozim,
+    AGE(CURRENT_DATE, ish_boshlagan_sana) AS "Ish tajribasi"
+FROM xodimlar
+WHERE DATE_PART('year', AGE(CURRENT_DATE, ish_boshlagan_sana)) >= 3
+ORDER BY ish_boshlagan_sana;
+```
+</details>
+
+---
+
+## 🎯 DARS YAKUNLARI
+
+### ✅ Siz o'rgandingiz:
+
+- [x] Agregat funksiyalar (COUNT, SUM, AVG, MIN, MAX)
+- [x] GROUP BY bilan ma'lumotlarni guruhlash
+- [x] HAVING bilan guruhlangan ma'lumotlarni filtrlash
+- [x] WHERE va HAVING farqi
+- [x] String funksiyalari (CONCAT, UPPER, LOWER, LENGTH)
+- [x] Sana/vaqt funksiyalari (NOW, AGE, DATE_PART)
+- [x] Real proyektlarda qo'llash
+
+### 📚 Keyingi darsda:
+
+**05-DARS: Ma'lumotlarni Boshqarish va O'zgartirish**
+- UPDATE bilan ma'lumotlarni yangilash
+- DELETE bilan o'chirish
+- Transaction'lar (BEGIN, COMMIT, ROLLBACK)
+- Xavfsiz ma'lumot boshqarish
+- Best practices
+
+---
+
+## 📖 QO'SHIMCHA MANBALAR
+
+### 💡 Maslahatlar
+
+1. **Agregat funksiyalar:**
+   - NULL qiymatlarni hisobga olmaydi (COUNT stidan tashqari)
+   - ROUND() bilan o'nlik sonni cheklash yaxshi
+   - DISTINCT bilan noyob qiymatlarni sanash
+
+2. **GROUP BY:**
+   - SELECT'dagi barcha ustunlar GROUP BY'da bo'lishi kerak
+   - Yoki agregat funksiya ichida bo'lishi kerak
+
+3. **HAVING vs WHERE:**
+   - WHERE: GROUP BY dan **oldin**
+   - HAVING: GROUP BY dan **keyin**
+
+4. **Performance:**
+   - WHERE'ni iloji boricha ishlatish (HAVING'dan tez)
+   - Index yaratish tegishli ustunlarga
+   - EXPLAIN ANALYZE bilan tekshirish
+
+### 🔗 Foydali Resurslar
+
+- [PostgreSQL Aggregate Functions](https://www.postgresql.org/docs/current/functions-aggregate.html)
+- [PostgreSQL String Functions](https://www.postgresql.org/docs/current/functions-string.html)
+- [PostgreSQL Date/Time Functions](https://www.postgresql.org/docs/current/functions-datetime.html)
