@@ -39,6 +39,18 @@ Agar siz heap ichidan biror nima qidirsangiz, baza hamma qatorni o'qib chiqishga
 
 So'rov bajarganingizda PostgreSQL "Query Planner" (so'rovni rejalashtiruvchi) ikkita yo'ldan birini tanlaydi:
 
+```mermaid
+graph TD
+    A[SQL So'rov] --> B{Query Planner}
+    B -- "Indeks yo'q" --> C[Sequential Scan]
+    B -- "Indeks bor" --> D[Index Scan]
+    C --> E[Har bir qatorni o'qish]
+    D --> F[Indeksdan manzilni olish]
+    F --> G[To'g'ridan-to'g'ri qatorga borish]
+    E --> H[Natija]
+    G --> H
+```
+
 1. **Sequential Scan (Seq Scan):** Jadvalni boshidan oxirigacha o'qiydi.
    - *Qachon tanlaydi?* Jadval kichik bo'lsa yoki indeks bo'lmasa.
    
@@ -53,6 +65,20 @@ PostgreSQLda `CREATE INDEX` yozsangiz, u avtomatik ravishda **B-Tree** (Balanced
 
 ### ⚙️ Qanday ishlaydi?
 B-Tree ma'lumotlarni daraxt kabi shakllantiradi:
+
+```mermaid
+graph TD
+    Root[Root Node: ID 1-1000]
+    Root --> B1[Branch 1: ID 1-500]
+    Root --> B2[Branch 2: ID 501-1000]
+    B1 --> L1[Leaf 1: ID 1-250]
+    B1 --> L2[Leaf 2: ID 251-500]
+    B2 --> L3[Leaf 3: ID 501-750]
+    B2 --> L4[Leaf 4: ID 751-1000]
+    L1 --> P1[Pointer to Heap: Ali]
+    L1 --> P2[Pointer to Heap: Aziza]
+```
+
 - **Root node (ildiz):** Eng tepada joylashgan qidirish yo'nalishini beruvchi tugun.
 - **Leaf nodes (barglar):** Eng pastki qatlam, haqiqiy ma'lumot manzillarini saqlaydi.
 
