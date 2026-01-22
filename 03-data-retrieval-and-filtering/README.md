@@ -928,262 +928,61 @@ Quyidagi jadval bilan ishlang. Topshiriqlarni bajarish uchun ushbu ma'lumotlarda
 
 #### 1️⃣ Asosiy Filtrlash
 
-**Savol:** IT bo'limida ishlaydigan barcha xodimlarni toping.
-
-<details>
-<summary><b>📖 Javob</b></summary>
-
-```sql
-SELECT ism, familiya, lavozim 
-FROM xodimlar 
-WHERE bo'lim = 'IT';
-```
-
-**Natija:**
-```
-   ism   | familiya |      lavozim
----------+----------+-------------------
- Ali     | Valiyev  | Backend Developer
- Bekzod  | Tursunov | Senior Developer
- Sardor  | Ahmedov  | Junior Developer
- Abbos   | Rustamov | Data Analyst
-```
-</details>
+**Topshiriq:** IT bo'limida ishlaydigan barcha xodimlarni toping.
 
 ---
 
 #### 2️⃣ Raqamli Filtrlash
 
-**Savol:** Maoshi 7,000,000 so'mdan yuqori bo'lgan xodimlarni toping va maosh bo'yicha kamayish tartibida saralang.
-
-<details>
-<summary><b>📖 Javob</b></summary>
-
-```sql
-SELECT ism, familiya, lavozim, maosh 
-FROM xodimlar 
-WHERE maosh > 7000000
-ORDER BY maosh DESC;
-```
-
-**Natija:**
-```
-   ism   | familiya |      lavozim      |   maosh
----------+----------+-------------------+------------
- Bekzod  | Tursunov | Senior Developer  | 12000000.00
- Ali     | Valiyev  | Backend Developer |  8000000.00
- Abbos   | Rustamov | Data Analyst      |  7500000.00
-```
-</details>
+**Topshiriq:** Maoshi 7,000,000 so'mdan yuqori bo'lgan xodimlarni toping va maosh bo'yicha kamayish tartibida saralang.
 
 ---
 
 #### 3️⃣ Sana bilan Filtrlash
 
-**Savol:** 2021-yilning 1-yanvaridan keyin ishga qabul qilingan xodimlarni toping.
-
-<details>
-<summary><b>📖 Javob</b></summary>
-
-```sql
-SELECT ism, familiya, ish_boshlagan_sana 
-FROM xodimlar 
-WHERE ish_boshlagan_sana > '2021-01-01'
-ORDER BY ish_boshlagan_sana;
-```
-
-**Natija:**
-```
-   ism   | familiya  | ish_boshlagan_sana
----------+-----------+--------------------
- Ali     | Valiyev   | 2021-01-15
- Zarina  | Yusupova  | 2021-11-10
- Feruza  | Qodirova  | 2022-02-01
- Dilnoza | Rahimova  | 2022-05-12
- Sardor  | Ahmedov   | 2023-09-30
-```
-</details>
+**Topshiriq:** 2021-yilning 1-yanvaridan keyin ishga qabul qilingan xodimlarni toping.
 
 ---
 
 #### 4️⃣ AND Operatori
 
-**Savol:** Toshkentda yashaydigan va maoshi 6,000,000 dan yuqori bo'lgan xodimlarni toping.
-
-<details>
-<summary><b>📖 Javob</b></summary>
-
-```sql
-SELECT ism, familiya, shahar, maosh 
-FROM xodimlar 
-WHERE shahar = 'Toshkent' AND maosh > 6000000;
-```
-
-**Natija:**
-```
-  ism   | familiya |  shahar  |   maosh
---------+----------+----------+------------
- Ali    | Valiyev  | Toshkent |  8000000.00
- Feruza | Qodirova | Toshkent |  6500000.00
-```
-</details>
+**Topshiriq:** Toshkentda yashaydigan va maoshi 6,000,000 dan yuqori bo'lgan xodimlarni toping.
 
 ---
 
 #### 5️⃣ OR Operatori
 
-**Savol:** IT yoki Marketing bo'limida ishlaydigan xodimlarni toping.
-
-<details>
-<summary><b>📖 Javob</b></summary>
-
-```sql
-SELECT ism, familiya, bo'lim 
-FROM xodimlar 
-WHERE bo'lim = 'IT' OR bo'lim = 'Marketing';
-
--- Yoki IN operatori bilan:
-SELECT ism, familiya, bo'lim 
-FROM xodimlar 
-WHERE bo'lim IN ('IT', 'Marketing');
-```
-</details>
+**Topshiriq:** IT yoki Marketing bo'limida ishlaydigan xodimlarni toping.
 
 ---
 
 #### 6️⃣ NOT Operatori
 
-**Savol:** Toshkentda YASHAMAYDIGAN xodimlarni toping.
-
-<details>
-<summary><b>📖 Javob</b></summary>
-
-```sql
-SELECT ism, familiya, shahar 
-FROM xodimlar 
-WHERE NOT shahar = 'Toshkent';
-
--- Yoki:
-SELECT ism, familiya, shahar 
-FROM xodimlar 
-WHERE shahar <> 'Toshkent';
-```
-
-**Natija:**
-```
-   ism   | familiya  |  shahar
----------+-----------+-----------
- Bekzod  | Tursunov  | Samarqand
- Dilnoza | Rahimova  | Buxoro
- Abbos   | Rustamov  | Farg'ona
-```
-</details>
+**Topshiriq:** Toshkentda YASHAMAYDIGAN xodimlarni toping.
 
 ---
 
 #### 7️⃣ LIKE Operatori
 
-**Savol:** Lavozimi "Manager" so'zi bilan tugaydigan xodimlarni toping.
-
-<details>
-<summary><b>📖 Javob</b></summary>
-
-```sql
-SELECT ism, familiya, lavozim 
-FROM xodimlar 
-WHERE lavozim LIKE '%Manager';
-```
-
-**Natija:**
-```
-   ism   | familiya |      lavozim
----------+----------+-------------------
- Madina  | Karimova | HR Manager
- Dilnoza | Rahimova | Marketing Manager
- Feruza  | Qodirova | Sales Manager
-```
-</details>
+**Topshiriq:** Lavozimi "Manager" so'zi bilan tugaydigan xodimlarni toping.
 
 ---
 
 #### 8️⃣ BETWEEN Operatori
 
-**Savol:** Maoshi 5,000,000 dan 8,000,000 gacha bo'lgan xodimlarni toping.
-
-<details>
-<summary><b>📖 Javob</b></summary>
-
-```sql
-SELECT ism, familiya, maosh 
-FROM xodimlar 
-WHERE maosh BETWEEN 5000000 AND 8000000
-ORDER BY maosh;
-```
-
-**Natija:**
-```
-   ism   | familiya |   maosh
----------+----------+------------
- Madina  | Karimova |  5500000.00
- Zarina  | Yusupova |  6000000.00
- Feruza  | Qodirova |  6500000.00
- Dilnoza | Rahimova |  7000000.00
- Abbos   | Rustamov |  7500000.00
- Ali     | Valiyev  |  8000000.00
-```
-</details>
+**Topshiriq:** Maoshi 5,000,000 dan 8,000,000 gacha bo'lgan xodimlarni toping.
 
 ---
 
 #### 9️⃣ TOP 3
 
-**Savol:** Eng yuqori maoshli 3 nafar xodimni toping.
-
-<details>
-<summary><b>📖 Javob</b></summary>
-
-```sql
-SELECT ism, familiya, lavozim, maosh 
-FROM xodimlar 
-ORDER BY maosh DESC 
-LIMIT 3;
-```
-
-**Natija:**
-```
-   ism   | familiya |      lavozim      |   maosh
----------+----------+-------------------+------------
- Bekzod  | Tursunov | Senior Developer  | 12000000.00
- Ali     | Valiyev  | Backend Developer |  8000000.00
- Abbos   | Rustamov | Data Analyst      |  7500000.00
-```
-</details>
+**Topshiriq:** Eng yuqori maoshli 3 nafar xodimni toping.
 
 ---
 
 #### 🔟 Murakkab So'rov
 
-**Savol:** IT bo'limida ishlaydigan, maoshi 5,000,000 dan yuqori bo'lgan va Toshkentda yashaydigan xodimlarni lavozim bo'yicha alifbo tartibida ko'rsating.
-
-<details>
-<summary><b>📖 Javob</b></summary>
-
-```sql
-SELECT ism, familiya, lavozim, maosh, shahar 
-FROM xodimlar 
-WHERE bo'lim = 'IT' 
-  AND maosh > 5000000 
-  AND shahar = 'Toshkent'
-ORDER BY lavozim ASC;
-```
-
-**Natija:**
-```
-  ism  | familiya |      lavozim      |   maosh    |  shahar
--------+----------+-------------------+------------+----------
- Ali   | Valiyev  | Backend Developer |  8000000.00 | Toshkent
-```
-</details>
+**Topshiriq:** IT bo'limida ishlaydigan, maoshi 5,000,000 dan yuqori bo'lgan va Toshkentda yashaydigan xodimlarni lavozim bo'yicha alifbo tartibida ko'rsating.
 
 ---
 
