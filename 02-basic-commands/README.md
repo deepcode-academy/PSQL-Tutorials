@@ -1810,7 +1810,26 @@ INSERT INTO reviews (product_id, customer_id, rating, title, comment, is_verifie
 
 Yuqoridagi database'ni yaratib, quyidagi topshiriqlarni bajaring:
 
-#### **Topshiriq 1: Oddiy SELECT (Oson)**
+#### 📊 Topshiriqlar Jadvali
+
+| # | Qiyinlik | Mavzu | Topshiriq Tavsifi |
+|---|----------|-------|-------------------|
+| **1** | 🟢 Oson | SELECT asoslari | Barcha kategoriyalarni, faol mahsulotlarni va Toshkentdagi mijozlarni ko'rsating |
+| **2** | 🟢 Oson | WHERE operatorlari | Narxi 1,000,000 so'mdan kam mahsulotlar, stock'i 20 dan kam mahsulotlar, gmail foydalanuvchilarini toping |
+| **3** | 🟡 O'rta | ORDER BY & LIMIT | Eng qimmat 5 ta mahsulot, eng yangi 10 mijoz, alfabetik tartiblangan mahsulotlar |
+| **4** | 🟡 O'rta | Aggregate Functions | Jami mahsulotlar soni, o'rtacha narx, min/max narx, Electronics kategoriyasi mahsulotlari |
+| **5** | 🟡 O'rta | UPDATE | Nike poyabzal narxini 10% oshiring, pending → processing, stock=0 → inactive |
+| **6** | 🟡 O'rta | DELETE | Cancelled buyurtmalarni o'chiring, 2024-yilda ro'yxatdan o'tgan nofaol mijozlarni o'chiring |
+| **7** | 🔴 Qiyin | GROUP BY & HAVING | Har kategoriyada mahsulot soni, har mijozning buyurtmalari, 2+ buyurtma bergan mijozlar |
+| **8** | 🔴 Qiyin | JOIN | Buyurtma mahsulotlari, mahsulot sotilishi statistikasi, to'liq buyurtma ma'lumoti |
+| **9** | 🔴 Qiyin | Murakkab so'rovlar | Top 5 daromadli mahsulot, shahar bo'yicha buyurtmalar, 4+ rating'li mahsulotlar |
+| **10** | 🟣 Juda Qiyin | Business Analytics | Dekabr oyi daromadi, eng yaxshi mijoz, kategoriya foizlari (CTE ishlatish) |
+
+---
+
+#### 📝 Batafsil Yechimlar
+
+**Topshiriq 1: Oddiy SELECT (Oson)**
 
 1. Barcha kategoriyalarni ko'rsating
 2. Barcha faol mahsulotlarni (is_active = TRUE) chiqaring
