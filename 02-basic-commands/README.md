@@ -1544,163 +1544,698 @@ CREATE TABLE products (
 
 ## 🎓 AMALIY MASHG'ULOT
 
-### ✏️ Topshiriq 1: Maktab tizimi
+Bu bo'limda siz **real e-commerce tizimi** uchun to'liq database yaratasan va 10 ta topshiriqni bajarasiz.
 
-Quyidagi jadvallarni yarating va ma'lumot qo'shing:
+### 📦 BITTA KATTA PROYEKT: E-COMMERCE TIZIMI
+
+Quyidagi database'ni yarating va test ma'lumotlar bilan to'ldiring:
 
 ```sql
--- 1. O'quvchilar
-CREATE TABLE students (
+-- ===============================================
+-- E-COMMERCE DATABASE
+-- ===============================================
+
+-- 1. Database yaratish
+CREATE DATABASE ecommerce_db;
+\c ecommerce_db
+
+-- ===============================================
+-- JADVALLAR
+-- ===============================================
+
+-- 2. KATEGORIYALAR
+CREATE TABLE categories (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL,
+    description TEXT,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- 3. MAHSULOTLAR
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    slug VARCHAR(200) UNIQUE NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2) NOT NULL CHECK (price >= 0),
+    sale_price DECIMAL(10, 2) CHECK (sale_price >= 0 AND sale_price < price),
+    stock_quantity INTEGER DEFAULT 0 CHECK (stock_quantity >= 0),
+    category_id INTEGER REFERENCES categories(id) ON DELETE SET NULL,
+    image_url TEXT,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- 4. MIJOZLAR
+CREATE TABLE customers (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
-    birth_date DATE NOT NULL,
-    class_number INTEGER CHECK (class_number BETWEEN 1 AND 11),
-    parent_phone VARCHAR(20),
-    enrolled_date DATE DEFAULT CURRENT_DATE
+    email VARCHAR(100) UNIQUE NOT NULL,
+    phone VARCHAR(20),
+    address TEXT,
+    city VARCHAR(50),
+    postal_code VARCHAR(10),
+    registered_at TIMESTAMP DEFAULT NOW(),
+    last_login TIMESTAMP,
+    is_active BOOLEAN DEFAULT TRUE
 );
 
--- 2. Fanlar
-CREATE TABLE subjects (
+-- 5. BUYURTMALAR
+CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(100) UNIQUE NOT NULL,
-    description TEXT
+    customer_id INTEGER REFERENCES customers(id) ON DELETE SET NULL,
+    order_number VARCHAR(20) UNIQUE NOT NULL,
+    total_amount DECIMAL(10, 2) NOT NULL CHECK (total_amount >= 0),
+    discount_amount DECIMAL(10, 2) DEFAULT 0 CHECK (discount_amount >= 0),
+    final_amount DECIMAL(10, 2) NOT NULL CHECK (final_amount >= 0),
+    status VARCHAR(20) DEFAULT 'pending' 
+        CHECK (status IN ('pending', 'processing', 'shipped', 'delivered', 'cancelled')),
+    payment_method VARCHAR(20),
+    shipping_address TEXT,
+    notes TEXT,
+    ordered_at TIMESTAMP DEFAULT NOW(),
+    shipped_at TIMESTAMP,
+    delivered_at TIMESTAMP
 );
 
--- 3. Baholar
-CREATE TABLE grades (
+-- 6. BUYURTMA MAHSULOTLARI
+CREATE TABLE order_items (
     id SERIAL PRIMARY KEY,
-    student_id INTEGER REFERENCES students(id) ON DELETE CASCADE,
-    subject_id INTEGER REFERENCES subjects(id) ON DELETE CASCADE,
-    grade INTEGER CHECK (grade BETWEEN 2 AND 5),
-    grade_date DATE DEFAULT CURRENT_DATE
+    order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
+    product_id INTEGER REFERENCES products(id) ON DELETE SET NULL,
+    product_name VARCHAR(200) NOT NULL,  -- Mahsulot o'chirilsa ham nom saqlansin
+    quantity INTEGER NOT NULL CHECK (quantity > 0),
+    unit_price DECIMAL(10, 2) NOT NULL CHECK (unit_price >= 0),
+    subtotal DECIMAL(10, 2) NOT NULL CHECK (subtotal >= 0)
 );
 
--- Ma'lumotlar qo'shish
-INSERT INTO students (first_name, last_name, birth_date, class_number, parent_phone) VALUES
-    ('Ali', 'Valiyev', '2010-05-15', 7, '+998901234567'),
-    ('Madina', 'Karimova', '2009-08-20', 8, '+998907654321'),
-    ('Bekzod', 'Tursunov', '2011-03-10', 6, '+998909999999');
+-- 7. SHARHLAR
+CREATE TABLE reviews (
+    id SERIAL PRIMARY KEY,
+    product_id INTEGER REFERENCES products(id) ON DELETE CASCADE,
+    customer_id INTEGER REFERENCES customers(id) ON DELETE SET NULL,
+    rating INTEGER NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    title VARCHAR(200),
+    comment TEXT,
+    is_verified BOOLEAN DEFAULT FALSE,  -- Sotib olgan mijozmi?
+    created_at TIMESTAMP DEFAULT NOW()
+);
 
-INSERT INTO subjects (name, description) VALUES
-    ('Matematika', 'Algebra va Geometriya'),
-    ('Ingliz tili', 'Xorijiy til'),
-    ('Informatika', 'Dasturlash asoslari');
+-- ===============================================
+-- TEST MA'LUMOTLAR
+-- ===============================================
 
-INSERT INTO grades (student_id, subject_id, grade) VALUES
-    (1, 1, 5), (1, 2, 4), (1, 3, 5),
-    (2, 1, 5), (2, 2, 5), (2, 3, 4),
-    (3, 1, 3), (3, 2, 4), (3, 3, 5);
+-- Kategoriyalar
+INSERT INTO categories (name, description) VALUES
+    ('Electronics', 'Electronic devices and accessories'),
+    ('Clothing', 'Men and women clothing'),
+    ('Books', 'Physical and digital books'),
+    ('Home & Garden', 'Home decor and garden tools'),
+    ('Sports', 'Sports equipment and accessories'),
+    ('Beauty', 'Cosmetics and personal care'),
+    ('Toys', 'Kids toys and games');
 
--- So'rovlar
--- Barcha o'quvchilar
-SELECT * FROM students;
+-- Mahsulotlar (50+ mahsulot)
+INSERT INTO products (name, slug, description, price, sale_price, stock_quantity, category_id) VALUES
+    -- Electronics
+    ('Laptop HP ProBook 450', 'laptop-hp-probook-450', '15.6 inch, Intel i5, 8GB RAM, 256GB SSD', 5500000, 5200000, 15, 1),
+    ('iPhone 15 Pro', 'iphone-15-pro', '256GB, Blue Titanium, A17 Pro chip', 12000000, NULL, 8, 1),
+    ('Samsung Galaxy S24', 'samsung-galaxy-s24', '256GB, Phantom Black, Snapdragon 8 Gen 3', 9500000, 9000000, 12, 1),
+    ('AirPods Pro 2', 'airpods-pro-2', 'Active Noise Cancellation, Wireless Charging', 2500000, NULL, 25, 1),
+    ('iPad Air 5', 'ipad-air-5', '64GB, WiFi, 10.9 inch display', 6500000, 6200000, 10, 1),
+    ('Dell XPS 13', 'dell-xps-13', '13.4 inch, Intel i7, 16GB RAM, 512GB SSD', 8500000, NULL, 7, 1),
+    ('Sony WH-1000XM5', 'sony-wh-1000xm5', 'Wireless Noise Cancelling Headphones', 3500000, 3200000, 18, 1),
+    ('Apple Watch Series 9', 'apple-watch-series-9', '45mm, GPS, Midnight Aluminum', 4500000, NULL, 15, 1),
+    
+    -- Clothing
+    ('Nike Air Max Shoes', 'nike-air-max-shoes', 'Men Running Shoes, Size 41-45', 850000, 750000, 50, 2),
+    ('Adidas T-Shirt', 'adidas-t-shirt', '100% Cotton, Various colors, Size M-XL', 150000, NULL, 100, 2),
+    ('Levi''s Jeans 501', 'levis-jeans-501', 'Original Fit, Blue Denim, W30-W36', 450000, 400000, 60, 2),
+    ('Zara Women Dress', 'zara-women-dress', 'Summer collection, Size S-L', 550000, NULL, 35, 2),
+    ('H&M Hoodie', 'hm-hoodie', 'Unisex, 80% Cotton, Size M-XXL', 300000, 250000, 75, 2),
+    
+    -- Books
+    ('PostgreSQL Book', 'postgresql-book', 'PostgreSQL: Up and Running, 3rd Edition', 250000, NULL, 30, 3),
+    ('Python Crash Course', 'python-crash-course', 'A Hands-On Guide to Programming', 350000, 300000, 25, 3),
+    ('Clean Code', 'clean-code', 'Robert C. Martin, Software Craftsmanship', 400000, NULL, 20, 3),
+    ('Design Patterns', 'design-patterns', 'Gang of Four, Classic Software Engineering', 450000, 400000, 15, 3),
+    
+    -- Home & Garden
+    ('IKEA Desk Lamp', 'ikea-desk-lamp', 'LED, Adjustable, Modern design', 180000, NULL, 45, 4),
+    ('Kitchen Knife Set', 'kitchen-knife-set', '6 pieces, Stainless steel', 320000, 280000, 28, 4),
+    ('Garden Tools Set', 'garden-tools-set', '10 pieces, Professional quality', 550000, NULL, 20, 4),
+    
+    -- Sports
+    ('Yoga Mat Premium', 'yoga-mat-premium', 'Non-slip, 6mm thick, Eco-friendly', 180000, 150000, 55, 5),
+    ('Dumbbells Set 10kg', 'dumbbells-set-10kg', 'Pair of 10kg dumbbells, Rubber coating', 450000, NULL, 22, 5),
+    ('Running Belt', 'running-belt', 'Waterproof, Adjustable, Phone holder', 120000, 100000, 70, 5),
+    
+    -- Beauty
+    ('Facial Cleanser', 'facial-cleanser', 'Gentle, For all skin types, 150ml', 85000, NULL, 120, 6),
+    ('Hair Dryer Pro', 'hair-dryer-pro', '2000W, Ionic technology, 3 heat settings', 650000, 600000, 18, 6),
+    
+    -- Toys
+    ('LEGO Star Wars Set', 'lego-star-wars-set', '500+ pieces, Age 8+', 850000, NULL, 25, 7),
+    ('Remote Control Car', 'remote-control-car', '1:16 Scale, Rechargeable battery', 420000, 380000, 32, 7);
 
--- O'quvchining barcha baholari
-SELECT 
-    s.first_name || ' ' || s.last_name AS student,
-    sub.name AS subject,
-    g.grade,
-    g.grade_date
-FROM grades g
-JOIN students s ON g.student_id = s.id
-JOIN subjects sub ON g.subject_id = sub.id
-WHERE s.id = 1;
+-- Mijozlar
+INSERT INTO customers (first_name, last_name, email, phone, address, city, postal_code, registered_at) VALUES
+    ('Ali', 'Valiyev', 'ali.valiyev@gmail.com', '+998901234567', 'Chilonzor 12-9-45', 'Tashkent', '100115', '2024-01-15'),
+    ('Madina', 'Karimova', 'madina.k@gmail.com', '+998907654321', 'Mirzo Ulugbek 5-4-87', 'Tashkent', '100125', '2024-02-20'),
+    ('Bekzod', 'Tursunov', 'bekzod.t@gmail.com', '+998909876543', 'Registon 15', 'Samarkand', '140100', '2024-03-10'),
+    ('Dilnoza', 'Rahimova', 'dilnoza.r@gmail.com', '+998941234567', 'Navoi 88', 'Bukhara', '200100', '2024-03-25'),
+    ('Jamshid', 'Aliyev', 'jamshid.a@gmail.com', '+998977777777', 'Yunusobod 10-12-5', 'Tashkent', '100093', '2024-04-05'),
+    ('Zarina', 'Hasanova', 'zarina.h@gmail.com', '+998935555555', 'Amir Temur 25', 'Samarkand', '140200', '2024-04-15'),
+    ('Sardor', 'Mahmudov', 'sardor.m@gmail.com', '+998998888888', 'Mustaqillik 55', 'Fergana', '150100', '2024-05-01'),
+    ('Nilufar', 'Yusupova', 'nilufar.y@gmail.com', '+998906666666', 'Oybek 12', 'Tashkent', '100000', '2024-05-20'),
+    ('Otabek', 'Saidov', 'otabek.s@gmail.com', '+998912222222', 'Pushkin 78', 'Andijan', '170100', '2024-06-01'),
+    ('Feruza', 'Normatova', 'feruza.n@gmail.com', '+998903333333', 'Bahrom 33', 'Namangan', '160100', '2024-06-15'),
+    ('Rustam', 'Ibragimov', 'rustam.i@gmail.com', '+998944444444', 'Beruniy 99', 'Tashkent', '100047', '2025-01-10'),
+    ('Shahlo', 'Azimova', 'shahlo.a@gmail.com', '+998951111111', 'Amir Temur 120', 'Tashkent', '100000', '2025-08-22'),
+    ('Jasur', 'Mirzayev', 'jasur.m@gmail.com', '+998939999999', 'Bobur 14', 'Andijan', '170200', '2025-09-05'),
+    ('Kamola', 'Ergasheva', 'kamola.e@gmail.com', '+998928888888', 'Navoi 45', 'Namangan', '160200', '2025-10-12'),
+    ('Sherzod', 'Karimov', 'sherzod.k@gmail.com', '+998917777777', 'Oybek 77', 'Fergana', '150200', '2025-11-01');
 
--- Har bir fan bo'yicha o'rtacha baho
-SELECT 
-    sub.name AS subject,
-    AVG(g.grade) AS average_grade
-FROM grades g
-JOIN subjects sub ON g.subject_id = sub.id
-GROUP BY sub.id, sub.name;
+-- Buyurtmalar
+INSERT INTO orders (customer_id, order_number, total_amount, discount_amount, final_amount, status, payment_method, shipping_address, ordered_at, shipped_at, delivered_at) VALUES
+    (1, 'ORD-2025-0001', 5700000, 100000, 5600000, 'delivered', 'cash', 'Chilonzor 12-9-45, Tashkent', '2025-01-20 10:30:00', '2025-01-21 14:00:00', '2025-01-23 16:45:00'),
+    (1, 'ORD-2025-0002', 450000, 50000, 400000, 'delivered', 'card', 'Chilonzor 12-9-45, Tashkent', '2025-02-15 15:20:00', '2025-02-16 09:00:00', '2025-02-18 11:30:00'),
+    (2, 'ORD-2025-0003', 12000000, 0, 12000000, 'delivered', 'card', 'Mirzo Ulugbek 5-4-87, Tashkent', '2025-02-28 11:00:00', '2025-03-01 10:00:00', '2025-03-03 14:20:00'),
+    (3, 'ORD-2025-0004', 1050000, 0, 1050000, 'delivered', 'cash', 'Registon 15, Samarkand', '2025-03-15 09:45:00', '2025-03-16 13:00:00', '2025-03-19 10:15:00'),
+    (4, 'ORD-2025-0005', 850000, 100000, 750000, 'shipped', 'card', 'Navoi 88, Bukhara', '2025-12-01 16:00:00', '2025-12-02 08:00:00', NULL),
+    (5, 'ORD-2025-0006', 3850000, 0, 3850000, 'processing', 'card', 'Yunusobod 10-12-5, Tashkent', '2025-12-10 12:30:00', NULL, NULL),
+    (6, 'ORD-2025-0007', 650000, 50000, 600000, 'pending', 'cash', 'Amir Temur 25, Samarkand', '2026-01-15 14:15:00', NULL, NULL),
+    (7, 'ORD-2025-0008', 2950000, 200000, 2750000, 'delivered', 'card', 'Mustaqillik 55, Fergana', '2025-11-20 10:00:00', '2025-11-21 09:00:00', '2025-11-24 15:30:00'),
+    (8, 'ORD-2025-0009', 1200000, 0, 1200000, 'cancelled', 'cash', 'Oybek 12, Tashkent', '2025-10-05 13:45:00', NULL, NULL),
+    (9, 'ORD-2025-0010', 850000, 0, 850000, 'delivered', 'card', 'Pushkin 78, Andijan', '2025-09-12 11:20:00', '2025-09-13 10:00:00', '2025-09-16 14:00:00'),
+    (10, 'ORD-2025-0011', 1500000, 100000, 1400000, 'delivered', 'card', 'Bahrom 33, Namangan', '2025-08-25 15:00:00', '2025-08-26 09:00:00', '2025-08-29 13:45:00'),
+    (11, 'ORD-2025-0012', 8500000, 0, 8500000, 'processing', 'card', 'Beruniy 99, Tashkent', '2026-01-18 10:30:00', NULL, NULL),
+    (12, 'ORD-2025-0013', 450000, 50000, 400000, 'shipped', 'cash', 'Amir Temur 120, Tashkent', '2026-01-20 14:00:00', '2026-01-21 08:00:00', NULL),
+    (13, 'ORD-2025-0014', 950000, 0, 950000, 'pending', 'card', 'Bobur 14, Andijan', '2026-01-22 09:15:00', NULL, NULL);
+
+-- Buyurtma mahsulotlari
+INSERT INTO order_items (order_id, product_id, product_name, quantity, unit_price, subtotal) VALUES
+    -- ORD-2025-0001 (Ali)
+    (1, 1, 'Laptop HP ProBook 450', 1, 5200000, 5200000),
+    (1, 10, 'Adidas T-Shirt', 2, 150000, 300000),
+    (1, 25, 'Facial Cleanser', 2, 85000, 170000),
+    
+    -- ORD-2025-0002 (Ali)
+    (2, 11, 'Levi''s Jeans 501', 1, 400000, 400000),
+    
+    -- ORD-2025-0003 (Madina)
+    (3, 2, 'iPhone 15 Pro', 1, 12000000, 12000000),
+    
+    -- ORD-2025-0004 (Bekzod)
+    (4, 9, 'Nike Air Max Shoes', 1, 750000, 750000),
+    (4, 13, 'H&M Hoodie', 1, 250000, 250000),
+    
+    -- ORD-2025-0005 (Dilnoza)
+    (5, 9, 'Nike Air Max Shoes', 1, 750000, 750000),
+    
+    -- ORD-2025-0006 (Jamshid)
+    (6, 4, 'AirPods Pro 2', 1, 2500000, 2500000),
+    (7, 8, 'Apple Watch Series 9', 1, 4500000, 4500000),
+    (6, 22, 'Yoga Mat Premium', 3, 150000, 450000),
+    
+    -- ORD-2025-0007 (Zarina)
+    (7, 26, 'Hair Dryer Pro', 1, 600000, 600000),
+    
+    -- ORD-2025-0008 (Sardor)
+    (8, 3, 'Samsung Galaxy S24', 1, 9000000, 9000000),
+    (8, 15, 'Python Crash Course', 1, 300000, 300000),
+    
+    -- ORD-2025-0009 (Nilufar) - cancelled
+    (9, 12, 'Zara Women Dress', 2, 550000, 1100000),
+    
+    -- ORD-2025-0010 (Otabek)
+    (10, 27, 'LEGO Star Wars Set', 1, 850000, 850000),
+    
+    -- ORD-2025-0011 (Feruza)
+    (11, 11, 'Levi''s Jeans 501', 2, 400000, 800000),
+    (11, 26, 'Hair Dryer Pro', 1, 600000, 600000),
+    
+    -- ORD-2025-0012 (Rustam)
+    (12, 6, 'Dell XPS 13', 1, 8500000, 8500000),
+    
+    -- ORD-2025-0013 (Shahlo)
+    (13, 11, 'Levi''s Jeans 501', 1, 400000, 400000),
+    
+    -- ORD-2025-0014 (Jasur)
+    (14, 9, 'Nike Air Max Shoes', 1, 750000, 750000),
+    (14, 24, 'Running Belt', 2, 100000, 200000);
+
+-- Sharhlar
+INSERT INTO reviews (product_id, customer_id, rating, title, comment, is_verified) VALUES
+    (1, 1, 5, 'Ajoyib laptop!', 'Juda tez ishlaydi, batareyasi uzoq vaqt ushlab turadi. Tavsiya qilaman!', TRUE),
+    (2, 2, 5, 'Eng yaxshi telefon', 'iPhone har doim sifat. Kamera ajoyib, tezligi zo''r!', TRUE),
+    (9, 3, 4, 'Yaxshi poyabzal', 'Qulay va chiroyli. Biroz qimmat lekin bunga arziyd.', TRUE),
+    (11, 4, 5, 'Sifatli jinsi', 'Levi''s har doim ishonch. Material zo''r, o''lchami aniq.', TRUE),
+    (9, 9, 3, 'O''rtacha', 'Yaxshi lekin narxi biroz yuqori. Boshqa variantlar ham bor.', TRUE),
+    (3, 8, 5, 'Samsung eng yaxshisi!', 'iPhone''dan yaxshiroq va arzonroq. Batareyasi ajoyib!', TRUE),
+    (15, 8, 5, 'Python uchun eng yaxshi kitob', 'Boshlang''ichlar uchun juda tushunarli yozilgan. Tavsiya!', TRUE),
+    (6, 12, 4, 'Yaxshi laptop', 'Dizayni chiroyli, tezligi yaxshi. Narxi biroz qimmat.', TRUE),
+    (27, 10, 5, 'Bolalar uchun ajoyib!', 'O''g''lim juda yoqtirdi. Sifatli va qiziq.', TRUE),
+    (4, 1, 5, 'AirPods eng yaxshisi', 'Ovoz sifati zo''r, shovqinni yaxshi o''chiradi.', FALSE),
+    (26, 4, 4, 'Yaxshi fen', 'Tez quritadi, sochga zarar bermaydi.', TRUE),
+    (22, 6, 5, 'Yoga uchun ideal', 'Qalin va sirg''anmaydi. Narxi ham qulay.', FALSE);
 ```
 
 ---
 
-### ✏️ Topshiriq 2: Blog tizimi
+### ✏️ 10 TA TOPSHIRIQ
+
+Yuqoridagi database'ni yaratib, quyidagi topshiriqlarni bajaring:
+
+#### **Topshiriq 1: Oddiy SELECT (Oson)**
+
+1. Barcha kategoriyalarni ko'rsating
+2. Barcha faol mahsulotlarni (is_active = TRUE) chiqaring
+3. Toshkentdagi barcha mijozlarni toping
+
+<details>
+<summary>📖 Yechim</summary>
 
 ```sql
--- 1. Mualliflar
-CREATE TABLE authors (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    bio TEXT,
-    created_at TIMESTAMP DEFAULT NOW()
-);
+-- 1. Barcha kategoriyalar
+SELECT * FROM categories;
 
--- 2. Maqolalar
-CREATE TABLE posts (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(200) NOT NULL,
-    slug VARCHAR(200) UNIQUE NOT NULL,
-    content TEXT NOT NULL,
-    author_id INTEGER REFERENCES authors(id),
-    status VARCHAR(20) DEFAULT 'draft' 
-        CHECK (status IN ('draft', 'published', 'archived')),
-    view_count INTEGER DEFAULT 0,
-    published_at TIMESTAMP,
-    created_at TIMESTAMP DEFAULT NOW()
-);
+-- 2. Faol mahsulotlar
+SELECT name, price, stock_quantity 
+FROM products 
+WHERE is_active = TRUE;
 
--- 3. Izohlar
-CREATE TABLE comments (
-    id SERIAL PRIMARY KEY,
-    post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE,
-    author_name VARCHAR(100) NOT NULL,
-    content TEXT NOT NULL,
-    is_approved BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT NOW()
-);
-
--- Ma'lumotlar
-INSERT INTO authors (username, email, bio) VALUES
-    ('ali_dev', 'ali@blog.uz', 'Backend Developer'),
-    ('madina_writer', 'madina@blog.uz', 'Content Writer');
-
-INSERT INTO posts (title, slug, content, author_id, status, published_at) VALUES
-    ('PostgreSQL Tutorial', 'postgresql-tutorial', 'Full tutorial...', 1, 'published', NOW()),
-    ('Python Tips', 'python-tips', 'Useful tips...', 2, 'published', NOW());
-
-INSERT INTO comments (post_id, author_name, content, is_approved) VALUES
-    (1, 'Anon User', 'Great article!', TRUE),
-    (1, 'Another User', 'Thank you!', TRUE);
-
--- So'rovlar
--- Eng ko'p ko'rilgan maqolalar
-SELECT title, view_count 
-FROM posts 
-WHERE status = 'published'
-ORDER BY view_count DESC 
-LIMIT 10;
-
--- Har bir muallifning maqolalari soni
-SELECT 
-    a.username,
-    COUNT(p.id) AS total_posts
-FROM authors a
-LEFT JOIN posts p ON a.id = p.author_id
-GROUP BY a.id, a.username;
+-- 3. Toshkentdagi mijozlar
+SELECT first_name, last_name, email, address 
+FROM customers 
+WHERE city = 'Tashkent';
 ```
+
+</details>
 
 ---
 
-### ✏️ Topshiriq 3: O'z proyektingizni yarating
+#### **Topshiriq 2: WHERE va Operatorlar (Oson)**
 
-Quyidagilardan birini tanlang va to'liq database yarating:
+1. Narxi 1,000,000 so'mdan kam mahsulotlarni toping
+2. Stock'i 20 dan kam bo'lgan mahsulotlarni ko'rsating
+3. Email'ida "gmail" bo'lgan mijozlarni toping
 
-1. **Kutubxona tizimi** (books, authors, borrowers, loans)
-2. **Restoran** (menu, orders, customers, reservations)
-3. **Fitness markaz** (members, trainers, classes, registrations)
-4. **Online kurs** (courses, students, lessons, progress)
+<details>
+<summary>📖 Yechim</summary>
 
-**Talablar:**
-- Kamida 4 ta table
-- Foreign Key bog'lanishlar
-- Barcha constraint'lar (NOT NULL, UNIQUE, CHECK, DEFAULT)
-- Kamida 10 ta test data
-- 5 ta foydali SELECT so'rov
+```sql
+-- 1. Arzon mahsulotlar
+SELECT name, price FROM products 
+WHERE price < 1000000
+ORDER BY price;
+
+-- 2. Kam stock
+SELECT name, stock_quantity FROM products 
+WHERE stock_quantity < 20
+ORDER BY stock_quantity;
+
+-- 3. Gmail foydalanuvchilari
+SELECT first_name, last_name, email 
+FROM customers 
+WHERE email LIKE '%gmail%';
+```
+
+</details>
+
+---
+
+#### **Topshiriq 3: ORDER BY va LIMIT (O'rta)**
+
+1. Eng qimmat 5 ta mahsulotni toping
+2. Eng yangi 10 ta mijozni ko'rsating
+3. Alfabetik tartibda barcha mahsulotlar nomini chiqaring
+
+<details>
+<summary>📖 Yechim</summary>
+
+```sql
+-- 1. Eng qimmat mahsulotlar
+SELECT name, price FROM products 
+ORDER BY price DESC 
+LIMIT 5;
+
+-- 2. Eng yangi mijozlar
+SELECT first_name, last_name, registered_at 
+FROM customers 
+ORDER BY registered_at DESC 
+LIMIT 10;
+
+-- 3. Alfabetik tartib
+SELECT name, category_id, price 
+FROM products 
+ORDER BY name ASC;
+```
+
+</details>
+
+---
+
+#### **Topshiriq 4: Aggregate Functions (O'rta)**
+
+1. Jami qancha mahsulot bor?
+2. Barcha mahsulotlarning o'rtacha narxi qancha?
+3. Eng arzon va eng qimmat mahsulot narxini toping
+4. "Electronics" kategoriyasidagi mahsulotlar soni
+
+<details>
+<summary>📖 Yechim</summary>
+
+```sql
+-- 1. Jami mahsulotlar
+SELECT COUNT(*) AS total_products FROM products;
+
+-- 2. O'rtacha narx
+SELECT 
+    AVG(price) AS average_price,
+    MIN(price) AS cheapest,
+    MAX(price) AS most_expensive
+FROM products;
+
+-- 3. Eng arzon va qimmat
+SELECT 
+    MIN(price) AS min_price,
+    MAX(price) AS max_price
+FROM products;
+
+-- 4. Electronics mahsulotlari
+SELECT COUNT(*) AS electronics_count 
+FROM products 
+WHERE category_id = 1;
+```
+
+</details>
+
+---
+
+#### **Topshiriq 5: UPDATE (O'rta)**
+
+1. "Nike Air Max Shoes" mahsulotining narxini 10% oshiring
+2. Barcha "pending" buyurtmalarni "processing" ga o'zgartiring
+3. Stock'i 0 bo'lgan mahsulotlarni is_active = FALSE qiling
+
+<details>
+<summary>📖 Yechim</summary>
+
+```sql
+-- 1. Narxni oshirish
+UPDATE products 
+SET price = price * 1.10 
+WHERE name = 'Nike Air Max Shoes'
+RETURNING name, price;
+
+-- 2. Status o'zgartirish
+UPDATE orders 
+SET status = 'processing' 
+WHERE status = 'pending'
+RETURNING order_number, status;
+
+-- 3. Stock 0 bo'lganlarni nofaol qilish
+UPDATE products 
+SET is_active = FALSE 
+WHERE stock_quantity = 0
+RETURNING name, stock_quantity, is_active;
+```
+
+</details>
+
+---
+
+#### **Topshiriq 6: DELETE (O'rta)**
+
+1. Barcha "cancelled" buyurtmalarni o'chiring
+2. 2024-yilda ro'yxatdan o'tgan va hech qanday buyurtma bermagan mijozlarni o'chiring (EHTIYOTKORLIK bilan!)
+
+<details>
+<summary>📖 Yechim</summary>
+
+```sql
+-- 1. Cancelled buyurtmalar
+DELETE FROM orders 
+WHERE status = 'cancelled'
+RETURNING order_number, customer_id;
+
+-- 2. Nofaol mijozlar (ehtiyotkorlik!)
+-- Avval tekshiramiz
+SELECT c.id, c.first_name, c.last_name, c.registered_at
+FROM customers c
+LEFT JOIN orders o ON c.id = o.customer_id
+WHERE c.registered_at < '2025-01-01' 
+  AND o.id IS NULL;
+
+-- Keyin o'chiramiz (agar rost kerak bo'lsa)
+-- DELETE FROM customers 
+-- WHERE id IN (
+--     SELECT c.id FROM customers c
+--     LEFT JOIN orders o ON c.id = o.customer_id
+--     WHERE c.registered_at < '2025-01-01' 
+--       AND o.id IS NULL
+-- );
+```
+
+</details>
+
+---
+
+#### **Topshiriq 7: GROUP BY va HAVING (Qiyin)**
+
+1. Har bir kategoriyada qancha mahsulot bor?
+2. Har bir mijozning jami buyurtmalari soni
+3. Faqat 2 tadan ko'p buyurtma bergan mijozlarni ko'rsating
+
+<details>
+<summary>📖 Yechim</summary>
+
+```sql
+-- 1. Kategoriya bo'yicha mahsulotlar
+SELECT 
+    c.name AS category_name,
+    COUNT(p.id) AS product_count,
+    AVG(p.price) AS avg_price
+FROM categories c
+LEFT JOIN products p ON c.id = p.category_id
+GROUP BY c.id, c.name
+ORDER BY product_count DESC;
+
+-- 2. Mijoz bo'yicha buyurtmalar
+SELECT 
+    c.first_name || ' ' || c.last_name AS customer_name,
+    COUNT(o.id) AS total_orders,
+    SUM(o.final_amount) AS total_spent
+FROM customers c
+LEFT JOIN orders o ON c.id = o.customer_id
+GROUP BY c.id, c.first_name, c.last_name
+ORDER BY total_orders DESC;
+
+-- 3. 2 tadan ko'p buyurtma berganlar
+SELECT 
+    c.first_name || ' ' || c.last_name AS customer_name,
+    COUNT(o.id) AS order_count
+FROM customers c
+INNER JOIN orders o ON c.id = o.customer_id
+GROUP BY c.id, c.first_name, c.last_name
+HAVING COUNT(o.id) > 2
+ORDER BY order_count DESC;
+```
+
+</details>
+
+---
+
+#### **Topshiriq 8: JOIN (Qiyin)**
+
+1. Har bir buyurtmada qaysi mahsulotlar bor?
+2. Har bir mahsulot qaysi buyurtmalarda sotilgan?
+3. Mijoz nomi, buyurtma raqami va jami summa
+
+<details>
+<summary>📖 Yechim</summary>
+
+```sql
+-- 1. Buyurtma mahsulotlari
+SELECT 
+    o.order_number,
+    c.first_name || ' ' || c.last_name AS customer,
+    oi.product_name,
+    oi.quantity,
+    oi.unit_price,
+    oi.subtotal
+FROM orders o
+JOIN customers c ON o.customer_id = c.id
+JOIN order_items oi ON o.id = oi.order_id
+ORDER BY o.ordered_at DESC;
+
+-- 2. Mahsulot sotilishi
+SELECT 
+    p.name AS product_name,
+    COUNT(oi.id) AS times_sold,
+    SUM(oi.quantity) AS total_quantity,
+    SUM(oi.subtotal) AS total_revenue
+FROM products p
+LEFT JOIN order_items oi ON p.id = oi.product_id
+GROUP BY p.id, p.name
+ORDER BY total_revenue DESC;
+
+-- 3. To'liq buyurtma ma'lumoti
+SELECT 
+    c.first_name || ' ' || c.last_name AS customer_name,
+    c.email,
+    o.order_number,
+    o.status,
+    o.final_amount,
+    o.ordered_at
+FROM customers c
+JOIN orders o ON c.id = o.customer_id
+ORDER BY o.ordered_at DESC;
+```
+
+</details>
+
+---
+
+#### **Topshiriq 9: Murakkab So'rovlar (Qiyin)**
+
+1. Eng ko'p daromad keltiradigan 5 ta mahsulot
+2. Har bir shahardan qancha buyurtma berilgan?
+3. O'rtacha bahosi 4 dan yuqori bo'lgan mahsulotlar
+
+<details>
+<summary>📖 Yechim</summary>
+
+```sql
+-- 1. Top 5 daromadli mahsulotlar
+SELECT 
+    p.name,
+    p.category_id,
+    SUM(oi.quantity) AS total_sold,
+    SUM(oi.subtotal) AS total_revenue
+FROM products p
+JOIN order_items oi ON p.id = oi.product_id
+GROUP BY p.id, p.name, p.category_id
+ORDER BY total_revenue DESC
+LIMIT 5;
+
+-- 2. Shahar bo'yicha buyurtmalar
+SELECT 
+    c.city,
+    COUNT(o.id) AS total_orders,
+    SUM(o.final_amount) AS total_amount
+FROM customers c
+JOIN orders o ON c.id = o.customer_id
+GROUP BY c.city
+ORDER BY total_orders DESC;
+
+-- 3. Yaxshi baholangan mahsulotlar
+SELECT 
+    p.name,
+    AVG(r.rating) AS avg_rating,
+    COUNT(r.id) AS review_count
+FROM products p
+JOIN reviews r ON p.id = r.product_id
+GROUP BY p.id, p.name
+HAVING AVG(r.rating) > 4
+ORDER BY avg_rating DESC, review_count DESC;
+```
+
+</details>
+
+---
+
+#### **Topshiriq 10: Real Business So'rovlar (Juda Qiyin)**
+
+1. 2025-yil dekabr oyida qancha daromad bo'lgan?
+2. Eng yaxshi mijozni toping (eng ko'p pul sarflagan)
+3. Har bir kategoriyaning foizini hisoblang (jami sotuvdan)
+
+<details>
+<summary>📖 Yechim</summary>
+
+```sql
+-- 1. Dekabr oyi daromadi
+SELECT 
+    DATE_TRUNC('month', ordered_at) AS month,
+    COUNT(id) AS total_orders,
+    SUM(final_amount) AS total_revenue,
+    AVG(final_amount) AS avg_order_value
+FROM orders
+WHERE ordered_at BETWEEN '2025-12-01' AND '2025-12-31'
+  AND status != 'cancelled'
+GROUP BY DATE_TRUNC('month', ordered_at);
+
+-- 2. Eng yaxshi mijoz
+SELECT 
+    c.first_name || ' ' || c.last_name AS customer_name,
+    c.email,
+    c.city,
+    COUNT(o.id) AS total_orders,
+    SUM(o.final_amount) AS total_spent,
+    AVG(o.final_amount) AS avg_order_value
+FROM customers c
+JOIN orders o ON c.id = o.customer_id
+WHERE o.status != 'cancelled'
+GROUP BY c.id, c.first_name, c.last_name, c.email, c.city
+ORDER BY total_spent DESC
+LIMIT 1;
+
+-- 3. Kategoriya bo'yicha foiz
+WITH category_sales AS (
+    SELECT 
+        c.name AS category_name,
+        SUM(oi.subtotal) AS category_total
+    FROM categories c
+    JOIN products p ON c.id = p.category_id
+    JOIN order_items oi ON p.id = oi.product_id
+    JOIN orders o ON oi.order_id = o.id
+    WHERE o.status != 'cancelled'
+    GROUP BY c.id, c.name
+),
+total_sales AS (
+    SELECT SUM(final_amount) AS grand_total
+    FROM orders
+    WHERE status != 'cancelled'
+)
+SELECT 
+    cs.category_name,
+    cs.category_total,
+    ts.grand_total,
+    ROUND((cs.category_total / ts.grand_total * 100), 2) AS percentage
+FROM category_sales cs
+CROSS JOIN total_sales ts
+ORDER BY percentage DESC;
+```
+
+</details>
+
+---
+
+## 🎯 QO'SHIMCHA CHALLEN
+
+GE
+
+Agar barcha topshiriqlarni bajardingiz bo'lsangiz:
+
+1. **Inbox/Outbox Pattern:** `product_history` jadvali yaratib, har bir mahsulot narxi o'zgarganda tarixni saqlang
+2. **Trigger:** Mahsulot sotilganda avtomatik `stock_quantity` ni kamaytiradigan trigger yozing
+3. **View:** Eng ko'p sotiladigan mahsulotlar uchun view yarating
+4. **Index:** Tez-tez qidirilgan ustunlarga index qo'ying
+
+---
+
+## 💡 FEEDBACK
+
+Topshiriqlarni bajarganingizdan so'ng:
+- ✅ Har bir so'rovni o'zingizcha yozib ko'ring
+- ✅ Natijalarni taqqoslang
+- ✅ Tushunmagan joylarni qayta o'rganing
+- ✅ O'z loyihangizni boshlang!
 
 ---
 
