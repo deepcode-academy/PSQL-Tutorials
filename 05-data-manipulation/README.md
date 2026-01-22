@@ -1,267 +1,287 @@
-# 🐘 Data Manipulation
+# 🐘 05-DARS: MA'LUMOTLARNI O'ZGARTIRISH VA TRANZAKSIYALAR
 
-- Topics:
-  - Updating records with `UPDATE`
-  - Deleting records with `DELETE`
-  - Managing data integrity with constraints (foreign keys, unique)
-  - Transactions and rollback
+## 📋 MAVZU REJASI
 
-## Updating records with UPDATE
+- [UPDATE - Ma'lumotlarni yangilash](#-update---malumotlarni-yangilash)
+- [DELETE - Ma'lumotlarni o'chirish](#-delete---malumotlarni-ochirish)
+- [TRUNCATE - Jadvalni tozalash](#-truncate---jadvalni-tozalash)
+- [RETURNING - Natijani qaytarish](#-returning---natijani-qaytarish)
+- [Tranzaksiyalar (BEGIN, COMMIT, ROLLBACK)](#-tranzaksiyalar-begin-commit-rollback)
+- [Ma'lumotlar yaxlitligi (Data Integrity)](#-malumotlar-yaxlitligi-data-integrity)
+- [Amaliy mashg'ulot](#-amaliy-mashgulot)
 
-> [!NOTE]
-> PostgreSQLda ma'lumotlarni yangilash uchun `UPDATE` operatoridan foydalaniladi. Bu operator jadvaldagi mavjud malumotlarni yangilash uchun ishlatiladi.
+---
 
-### Syntax of UPDATE:
+## 🎯 DARS MAQSADI
+
+Ushbu darsda siz quyidagilarni o'rganasiz:
+
+✅ Mavjud ma'lumotlarni xavfsiz yangilash (`UPDATE`)  
+✅ Ma'lumotlarni shart asosida o'chirish (`DELETE`)  
+✅ Tranzaksiyalar yordamida ma'lumotlar xavfsizligini ta'minlash  
+✅ Xatolik yuz berganda o'zgarishlarni bekor qilish (`ROLLBACK`)  
+✅ O'zgartirilgan ma'lumotlarni darhol ko'rish (`RETURNING`)  
+✅ Real proyektlarda ma'lumotlarni boshqarish strategiyalari
+
+---
+
+## 🔄 UPDATE - MA'LUMOTLARNI YANGILASH
+
+### 📌 UPDATE nima?
+
+**UPDATE** — jadvaldagi mavjud qatorlarning qiymatlarini o'zgartirish uchun ishlatiladi.
+
+### 💻 Sintaksis
 
 ```sql
 UPDATE table_name
-SET column1 = value1, column2 = value2, ...
+SET column1 = value1, 
+    column2 = value2
 WHERE condition;
 ```
 
-- **Key Points:**
-  - `SET`: Qaysi ustunni yangi qiymat bilan yangilashni belgilaydi.
-  - `WHERE`: Qaysi malumotni yangilashni aniqlash uchun ishlatiladi. Agar `WHERE` shartini qo'shmasangiz, jadvaldagi barcha malumotlar yangilanadi.
-  - **Conditions**: Agar kerak bo'lsa, bir nechta shartlarni birlashtirish uchun AND, OR mantiqiy operatorlarini ishlatish mumkin.
+> [!CAUTION]
+> Agar `WHERE` shartini yozishni unutsangiz, jadvaldagi **BARCHA** qatorlar yangilanib ketadi!
 
-| client_id | first_name | last_name  | date_of_birth | email               | phone         | address            | city       | country     | postal_code | registration_date | last_activity_date | balance | status |
-|-----------|------------|------------|---------------|---------------------|---------------|--------------------|------------|-------------|-------------|-------------------|--------------------|---------|--------|
-| 1         | Ali        | Karimov    | 1990-01-01    | ali.karimov@mail.uz | +99890123456  | Tashkent, Block 15 | Tashkent   | Uzbekistan  | 100100      | 2024-01-01        | 2024-12-01         | 150.50  | TRUE   |
-| 2         | Dilnoza    | Tursunova  | 1985-05-12    | dilnoza@mail.uz     | +99890123457  | Samarkand, Block 7 | Samarkand  | Uzbekistan  | 140200      | 2024-02-15        | 2024-11-20         | 0.00    | FALSE  |
-| 3         | Bekzod     | Rasulov    | 1992-03-22    | bekzod@mail.uz      | +99890123458  | Bukhara, Block 9   | Bukhara    | Uzbekistan  | 200300      | 2024-05-10        | 2024-10-30         | 250.75  | TRUE   |
+### 🧪 Misollar
 
-
-1. Basic Update Example
-
-- `id = 2` bo'lgan clientni `city` ustunini `Navoiy` ga o'zgartiramiz:
+#### 1️⃣ Bitta ustunni yangilash
 
 ```sql
-UPDATE clients
-SET city = 'Navoiy'
-WHERE client_id = 2;
+-- IDsi 1 bo'lgan mijozning ismini o'zgartirish
+UPDATE mijozlar
+SET ism = 'Akmal'
+WHERE id = 1;
 ```
 
-2. Updating Multiple Columns
-
-- Agar bir vaqtning o'zida bir nechta ustunlarni yangilash kerak bo'lsa:
+#### 2️⃣ Bir nechta ustunni yangilash
 
 ```sql
-UPDATE clients
-SET city = 'Navoiy', balance = 250.75
-WHERE first_name = 'Ali';
+-- Mahsulot narxi va sonini yangilash
+UPDATE mahsulotlar
+SET narx = 5500000,
+    stock_quantity = 15
+WHERE slug = 'laptop-hp';
 ```
 
-3. Updating All Rows
-
-- Agar jadvaldagi barcha qatorlarni yangilash kerak bo'lsa:
+#### 3️⃣ Hisob-kitob bilan yangilash
 
 ```sql
-UPDATE clients
-SET city = 'Navoiy';
+-- Barcha IT bo'limi xodimlarining maoshini 10% ga oshirish
+UPDATE xodimlar
+SET maosh = maosh * 1.10
+WHERE bo'lim = 'IT';
 ```
 
-4. Conditional Updates with `AND` and `OR`
+---
 
-- `city = 'Toshkent'` va `status = TRUE` bo'lgan clientning `phone` ustunini `+998930850955` ga o'zgartiramiz:
+## 🗑️ DELETE - MA'LUMOTLARNI O'CHIRISH
 
-```sql
-UPDATE clients
-SET phone = '+998930850955'
-WHERE city = 'Toshkent' AND status = TRUE;
-```
+### 📌 DELETE nima?
 
-## Deleting records with DELETE
+**DELETE** — jadvaldan qatorlarni o'chirib tashlaydi.
 
-> [!NOTE]
-> PostgreSQLda ma'lumotlarni o'chirish uchun `DELETE` operatoridan foydalaniladi.
-
-
-### Syntax of the DELETE Statement
+### 💻 Sintaksis
 
 ```sql
 DELETE FROM table_name
 WHERE condition;
 ```
 
-- `table_name`: O'chirish amalga oshiriladigan jadval nomi.
-- `condition`: Qaysi satrlarni o'chirish kerakligini belgilaydigan shart.
+> [!WARNING]
+> `WHERE` shartisiz `DELETE` buyrug'i jadvaldagi barcha ma'lumotlarni o'chirib yuboradi, lekin jadvalning o'zi (strukturasi) qoladi.
 
-> [!CAUTION]
-> Agar `WHERE` sharti ko'rsatilmasa, jadvaldagi barcha yozuvlar o'chiriladi. Bunda ehtiyot bo'lish kerak!
+### 🧪 Misollar
 
-1.  Deleting specific records based on a condition
-
-- Agar jadvaldan faqat aniq bir shartga mos malumotni o'chirish kerak bo'lsa, `WHERE` sharti qo'llaniladi.
+#### 1️⃣ Shart bo'yicha o'chirish
 
 ```sql
-DELETE FROM clients
-WHERE client_id = 2;
+-- Faol bo'lmagan foydalanuvchilarni o'chirish
+DELETE FROM foydalanuvchilar
+WHERE is_active = FALSE;
 ```
 
-2. Deleting all records
-
-Agar barcha malumotlarni o'chirish kerak bo'lsa, `WHERE` sharti berilmaydi.
+#### 2️⃣ Murakkab shart bilan o'chirish
 
 ```sql
-DELETE FROM clients;
+-- Bekor qilingan va 30 kundan eski buyurtmalarni o'chirish
+DELETE FROM buyurtmalar
+WHERE status = 'cancelled' 
+  AND ordered_at < NOW() - INTERVAL '30 days';
 ```
 
-## Managing data integrity with constraints (foreign keys, unique)
+---
 
-### Foreign Key
+## 🧹 TRUNCATE - JADVALNI TOZALASH
 
-- Foreign key bir jadvaldagi ustun boshqa jadvaldagi ustunga bog'liq bo'lishini ta'minlaydi. Bu jadvallarni bir biriga bog'lash uchun ishlatiladi ishlatiladi.
+### 📌 TRUNCATE nima?
 
-### Customers Table
+**TRUNCATE** — jadvaldagi barcha ma'lumotlarni juda tez o'chirib tashlaydi.
 
-| customer_id | name            | email                |
-|-------------|-----------------|----------------------|
-| 1           | Anvar Aliyev    | aliyev@example.com   |
-| 2           | Nodira Karimova | karimova@example.com |
+**DELETE va TRUNCATE farqi:**
 
-### Orders Table
-
-| order_id | customer_id | order_date  | amount  |
-|----------|-------------|-------------|---------|
-| 1        | 1           | 2024-12-25  | 150.00  |
-| 2        | 2           | 2024-12-26  | 200.50  |
-
+| Xususiyat | DELETE | TRUNCATE |
+|-----------|--------|----------|
+| **Tezlik** | Sekinroq (har bir qatorni tekshiradi) | Juda tez (to'g'ridan-to'g'ri tozalaydi) |
+| **WHERE** | Ishlatish mumkin | Ishlatib bo'lmaydi |
+| **Rollback** | Mumkin | Ba'zi holatlarda qiyin |
+| **Triggerlar** | Ishga tushadi | Ishga tushmaydi |
 
 ```sql
--- Creating the Customers table
-CREATE TABLE customers (
-    customer_id SERIAL PRIMARY KEY, -- Primary key
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL -- Email must be unique
-);
-
--- Creating the Orders table
-CREATE TABLE orders (
-    order_id SERIAL PRIMARY KEY, -- Primary key
-    customer_id INT NOT NULL,
-    order_date DATE NOT NULL,
-    amount NUMERIC(10, 2) NOT NULL,
-    CONSTRAINT fk_customer FOREIGN KEY (customer_id)
-    REFERENCES customers (customer_id) ON DELETE CASCADE
-);
+-- Jadvalni to'liq tozalash
+TRUNCATE TABLE loglar;
 ```
 
-# PRACTICS
+---
 
-## Task 1
+## 🔙 RETURNING - NATIJANI QAYTARISH
 
-- Sizda `students` nomli jadval mavjud. Jadvalda quyidagi ustunlar bor:
-   - **id (integer)** - talabalar id raqamlari (PRIMARY KEY)
-   - **name (varchar)** - talabaning ismi
-   - **age (integer)** - talabaning yoshi
-   - **grade (varchar)** - talabaning bahosi (masalan, A, B, C, D)
-   - **city (varchar)** - talabaning yashash shahri
+### 📌 RETURNING nima?
 
-### Data
+O'zgarish amalga oshgandan so'ng, qaysi qatorlar o'zgarganini darhol ko'rish uchun ishlatiladi.
 
-| id | name    | age | grade | city      |
-|----|---------|-----|-------|-----------|
-| 1  | Ali     | 19  | B     | Tashkent  |
-| 2  | Salim   | 18  | C     | Samarkand |
-| 3  | Malika  | 20  | A     | Bukhara   |
-| 4  | Shoxruh | 21  | D     | Tashkent  |
-| 5  | Laylo   | 22  | C     | Nukus     |
+```sql
+-- Narxni yangilab, yangi narxni natija sifatida olish
+UPDATE mahsulotlar
+SET narx = narx + 50000
+WHERE kategoriya = 'Kitob'
+RETURNING id, nom, narx;
+```
 
-### Tasks
+**Natija:**
+```
+ id |       nom       |  narx
+----+-----------------+--------
+ 7  | PostgreSQL Book | 300000
+ 8  | Python Book     | 350000
+```
 
-- `Tashkent` shahrida yashovchi barcha talabalarni toping va ularning `grade` ustunini `B` ga o'zgartiring.
-- Yoshi `20` yoki undan katta bo'lgan talabalarni toping va ularning yashash shahrini `Tashkent` ga o'zgartiring.
-- `grade` ustuni `C` bo'lgan barcha talabalar uchun `age` ni `1` yoshga oshiring.
+---
 
-## Task 2
+## 🛡️ TRANZAKSIYALAR (BEGIN, COMMIT, ROLLBACK)
 
-- Sizda `employees` nomli jadval bor. Jadvalda quyidagi ustunlar mavjud:
-   - **id (integer)** - xodimning id raqami (asosiy kalit, PRIMARY KEY)
-   - **name (varchar)** - xodimning ismi
-   - **department (varchar)** - xodim ishlaydigan bo'lim (masalan, HR, IT, Sales)
-   - **salary (integer)** - xodimning oyligi
-   - **experience (integer)** - xodimning ish tajribasi (yillarda)
-   - **city (varchar)** - xodim yashayotgan shahar
+### 📌 Tranzaksiya nima?
 
-### Data
+**Tranzaksiya** — bir nechta SQL buyruqlarini bitta "paket"ga birlashtirish. Ya'ni, yoki barcha buyruqlar muvaffaqiyatli bajariladi, yoki birontasi xato bo'lsa, hech biri bajarilmaydi (hammasi bekor qilinadi).
 
-| id | name     | department | salary | experience | city       |
-|----|----------|------------|--------|------------|------------|
-| 1  | Nodir    | IT         | 1200   | 3          | Tashkent   |
-| 2  | Malika   | HR         | 900    | 5          | Samarkand  |
-| 3  | Shoxruh  | Sales      | 1500   | 7          | Bukhara    |
-| 4  | Laylo    | IT         | 1000   | 2          | Nukus      |
-| 5  | Kamol    | HR         | 850    | 6          | Tashkent   |
-| 6  | Saida    | Sales      | 1100   | 4          | Andijan    |
+**Mashhur misol: Bank o'tkazmasi**
+1. Ali hisobidan 100 ming so'm ayirish.
+2. Vali hisobiga 100 ming so'm qo'shish.
+*(Agar 2-qadamda chiroq o'chib qolsa, 1-qadam ham bekor bo'lishi shart!)*
 
-### Tasks
-- Toshkent shahridagi barcha xodimlarning oyliklarini `10%` ga oshiring.
-- Tajribasi `5` yildan oshgan xodimlarni toping va ularning bo'limini `"Senior"` qilib yangilang.
-- Oyligi `1000` dan kam bo'lgan barcha xodimlarni toping va ularning oyligini `950` ga o'zgartiring.
-- `"Sales"` bo'limida ishlaydigan xodimlarning shaharlarini `"Tashkent"` qilib yangilang.
-- `"IT"` bo'limida ishlaydigan, tajribasi `3` yildan kam bo'lgan xodimlarning oyliklarini `20%` ga oshiring.
+### 💻 Kalit so'zlar
 
-## Task 3
+- `BEGIN` — Tranzaksiyani boshlash.
+- `COMMIT` — Barcha o'zgarishlarni tasdiqlash (saqlash).
+- `ROLLBACK` — Barcha o'zgarishlarni bekor qilish (ortga qaytarish).
 
-- Sizda `products` nomli jadval mavjud. Jadval quyidagi ustunlardan iborat:
-  - **id (integer)** - mahsulot ID (asosiy kalit, PRIMARY KEY)
-  - **name (varchar)** - mahsulot nomi
-  - **category (varchar)** - mahsulot kategoriyasi (masalan, Electronics, Clothing, Food)
-  - **price (integer)** - mahsulot narxi
-  - **quantity (integer)** - mahsulot ombordagi miqdori
-  - **supplier (varchar)** - yetkazib beruvchi nomi
+### 🧪 Misol
 
-| id  | name       | category     | price | quantity | supplier      |
-|-----|------------|--------------|-------|----------|---------------|
-| 1   | Laptop     | Electronics  | 1200  | 10       | TechStore     |
-| 2   | T-Shirt    | Clothing     | 25    | 50       | FashionHub    |
-| 3   | Phone      | Electronics  | 800   | 5        | TechStore     |
-| 4   | Bread      | Food         | 2     | 100      | FoodMart      |
-| 5   | TV         | Electronics  | 500   | 2        | HomeAppliance |
-| 6   | Jacket     | Clothing     | 60    | 20       | FashionHub    |
-| 7   | Milk       | Food         | 1     | 200      | FoodMart      |
-| 8   | Tablet     | Electronics  | 300   | 0        | TechStore     |
-| 9   | Headphones | Electronics  | 50    | 15       | AudioWorld    |
-| 10  | Sneakers   | Clothing     | 80    | 0        | FashionHub    |
+```sql
+BEGIN;
 
-### Tasks
+-- 1. Pulni ayirish
+UPDATE hisoblar SET balance = balance - 100000 WHERE user_id = 1;
 
-- `quantity` 0 bo'lgan barcha mahsulotlarni o'chirib tashlang.
-- `Food` kategoriyasidagi `quantity` 50 dan kam bo'lgan mahsulotlarni o'chiring.
-- `TechStore` yetkazib beruvchidan bo'lgan va `price` 1000 dan yuqori mahsulotlarni o'chirib tashlang.
-- `Electronics` kategoriyasidagi `price` 100 dan kam bo'lgan barcha mahsulotlarni o'chirib tashlang.
-- `Clothing` kategoriyasidagi `price` 30 dan kam yoki teng bo'lgan mahsulotlarni o'chiring.
+-- 2. Pulni qo'shish
+UPDATE hisoblar SET balance = balance + 100000 WHERE user_id = 2;
 
+-- Agar hammasi joyida bo'lsa:
+COMMIT;
 
-## Task 4
+-- Agar biror xato bo'lsa (masalan, user 2 topilmasa):
+ROLLBACK;
+```
 
-- Sizda students nomli jadval mavjud. Jadval quyidagi ustunlardan iborat:
-    - **id (integer)** - talaba ID (asosiy kalit, PRIMARY KEY)
-    - **name (varchar)** - talabaning ismi
-    - **age (integer)** - talabaning yoshi
-    - **gender (varchar)** - talabaning jinsi (Male, Female)
-    - **grade (integer)** - talabaning umumiy bahosi (0 dan 100 gacha)
-    - **city (varchar)** - talaba yashaydigan shahar
-    - **scholarship (varchar)** - talabaning stipendiyasi bor yoki yo'qligi (Yes, No)
+---
 
-| id  | name    | age | gender	 | grade  | city      | scholarship |
-|-----|---------|-----|---------|--------|-----------|-------------|
-| 1   | Ali     | 19  | Male    | 85     | Tashkent  | Yes         |
-| 2   | Laylo   | 20  | Female	 | 90     | Samarkand | Yes         |
-| 3   | Jasur   | 18  | Male    | 40     | Bukhara   | No          |
-| 4   | Malika  | 22  | Female  | 75     | Tashkent  | Yes         |
-| 5   | Timur   | 21  | Male    | 50     | Andijan   | No          |
-| 6   | Zarina  | 20  | Female  | 30     | Tashkent  | No          |
-| 7   | Shoxruh | 19  | Male    | 65     | Nukus     | Yes         |
-| 8   | Nargiza | 23  | Female  | 70     | Bukhara   | No          |
-| 9   | Davron  | 20  | Male    | 55     | Tashkent  | No          |
-| 10  | Sabina  | 19  | Female  | 35     | Andijan   | No          |
+## 🎓 AMALIY MASHG'ULOT
 
-### Tasks
+### 📊 MIJOZLAR VA BALANCE JADVALI
 
-- `grade` 50 dan past bo'lgan barcha talabalarni o'chiring.
-- `city` "Tashkent" bo'lgan va stipendiyasi yo'q (`scholarship = 'No'`) bo'lgan barcha talabalarni o'chiring.
-- `age` 20 dan katta va `grade` 60 dan yuqori bo'lgan barcha talabalarni o'chirib tashlang.
-- `scholarship` "Yes" bo'lgan va `city` "Samarkand" bo'lgan talabalarni o'chiring.
-- `gender` "Male" bo'lgan va `grade` 70 dan past bo'lgan barcha talabalarni o'chirib tashlang.
-- Barcha talabalarning ma'lumotlarini o'chiring, agar ular "Andijan" shahridan bo'lsa.
+Quyidagi ma'lumotlar bilan ishlang:
+
+```
+┌────┬────────────┬─────────────┬──────────────┬──────────┬───────────┐
+│ id │ ism        │ shahar      │ balance      │ status   │ type      │
+├────┼────────────┼─────────────┼──────────────┼──────────┼───────────┤
+│ 1  │ Ali        │ Toshkent    │ 1,500,000    │ Active   │ Premium   │
+│ 2  │ Madina     │ Samarqand   │ 450,000      │ Active   │ Standard  │
+│ 3  │ Bekzod     │ Buxoro      │ 2,000,000    │ Inactive │ Premium   │
+│ 4  │ Dilnoza    │ Toshkent    │ 0            │ Active   │ Standard  │
+│ 5  │ Sardor     │ Farg'ona    │ 750,000      │ Active   │ Standard  │
+│ 6  │ Zarina     │ Toshkent    │ 3,200,000    │ Active   │ Gold      │
+│ 7  │ Abbos      │ Namangan    │ 150,000      │ Inactive │ Basic     │
+└────┴────────────┴─────────────┴──────────────┴──────────┴───────────┘
+```
+
+---
+
+### ✏️ Topshiriqlar
+
+#### 1️⃣ UPDATE - Oddiy yangilash
+
+- Toshkentlik barcha mijozlarning balansiga 50,000 so'm bonus qo'shing.
+- Balansi 0 bo'lgan mijozlarning statusini 'Inactive' ga o'zgartiring.
+- 'Samarqand' shahrini 'Samarkand' deb to'g'irlang.
+
+---
+
+#### 2️⃣ UPDATE - Shartli yangilash
+
+- 'Premium' foydalanuvchilarning balansini 10% ga oshiring.
+- IDsi 3 bo'lgan foydalanuvchini 'Active' qiling va balansini 0 qiling.
+- Balansi 1,000,000 dan yuqori va 'Active' bo'lganlarni 'Gold' turiga o'tkazing.
+
+---
+
+#### 3️⃣ DELETE - O'chirish
+
+- Statusi 'Inactive' bo'lgan va balansi 200,000 dan kam bo'lgan mijozlarni o'chiring.
+- 'Basic' turidagi barcha mijozlarni o'chirib tashlang.
+- Farg'onalik barcha foydalanuvchilarni bazadan o'chiring.
+
+---
+
+#### 4️⃣ RETURNING operatori
+
+- IDsi 5 bo'lgan mijozning shahrini 'Toshkent' ga o'zgartiring va uning yangi ma'lumotlarini qaytaring.
+- Barcha 'Active' mijozlarning balansini 5% ga kamaytiring va faqat ularning ismlari va yangi balansini ko'ring.
+
+---
+
+#### 5️⃣ Tranzaksiyalar (Mantiqiy)
+
+- Tranzaksiya boshlang: 1-mijozdan 200,000 ayiring va 2-mijozga qo'shing. O'zgarishlarni saqlang.
+- Tranzaksiya boshlang: Barcha foydalanuvchilarni o'chiring. Keyin fikringizdan qayting va o'zgarishni bekor qiling.
+
+---
+
+## 🎯 DARS YAKUNLARI
+
+### ✅ Siz o'rgandingiz:
+
+- [x] UPDATE bilan ma'lumotlarni shartli yangilash
+- [x] DELETE va TRUNCATE farqi
+- [x] Ma'lumotlarni o'chirib yubormaslik uchun ehtiyot choralari
+- [x] RETURNING orqali o'zgargan qatorlarni ko'rish
+- [x] BEGIN, COMMIT, ROLLBACK bilan xavfsiz ishlash
+
+### 📚 Keyingi darsda:
+
+**06-DARS: Jadvallarni bog'lash (JOINS)**
+- INNER JOIN, LEFT JOIN, RIGHT JOIN  
+- Bir nechta jadvallar bilan birga ishlash  
+- Foreign Key bilan munosabatlar  
+- Murakkab so'rovlar yasash
+
+---
+
+## 📖 QO'SHIMCHA RESURSLAR
+
+### 💡 Professional maslahatlar
+
+1. **Doimo tekshiring:** `UPDATE` yoki `DELETE` qilishdan oldin, shartingiz to'g'riligini `SELECT` orqali tekshirib ko'ring.
+2. **Tranzaksiyalardan foydalaning:** Katta o'zgarishlar qilayotganda `BEGIN` ishlatish xatolikdan asraydi.
+3. **Backup:** Muhim ma'lumotlarni o'chirishdan oldin ularning nusxasini oling.
+4. **RETURNING:** Web-backendlarda (Node.js, Python) bu operator juda qo'l keladi, chunki bitta so'rovda ham yangilab, ham yangi ma'lumotni front-endga qaytarish mumkin.
