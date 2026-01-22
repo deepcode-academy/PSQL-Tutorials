@@ -872,294 +872,57 @@ INSERT INTO xodimlar (ism, familiya, lavozim, bo'lim, maosh, ish_boshlagan_sana,
 
 #### Topshiriq 1: COUNT - Asosiy
 
-**Savol:**
 1. Jami nechta xodim bor?
 2. IT bo'limida nechta xodim bor?
 3. Toshkentda yashaydigan xodimlar soni?
-
-<details>
-<summary><b>📖 Javob</b></summary>
-
-```sql
--- 1. Jami xodimlar
-SELECT COUNT(*) AS "Jami xodimlar" FROM xodimlar;
-
--- 2. IT bo'limi
-SELECT COUNT(*) AS "IT xodimlari" 
-FROM xodimlar 
-WHERE bo'lim = 'IT';
-
--- 3. Toshkent
-SELECT COUNT(*) AS "Toshkent xodimlari" 
-FROM xodimlar 
-WHERE shahar = 'Toshkent';
-```
-
-**Natija:**
-```
- Jami xodimlar
----------------
-            10
-
- IT xodimlari
---------------
-             5
-
- Toshkent xodimlari
---------------------
-                  6
-```
-</details>
 
 ---
 
 #### Topshiriq 2: SUM va AVG
 
-**Savol:**
 1. Barcha xodimlarning umumiy maoshi qancha?
 2. O'rtacha maosh qancha?
 3. IT bo'limining umumiy va o'rtacha maoshi?
-
-<details>
-<summary><b>📖 Javob</b></summary>
-
-```sql
--- 1. Umumiy maosh
-SELECT SUM(maosh) AS "Umumiy maosh" FROM xodimlar;
-
--- 2. O'rtacha maosh
-SELECT ROUND(AVG(maosh), 0) AS "O'rtacha maosh" FROM xodimlar;
-
--- 3. IT bo'limi
-SELECT 
-    SUM(maosh) AS "Umumiy maosh",
-    ROUND(AVG(maosh), 0) AS "O'rtacha maosh"
-FROM xodimlar
-WHERE bo'lim = 'IT';
-```
-
-**Natija:**
-```
- Umumiy maosh
---------------
-     76000000
-
- O'rtacha maosh
-----------------
-        7600000
-
- Umumiy maosh | O'rtacha maosh
---------------+----------------
-     39500000 |        7900000
-```
-</details>
 
 ---
 
 #### Topshiriq 3: MIN va MAX
 
-**Savol:**
 1. Eng kam va eng yuqori maosh qancha?
 2. Qaysi xodim eng ko'p maosh oladi?
 3. Har bir bo'limdagi eng yuqori maosh?
-
-<details>
-<summary><b>📖 Javob</b></summary>
-
-```sql
--- 1. Min va Max
-SELECT 
-    MIN(maosh) AS "Eng kam maosh",
-    MAX(maosh) AS "Eng yuqori maosh"
-FROM xodimlar;
-
--- 2. Eng ko'p maosh oluvchi
-SELECT ism, familiya, lavozim, maosh
-FROM xodimlar
-WHERE maosh = (SELECT MAX(maosh) FROM xodimlar);
-
--- 3. Bo'lim bo'yicha
-SELECT 
-    bo'lim,
-    MAX(maosh) AS "Eng yuqori maosh"
-FROM xodimlar
-GROUP BY bo'lim
-ORDER BY "Eng yuqori maosh" DESC;
-```
-</details>
 
 ---
 
 #### Topshiriq 4: GROUP BY
 
-**Savol:**
 1. Har bir bo'limda nechta xodim bor?
 2. Har bir shaharda nechta xodim bor?
 3. Bo'lim bo'yicha to'liq statistika (soni, umumiy maosh, o'rtacha)?
-
-<details>
-<summary><b>📖 Javob</b></summary>
-
-```sql
--- 1. Bo'lim bo'yicha
-SELECT 
-    bo'lim,
-    COUNT(*) AS "Xodimlar soni"
-FROM xodimlar
-GROUP BY bo'lim
-ORDER BY "Xodimlar soni" DESC;
-
--- 2. Shahar bo'yicha
-SELECT 
-    shahar,
-    COUNT(*) AS "Xodimlar soni"
-FROM xodimlar
-GROUP BY shahar
-ORDER BY "Xodimlar soni" DESC;
-
--- 3. To'liq statistika
-SELECT 
-    bo'lim,
-    COUNT(*) AS "Soni",
-    SUM(maosh) AS "Umumiy maosh",
-    ROUND(AVG(maosh), 0) AS "O'rtacha maosh",
-    MIN(maosh) AS "Min",
-    MAX(maosh) AS "Max"
-FROM xodimlar
-GROUP BY bo'lim
-ORDER BY "Umumiy maosh" DESC;
-```
-
-**Natija:**
-```
-  bo'lim   | Soni | Umumiy maosh | O'rtacha maosh |   Min    |   Max
------------+------+--------------+----------------+----------+----------
- IT        |    5 |     39500000 |        7900000 |  4500000 | 12000000
- Marketing |    2 |     13000000 |        6500000 |  6000000 |  7000000
- Finance   |    1 |      6000000 |        6000000 |  6000000 |  6000000
- Sales     |    1 |      6500000 |        6500000 |  6500000 |  6500000
- HR        |    1 |      5500000 |        5500000 |  5500000 |  5500000
-```
-</details>
 
 ---
 
 #### Topshiriq 5: HAVING
 
-**Savol:**
 1. Umumiy maoshi 10,000,000 dan yuqori bo'lgan bo'limlar?
 2. 2+ xodim bo'lgan bo'limlar?
 3. O'rtacha maoshi 7,000,000 dan yuqori bo'limlar?
-
-<details>
-<summary><b>📖 Javob</b></summary>
-
-```sql
--- 1. Umumiy maosh bo'yicha
-SELECT 
-    bo'lim,
-    COUNT(*) AS "Xodimlar",
-    SUM(maosh) AS "Umumiy maosh"
-FROM xodimlar
-GROUP BY bo'lim
-HAVING SUM(maosh) > 10000000
-ORDER BY "Umumiy maosh" DESC;
-
--- 2. 2+ xodim
-SELECT 
-    bo'lim,
-    COUNT(*) AS "Xodimlar soni"
-FROM xodimlar
-GROUP BY bo'lim
-HAVING COUNT(*) >= 2;
-
--- 3. O'rtacha maosh
-SELECT 
-    bo'lim,
-    COUNT(*) AS "Xodimlar",
-    ROUND(AVG(maosh), 0) AS "O'rtacha maosh"
-FROM xodimlar
-GROUP BY bo'lim
-HAVING AVG(maosh) > 7000000
-ORDER BY "O'rtacha maosh" DESC;
-```
-</details>
 
 ---
 
 #### Topshiriq 6: String Funksiyalari
 
-**Savol:**
 1. Xodimlarning to'liq ismi (ISM + FAMILIYA)?
 2. Email yarating (ism.familiya@company.uz)?
 3. Lavozimi "Manager" so'zi bilan tugaydiganlar?
-
-<details>
-<summary><b>📖 Javob</b></summary>
-
-```sql
--- 1. To'liq ism
-SELECT 
-    CONCAT(ism, ' ', familiya) AS "To'liq ism",
-    lavozim
-FROM xodimlar;
-
--- 2. Email
-SELECT 
-    ism,
-    familiya,
-    LOWER(CONCAT(ism, '.', familiya, '@company.uz')) AS "Email"
-FROM xodimlar;
-
--- 3. Manager lavozimlar
-SELECT 
-    CONCAT(ism, ' ', familiya) AS "To'liq ism",
-    lavozim
-FROM xodimlar
-WHERE lavozim LIKE '%Manager';
-```
-</details>
 
 ---
 
 #### Topshiriq 7: Sana Funksiyalari
 
-**Savol:**
 1. Har bir xodim necha yil ishlagan?
 2. 2021-yilda ishga kirganlar?
 3. 3+ yil ishlagan xodimlar?
-
-<details>
-<summary><b>📖 Javob</b></summary>
-
-```sql
--- 1. Ish tajribasi
-SELECT 
-    CONCAT(ism, ' ', familiya) AS "Xodim",
-    ish_boshlagan_sana,
-    DATE_PART('year', AGE(CURRENT_DATE, ish_boshlagan_sana)) AS "Yillar",
-    DATE_PART('month', AGE(CURRENT_DATE, ish_boshlagan_sana)) AS "Oylar"
-FROM xodimlar
-ORDER BY ish_boshlangan_sana;
-
--- 2. 2021-yil
-SELECT 
-    CONCAT(ism, ' ', familiya) AS "Xodim",
-    lavozim,
-    ish_boshlagan_sana
-FROM xodimlar
-WHERE DATE_PART('year', ish_boshlagan_sana) = 2021;
-
--- 3. 3+ yil tajriba
-SELECT 
-    CONCAT(ism, ' ', familiya) AS "Xodim",
-    lavozim,
-    AGE(CURRENT_DATE, ish_boshlagan_sana) AS "Ish tajribasi"
-FROM xodimlar
-WHERE DATE_PART('year', AGE(CURRENT_DATE, ish_boshlagan_sana)) >= 3
-ORDER BY ish_boshlagan_sana;
-```
-</details>
 
 ---
 
