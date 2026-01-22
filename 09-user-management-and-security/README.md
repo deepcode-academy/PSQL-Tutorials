@@ -18,6 +18,22 @@ Ushbu darsda siz ma'lumotlar bazasini qanday qilib qal'aga aylantirishni o'rgana
 
 ---
 
+## 📊 TUSHUNTIRISH UCHUN JADVAL
+
+Dars davomidagi misollarni tushunish osonroq bo'lishi uchun, bizda quyidagi `sotuvlar` jadvali bor deb tasavvur qilamiz:
+
+**Sotuvlar (sales):**
+```
+┌────┬──────────────┬──────────┬───────────┐
+│ id │ mahsulot     │ narx     │ sana      │
+├────┼──────────────┼──────────┼───────────┤
+│ 1  │ iPhone 15    │ 1200     │ 2024-01-10│
+│ 2  │ MacBook Pro  │ 2500     │ 2024-01-12│
+└────┴──────────────┴──────────┴───────────┘
+```
+
+---
+
 ## 👥 ROLE VA USER TUSHUNCHASI
 
 PostgreSQLda foydalanuvchilar va ularning guruhlari o'rtasida katta farq yo'q. Hammasi **ROLE** deb ataladi.
@@ -39,48 +55,48 @@ CREATE ROLE admin_user SUPERUSER LOGIN PASSWORD 'secret';
 
 ## 🔐 GRANT VA REVOKE
 
-Bu buyruqlar foydalanuvchilarga qanday amallarni bajarishga ruxsat berishni belgilaydi.
+Bu buyruqlar foydalanuvchilarga qanday amallarni bajarishga ruxsat berishni belgilaydi. Biz yuqoridagi `sotuvlar` jadvalidan foydalanamiz.
 
 ### 1️⃣ GRANT (Ruxsat berish)
 ```sql
--- Faqat SELECT (o'qish) huquqini berish
-GRANT SELECT ON xodimlar TO aziz;
+-- Azizga faqat o'qish huquqini berish
+GRANT SELECT ON sotuvlar TO aziz;
+
+-- Azizga ma'lumot qo'shish huquqini ham berish
+GRANT INSERT ON sotuvlar TO aziz;
 
 -- Barcha huquqlarni berish (SELECT, INSERT, UPDATE, DELETE)
-GRANT ALL PRIVILEGES ON TABLE buyurtmalar TO aziz;
-
--- Database-ga ulanish huquqini berish
-GRANT CONNECT ON DATABASE darslik TO aziz;
+GRANT ALL PRIVILEGES ON TABLE sotuvlar TO aziz;
 ```
 
 ### 2️⃣ REVOKE (Ruxsatni qaytarib olish)
 ```sql
--- SELECT huquqini qaytarib olish
-REVOKE SELECT ON xodimlar FROM aziz;
+-- Azizdan 'sotuvlar' jadvalini o'chirish (DELETE) huquqini qaytarib olish
+REVOKE DELETE ON sotuvlar FROM aziz;
 ```
 
 ---
 
 ## 🏗️ RBAC - ROLE BASED ACCESS CONTROL
 
-Katta proyektlarda har bir foydalanuvchiga alohida huquq berish xato yo'l. Buning o'rniga "Rollar" yaratiladi va foydalanuvchilar shu ro'llarga a'zo qilinadi.
+Katta proyektlarda har bir foydalanuvchiga alohida huquq berish xato yo'l. Buning o'rniga "Rollar" yaratiladi.
 
 **Ssenariy:**
-1. `readonly` roli - faqat ko'ra oladi.
-2. `developer` roli - o'zgartira oladi.
+1. `manager` roli - `sotuvlar` jadvalida hamma narsani qila oladi.
+2. `viewer` roli - faqat ko'ra oladi.
 
 ```sql
 -- 1. Rollarni yaratamiz
-CREATE ROLE readonly;
-CREATE ROLE developer;
+CREATE ROLE manager;
+CREATE ROLE viewer;
 
 -- 2. Rollarga huquqlarni beramiz
-GRANT SELECT ON ALL TABLES IN SCHEMA public TO readonly;
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO developer;
+GRANT SELECT ON sotuvlar TO viewer;
+GRANT ALL PRIVILEGES ON sotuvlar TO manager;
 
--- 3. Foydalanuvchilarni ro'llarga biriktiramiz
-GRANT readonly TO anvar;
-GRANT developer TO bekzod;
+-- 3. Haqiqiy foydalanuvchilarni shu rollarga biriktiramiz
+GRANT viewer TO aziz;    -- Aziz endi faqat ko'ra oladi
+GRANT manager TO sardor; -- Sardor hamma narsani qila oladi
 ```
 
 ---
