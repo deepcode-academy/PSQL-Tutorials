@@ -66,10 +66,14 @@ graph TB
     A --> G[📱 Apple]
     A --> H[🛒 Amazon]
     
-    style A fill:#336791,color:#fff
-    style B fill:#1DB954,color:#fff
-    style C fill:#E4405F,color:#fff
-    style D fill:#9146FF,color:#fff
+    style A fill:#336791,color:#fff,stroke:#2c5282,stroke-width:3px
+    style B fill:#1DB954,color:#fff,stroke:#15803d,stroke-width:2px
+    style C fill:#E4405F,color:#fff,stroke:#be123c,stroke-width:2px
+    style D fill:#9146FF,color:#fff,stroke:#6d28d9,stroke-width:2px
+    style E fill:#000000,color:#fff,stroke:#374151,stroke-width:2px
+    style F fill:#E50914,color:#fff,stroke:#991b1b,stroke-width:2px
+    style G fill:#555555,color:#fff,stroke:#1f2937,stroke-width:2px
+    style H fill:#FF9900,color:#000,stroke:#ea580c,stroke-width:2px
 ```
 
 **Nima uchun ular PostgreSQL'ni tanlagan?**
@@ -98,11 +102,15 @@ graph LR
     D --> H[Parallel ishlar bir-biriga ta'sir qilmaydi]
     E --> I[Ma'lumotlar yo'qolmaydi]
     
-    style A fill:#336791,color:#fff
-    style B fill:#4CAF50,color:#fff
-    style C fill:#2196F3,color:#fff
-    style D fill:#FF9800,color:#fff
-    style E fill:#F44336,color:#fff
+    style A fill:#336791,color:#fff,stroke:#1e40af,stroke-width:4px
+    style B fill:#10b981,color:#fff,stroke:#059669,stroke-width:3px
+    style C fill:#3b82f6,color:#fff,stroke:#1d4ed8,stroke-width:3px
+    style D fill:#f59e0b,color:#fff,stroke:#d97706,stroke-width:3px
+    style E fill:#ef4444,color:#fff,stroke:#dc2626,stroke-width:3px
+    style F fill:#a7f3d0,color:#065f46,stroke:#059669,stroke-width:2px
+    style G fill:#bfdbfe,color:#1e3a8a,stroke:#1d4ed8,stroke-width:2px
+    style H fill:#fde68a,color:#78350f,stroke:#d97706,stroke-width:2px
+    style I fill:#fecaca,color:#7f1d1d,stroke:#dc2626,stroke-width:2px
 ```
 
 **Amaliy misol:**
@@ -224,11 +232,15 @@ graph TD
     D --> H[Har bir qatorga alohida ruxsat]
     E --> I[Barcha harakatlar yoziladi]
     
-    style A fill:#336791,color:#fff
-    style B fill:#4CAF50,color:#fff
-    style C fill:#2196F3,color:#fff
-    style D fill:#FF9800,color:#fff
-    style E fill:#F44336,color:#fff
+    style A fill:#7c3aed,color:#fff,stroke:#5b21b6,stroke-width:4px
+    style B fill:#10b981,color:#fff,stroke:#059669,stroke-width:3px
+    style C fill:#3b82f6,color:#fff,stroke:#1d4ed8,stroke-width:3px
+    style D fill:#f59e0b,color:#fff,stroke:#d97706,stroke-width:3px
+    style E fill:#ef4444,color:#fff,stroke:#dc2626,stroke-width:3px
+    style F fill:#d1fae5,color:#065f46,stroke:#059669,stroke-width:2px
+    style G fill:#dbeafe,color:#1e3a8a,stroke:#1d4ed8,stroke-width:2px
+    style H fill:#fef3c7,color:#78350f,stroke:#d97706,stroke-width:2px
+    style I fill:#fee2e2,color:#7f1d1d,stroke:#dc2626,stroke-width:2px
 ```
 
 ### 4️⃣ **Kengaytirish Imkoniyatlari**
@@ -267,7 +279,15 @@ graph LR
     D --> H[Katta jadvallarni bo'lib saqlash]
     E --> I[Tez-tez ishlatiladigan natijalarni kesh qilish]
     
-    style A fill:#336791,color:#fff
+    style A fill:#dc2626,color:#fff,stroke:#991b1b,stroke-width:4px
+    style B fill:#8b5cf6,color:#fff,stroke:#6d28d9,stroke-width:3px
+    style C fill:#06b6d4,color:#fff,stroke:#0e7490,stroke-width:3px
+    style D fill:#f59e0b,color:#fff,stroke:#d97706,stroke-width:3px
+    style E fill:#ec4899,color:#fff,stroke:#be185d,stroke-width:3px
+    style F fill:#ede9fe,color:#4c1d95,stroke:#6d28d9,stroke-width:2px
+    style G fill:#cffafe,color:#164e63,stroke:#0e7490,stroke-width:2px
+    style H fill:#fef3c7,color:#78350f,stroke:#d97706,stroke-width:2px
+    style I fill:#fce7f3,color:#831843,stroke:#be185d,stroke-width:2px
 ```
 
 ---
@@ -297,11 +317,21 @@ graph TB
     E --> E1[createdb - database yaratish]
     E --> E2[dropdb - database o'chirish]
     
-    style A fill:#336791,color:#fff
-    style B fill:#4CAF50,color:#fff
-    style C fill:#2196F3,color:#fff
-    style D fill:#FF9800,color:#fff
-    style E fill:#9C27B0,color:#fff
+    style A fill:#336791,color:#fff,stroke:#1e40af,stroke-width:4px
+    style B fill:#10b981,color:#fff,stroke:#059669,stroke-width:3px
+    style C fill:#3b82f6,color:#fff,stroke:#1d4ed8,stroke-width:3px
+    style D fill:#f59e0b,color:#fff,stroke:#d97706,stroke-width:3px
+    style E fill:#8b5cf6,color:#fff,stroke:#6d28d9,stroke-width:3px
+    style B1 fill:#d1fae5,color:#065f46,stroke:#059669,stroke-width:2px
+    style B2 fill:#d1fae5,color:#065f46,stroke:#059669,stroke-width:2px
+    style B3 fill:#d1fae5,color:#065f46,stroke:#059669,stroke-width:2px
+    style C1 fill:#dbeafe,color:#1e3a8a,stroke:#1d4ed8,stroke-width:2px
+    style C2 fill:#dbeafe,color:#1e3a8a,stroke:#1d4ed8,stroke-width:2px
+    style C3 fill:#dbeafe,color:#1e3a8a,stroke:#1d4ed8,stroke-width:2px
+    style D1 fill:#fef3c7,color:#78350f,stroke:#d97706,stroke-width:2px
+    style D2 fill:#fef3c7,color:#78350f,stroke:#d97706,stroke-width:2px
+    style E1 fill:#ede9fe,color:#4c1d95,stroke:#6d28d9,stroke-width:2px
+    style E2 fill:#ede9fe,color:#4c1d95,stroke:#6d28d9,stroke-width:2px
 ```
 
 ### Komponentlar tushuntirish:
@@ -321,17 +351,6 @@ graph TB
 ### 🪟 WINDOWS UCHUN
 
 #### **1-qadam: PostgreSQL yuklab olish**
-
-```mermaid
-graph LR
-    A[1. Saytga kirish] --> B[2. Download bosish]
-    B --> C[3. Windows tanlash]
-    C --> D[4. Versiya tanlash]
-    D --> E[5. Yuklab olish]
-    
-    style A fill:#4CAF50,color:#fff
-    style E fill:#2196F3,color:#fff
-```
 
 🔗 **Link:** [https://www.postgresql.org/download/windows/](https://www.postgresql.org/download/windows/)
 
@@ -359,24 +378,6 @@ postgresql-16.x-windows-x64.exe
 
 **O'rnatish bosqichlari:**
 
-```mermaid
-graph TD
-    A[Start Installation] --> B[Select Installation Directory]
-    B --> C[Select Components]
-    C --> D[Select Data Directory]
-    D --> E[Set Password]
-    E --> F[Set Port]
-    F --> G[Select Locale]
-    G --> H[Install]
-    H --> I[Finish]
-    
-    style A fill:#4CAF50,color:#fff
-    style E fill:#F44336,color:#fff
-    style I fill:#2196F3,color:#fff
-```
-
-**Har bir bosqich:**
-
 | Bosqich | Tanlash | Tushuntirish |
 |---------|---------|--------------|
 | **Installation Directory** | `C:\Program Files\PostgreSQL\16` | PostgreSQL o'rnatiladigan joy |
@@ -402,20 +403,7 @@ Bu ma'lumotlar har doim kerak bo'ladi!
 
 #### **4-qadam: Stack Builder (ixtiyoriy)**
 
-O'rnatish oxirida **Stack Builder** taklif qilinadi:
-
-```mermaid
-graph LR
-    A[Stack Builder] --> B{Kerakmi?}
-    B -->|HA| C[PostGIS<br/>TimescaleDB<br/>va boshqalar]
-    B -->|YO'Q| D[Skip]
-    
-    style A fill:#336791,color:#fff
-    style C fill:#4CAF50,color:#fff
-    style D fill:#FF9800,color:#fff
-```
-
-**Tavsiya:** Hozircha **Skip** qiling, keyin o'rnatasiz.
+O'rnatish oxirida **Stack Builder** taklif qilinadi - bu qo'shimcha extension'lar o'rnatish uchun. Hozircha **Skip** qiling, keyin kerak bo'lsa o'rnatasiz.
 
 #### **5-qadam: Tekshirish**
 
@@ -442,19 +430,6 @@ psql --version
 ### 🍎 macOS UCHUN
 
 #### **1-usul: Homebrew (Tavsiya qilinadi)**
-
-```mermaid
-graph LR
-    A[Terminal ochish] --> B[Homebrew o'rnatish]
-    B --> C[PostgreSQL o'rnatish]
-    C --> D[Serverini ishga tushirish]
-    D --> E[Tekshirish]
-    
-    style A fill:#4CAF50,color:#fff
-    style E fill:#2196F3,color:#fff
-```
-
-**Qadamma-qadam:**
 
 ```bash
 # 1. Homebrew'ni o'rnatish (agar yo'q bo'lsa)
@@ -550,17 +525,6 @@ exit
 
 ### pgAdmin'ni ochish
 
-```mermaid
-graph LR
-    A[pgAdmin 4 ochish] --> B[Master Password]
-    B --> C[Server qo'shish]
-    C --> D[Ma'lumotlar bazasi yaratish]
-    D --> E[Jadval yaratish]
-    
-    style A fill:#4CAF50,color:#fff
-    style E fill:#2196F3,color:#fff
-```
-
 #### **1-qadam: pgAdmin'ni topish**
 
 **Windows:**
@@ -639,10 +603,18 @@ graph TB
     D --> D1[Server statistikasi]
     D --> D2[Grafik]
     
-    style A fill:#336791,color:#fff
-    style B fill:#4CAF50,color:#fff
-    style C fill:#2196F3,color:#fff
-    style D fill:#FF9800,color:#fff
+    style A fill:#336791,color:#fff,stroke:#1e40af,stroke-width:4px
+    style B fill:#10b981,color:#fff,stroke:#059669,stroke-width:3px
+    style C fill:#3b82f6,color:#fff,stroke:#1d4ed8,stroke-width:3px
+    style D fill:#f59e0b,color:#fff,stroke:#d97706,stroke-width:3px
+    style B1 fill:#d1fae5,color:#065f46,stroke:#059669,stroke-width:2px
+    style B2 fill:#d1fae5,color:#065f46,stroke:#059669,stroke-width:2px
+    style B3 fill:#d1fae5,color:#065f46,stroke:#059669,stroke-width:2px
+    style B4 fill:#d1fae5,color:#065f46,stroke:#059669,stroke-width:2px
+    style C1 fill:#dbeafe,color:#1e3a8a,stroke:#1d4ed8,stroke-width:2px
+    style C2 fill:#dbeafe,color:#1e3a8a,stroke:#1d4ed8,stroke-width:2px
+    style D1 fill:#fef3c7,color:#78350f,stroke:#d97706,stroke-width:2px
+    style D2 fill:#fef3c7,color:#78350f,stroke:#d97706,stroke-width:2px
 ```
 
 ---
@@ -652,16 +624,6 @@ graph TB
 **psql** — PostgreSQL'ning **terminal klienti** bo'lib, buyruqlar orqali boshqarish imkonini beradi.
 
 ### Terminal'ni ochish va ulanish
-
-```mermaid
-graph LR
-    A[Terminal ochish] --> B[psql buyrug'i]
-    B --> C[PostgreSQL ga ulanish]
-    C --> D[SQL yozish]
-    
-    style A fill:#4CAF50,color:#fff
-    style D fill:#2196F3,color:#fff
-```
 
 #### **Windows (CMD / PowerShell):**
 
@@ -754,18 +716,6 @@ test_db=# SELECT * FROM users;
 ## 🗄️ BIRINCHI DATABASE YARATISH
 
 ### GUI orqali (pgAdmin)
-
-```mermaid
-graph TD
-    A[pgAdmin ochish] --> B[Servers → Local PostgreSQL]
-    B --> C[Databases → o'ng tugma]
-    C --> D[Create → Database]
-    D --> E[Ma'lumotlarni kiriting]
-    E --> F[Save]
-    
-    style A fill:#4CAF50,color:#fff
-    style F fill:#2196F3,color:#fff
-```
 
 **Qadamlar:**
 
