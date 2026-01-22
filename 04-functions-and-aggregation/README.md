@@ -820,36 +820,9 @@ ORDER BY DATE_PART('dow', sana);
 
 ## 🎓 AMALIY MASHG'ULOT
 
-### 📊 Test Ma'lumotlar
+### 📊 XODIMLAR JADVALI
 
-Quyidagi jadval bilan ishlang:
-
-```sql
-CREATE TABLE xodimlar (
-    id SERIAL PRIMARY KEY,
-    ism VARCHAR(50),
-    familiya VARCHAR(50),
-    lavozim VARCHAR(100),
-    bo'lim VARCHAR(50),
-    maosh DECIMAL(10, 2),
-    ish_boshlagan_sana DATE,
-    shahar VARCHAR(50)
-);
-
-INSERT INTO xodimlar (ism, familiya, lavozim, bo'lim, maosh, ish_boshlagan_sana, shahar) VALUES
-    ('Ali', 'Valiyev', 'Backend Developer', 'IT', 8000000, '2021-01-15', 'Toshkent'),
-    ('Madina', 'Karimova', 'Frontend Developer', 'IT', 7500000, '2021-03-20', 'Toshkent'),
-    ('Bekzod', 'Tursunov', 'Senior Developer', 'IT', 12000000, '2019-07-01', 'Samarqand'),
-    ('Dilnoza', 'Rahimova', 'Marketing Manager', 'Marketing', 7000000, '2022-05-12', 'Buxoro'),
-    ('Sardor', 'Ahmedov', 'Junior Developer', 'IT', 4500000, '2023-09-30', 'Toshkent'),
-    ('Zarina', 'Yusupova', 'Accountant', 'Finance', 6000000, '2021-11-10', 'Toshkent'),
-    ('Abbos', 'Rustamov', 'Data Analyst', 'IT', 7500000, '2020-06-15', 'Farg\'ona'),
-    ('Feruza', 'Qodirova', 'Sales Manager', 'Sales', 6500000, '2022-02-01', 'Toshkent'),
-    ('Jasur', 'Mirzayev', 'HR Manager', 'HR', 5500000, '2020-03-15', 'Toshkent'),
-    ('Kamola', 'Ergasheva', 'PR Manager', 'Marketing', 6000000, '2021-08-20', 'Samarqand');
-```
-
-**Yaratilgan jadval:**
+Quyidagi jadval bilan ishlang. Topshiriqlarni bajarish uchun ushbu ma'lumotlardan foydalaning:
 
 ```
 ┌────┬─────────┬───────────┬─────────────────────┬───────────┬──────────┬────────────────────┬───────────┐
@@ -867,6 +840,8 @@ INSERT INTO xodimlar (ism, familiya, lavozim, bo'lim, maosh, ish_boshlagan_sana,
 │ 10 │ Kamola  │ Ergasheva │ PR Manager          │ Marketing │ 6000000  │ 2021-08-20         │ Samarqand │
 └────┴─────────┴───────────┴─────────────────────┴───────────┴──────────┴────────────────────┴───────────┘
 ```
+
+> **💡 Eslatma:** Yuqoridagi jadval sizning `xodimlar` database'ingizda mavjud. Topshiriqlarni bajarish uchun bu ma'lumotlardan foydalaning.
 
 ### ✏️ Topshiriqlar
 
