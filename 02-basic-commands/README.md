@@ -175,91 +175,37 @@ PostgreSQL **90+ ma'lumot turi**ni qo'llab-quvvatlaydi. Keling, eng muhimlarini 
 
 ### Ma'lumot turlari tasnifi
 
-```mermaid
-graph TB
-    A[PostgreSQL Data Types] --> B[Sonlar]
-    A --> C[Matn]
-    A --> D[Sana/Vaqt]
-    A --> E[Boolean]
-    A --> F[JSON]
-    A --> G[Maxsus]
-    
-    B --> B1[INTEGER]
-    B --> B2[BIGINT]
-    B --> B3[SMALLINT]
-    B --> B4[DECIMAL]
-    B --> B5[NUMERIC]
-    B --> B6[REAL]
-    B --> B7[DOUBLE PRECISION]
-    B --> B8[SERIAL]
-    B --> B9[BIGSERIAL]
-    
-    C --> C1[CHAR]
-    C --> C2[VARCHAR]
-    C --> C3[TEXT]
-    
-    D --> D1[DATE]
-    D --> D2[TIME]
-    D --> D3[TIMESTAMP]
-    D --> D4[TIMESTAMPTZ]
-    D --> D5[INTERVAL]
-    
-    E --> E1[BOOLEAN]
-    E --> E2[TRUE/FALSE/NULL]
-    
-    F --> F1[JSON]
-    F --> F2[JSONB]
-    
-    G --> G1[UUID]
-    G --> G2[ARRAY]
-    G --> G3[BYTEA]
-    G --> G4[INET]
-    G --> G5[POINT]
-    G --> G6[MONEY]
-    G --> G7[ENUM]
-    
-    style A fill:#8b5cf6,color:#fff,stroke:#6d28d9,stroke-width:4px
-    style B fill:#3b82f6,color:#fff,stroke:#1d4ed8,stroke-width:3px
-    style C fill:#ec4899,color:#fff,stroke:#be185d,stroke-width:3px
-    style D fill:#06b6d4,color:#fff,stroke:#0e7490,stroke-width:3px
-    style E fill:#f59e0b,color:#fff,stroke:#d97706,stroke-width:3px
-    style F fill:#ef4444,color:#fff,stroke:#dc2626,stroke-width:3px
-    style G fill:#8b5cf6,color:#fff,stroke:#6d28d9,stroke-width:3px
-    
-    style B1 fill:#dbeafe,color:#1e3a8a,stroke:#1d4ed8,stroke-width:2px
-    style B2 fill:#dbeafe,color:#1e3a8a,stroke:#1d4ed8,stroke-width:2px
-    style B3 fill:#dbeafe,color:#1e3a8a,stroke:#1d4ed8,stroke-width:2px
-    style B4 fill:#dbeafe,color:#1e3a8a,stroke:#1d4ed8,stroke-width:2px
-    style B5 fill:#dbeafe,color:#1e3a8a,stroke:#1d4ed8,stroke-width:2px
-    style B6 fill:#dbeafe,color:#1e3a8a,stroke:#1d4ed8,stroke-width:2px
-    style B7 fill:#dbeafe,color:#1e3a8a,stroke:#1d4ed8,stroke-width:2px
-    style B8 fill:#dbeafe,color:#1e3a8a,stroke:#1d4ed8,stroke-width:2px
-    style B9 fill:#dbeafe,color:#1e3a8a,stroke:#1d4ed8,stroke-width:2px
-    
-    style C1 fill:#fce7f3,color:#831843,stroke:#be185d,stroke-width:2px
-    style C2 fill:#fce7f3,color:#831843,stroke:#be185d,stroke-width:2px
-    style C3 fill:#fce7f3,color:#831843,stroke:#be185d,stroke-width:2px
-    
-    style D1 fill:#cffafe,color:#164e63,stroke:#0e7490,stroke-width:2px
-    style D2 fill:#cffafe,color:#164e63,stroke:#0e7490,stroke-width:2px
-    style D3 fill:#cffafe,color:#164e63,stroke:#0e7490,stroke-width:2px
-    style D4 fill:#cffafe,color:#164e63,stroke:#0e7490,stroke-width:2px
-    style D5 fill:#cffafe,color:#164e63,stroke:#0e7490,stroke-width:2px
-    
-    style E1 fill:#fef3c7,color:#78350f,stroke:#d97706,stroke-width:2px
-    style E2 fill:#fef3c7,color:#78350f,stroke:#d97706,stroke-width:2px
-    
-    style F1 fill:#fee2e2,color:#7f1d1d,stroke:#dc2626,stroke-width:2px
-    style F2 fill:#fee2e2,color:#7f1d1d,stroke:#dc2626,stroke-width:2px
-    
-    style G1 fill:#ede9fe,color:#4c1d95,stroke:#6d28d9,stroke-width:2px
-    style G2 fill:#ede9fe,color:#4c1d95,stroke:#6d28d9,stroke-width:2px
-    style G3 fill:#ede9fe,color:#4c1d95,stroke:#6d28d9,stroke-width:2px
-    style G4 fill:#ede9fe,color:#4c1d95,stroke:#6d28d9,stroke-width:2px
-    style G5 fill:#ede9fe,color:#4c1d95,stroke:#6d28d9,stroke-width:2px
-    style G6 fill:#ede9fe,color:#4c1d95,stroke:#6d28d9,stroke-width:2px
-    style G7 fill:#ede9fe,color:#4c1d95,stroke:#6d28d9,stroke-width:2px
-```
+PostgreSQL'da eng ko'p ishlatiladigan ma'lumot turlari:
+
+| Kategoriya | Ma'lumot Turlari | Qo'llanilishi |
+|------------|------------------|---------------|
+| **🔢 Sonlar** | `INTEGER`, `BIGINT`, `SMALLINT` | ID, sonlar, miqdorlar |
+| | `DECIMAL`, `NUMERIC` | Pul, aniq hisob-kitoblar |
+| | `REAL`, `DOUBLE PRECISION` | Ilmiy hisob-kitoblar |
+| | `SERIAL`, `BIGSERIAL` | Avtomatik ID |
+| **📝 Matn** | `CHAR(n)` | Aniq uzunlik (kod, telefon) |
+| | `VARCHAR(n)` | O'zgaruvchan uzunlik (ism, email) |
+| | `TEXT` | Cheksiz matn (maqolalar, izohlar) |
+| **📅 Sana/Vaqt** | `DATE` | Faqat sana (tug'ilgan kun) |
+| | `TIME` | Faqat vaqt (ochilish vaqti) |
+| | `TIMESTAMP` | Sana + vaqt (buyurtma vaqti) |
+| | `TIMESTAMPTZ` | Vaqt zonasi bilan |
+| | `INTERVAL` | Vaqt oralig'i (3 kun, 2 soat) |
+| **✔️ Boolean** | `BOOLEAN` | TRUE/FALSE/NULL |
+| **📦 JSON** | `JSON`, `JSONB` | Strukturalangan ma'lumotlar |
+| **🎯 Maxsus** | `UUID` | Noyob identifikator |
+| | `ARRAY` | Massivlar |
+| | `INET` | IP manzil |
+| | `MONEY` | Pul (valyuta) |
+| | `BYTEA` | Binary data |
+
+**Qisqa tavsiya:**
+- 💰 Pul uchun → `DECIMAL(10, 2)`
+- 🔢 ID uchun → `SERIAL` yoki `BIGSERIAL`
+- 📝 Ism uchun → `VARCHAR(100)`
+- 📄 Maqola uchun → `TEXT`
+- 📅 Sana uchun → `DATE` yoki `TIMESTAMP`
+- ✔️ Holat uchun → `BOOLEAN`
 
 ---
 
