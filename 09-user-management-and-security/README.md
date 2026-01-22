@@ -63,49 +63,78 @@ CREATE ROLE admin_user SUPERUSER LOGIN PASSWORD 'secret';
 
 ## 🔐 GRANT VA REVOKE
 
-Bu buyruqlar foydalanuvchilarga qanday amallarni bajarishga ruxsat berishni belgilaydi. Biz yuqoridagi `sotuvlar` jadvalidan foydalanamiz.
+Bu buyruqlar foydalanuvchilarga qanday amallarni bajarishga ruxsat berishni belgilaydi. Yuqoridagi `sotuvlar` jadvali misolida ko'ramiz.
 
-### 1️⃣ GRANT (Ruxsat berish)
+### 📌 Real Misol: Shahlo faqat kitoblar bo'limini ko'ra olsin
+
+**Vaziyat:** Shahlo faqat kitoblarni (Books kategoriyasi) ko'rishi kerak, lekin Electronics qismiga kirmasligi kerak.
+
 ```sql
--- Azizga faqat o'qish huquqini berish
-GRANT SELECT ON sotuvlar TO aziz;
+-- 1. Shahlo foydalanuvchisini yaratamiz
+CREATE ROLE shahlo LOGIN PASSWORD 'shahlo123';
 
--- Azizga ma'lumot qo'shish huquqini ham berish
-GRANT INSERT ON sotuvlar TO aziz;
+-- 2. Shahlo o'qiy olsin (SELECT)
+GRANT SELECT ON sotuvlar TO shahlo;
 
--- Barcha huquqlarni berish (SELECT, INSERT, UPDATE, DELETE)
-GRANT ALL PRIVILEGES ON TABLE sotuvlar TO aziz;
+-- 3. Endi Shahlo faqat Books qatorlarini ko'rish uchun Row-Level Security ishlatamiz (keyinroq)
+-- Yoki: Shahlo faqat o'zining sotuvlarini yangilashi mumkin:
+GRANT UPDATE(narx) ON sotuvlar TO shahlo;
 ```
 
-### 2️⃣ REVOKE (Ruxsatni qaytarib olish)
+### 🔒 REVOKE - Huquqni qaytarib olish
+
+**Vaziyat:** Komil avval barcha huquqlarga ega edi, lekin endi u faqat ko'ra olsin.
+
 ```sql
--- Azizdan 'sotuvlar' jadvalini o'chirish (DELETE) huquqini qaytarib olish
-REVOKE DELETE ON sotuvlar FROM aziz;
+-- Komildan DELETE va UPDATE huquqlarini qaytarib olamiz
+REVOKE DELETE, UPDATE ON sotuvlar FROM komil;
+
+-- Endi Komil faqat SELECT qila oladi
 ```
 
 ---
 
 ## 🏗️ RBAC - ROLE BASED ACCESS CONTROL
 
-Katta proyektlarda har bir foydalanuvchiga alohida huquq berish xato yo'l. Buning o'rniga "Rollar" yaratiladi.
+Katta proyektlarda har bir foydalanuvchiga alohida huquq berish samarasiz. Buning o'rniga "Rollar" yaratiladi va sotuvchilar shu rollarga biriktiriladi.
 
-**Ssenariy:**
-1. `manager` roli - `sotuvlar` jadvalida hamma narsani qila oladi.
-2. `viewer` roli - faqat ko'ra oladi.
+### 📌 Real Ssenariy: Do'kondagi rollar tizimi
+
+**Kompaniyamizda 3 xil rol bor:**
+1. **sales_rep** (Sotuvchi) - Faqat o'zining sotuvlarini ko'ra oladi va yangi sotuv qo'sha oladi.
+2. **analyst** (Analitik) - Barcha sotuvlarni ko'ra oladi, lekin o'zgartira olmaydi.
+3. **sales_manager** (Menejer) - Hamma narsani qila oladi.
 
 ```sql
 -- 1. Rollarni yaratamiz
-CREATE ROLE manager;
-CREATE ROLE viewer;
+CREATE ROLE sales_rep;
+CREATE ROLE analyst;
+CREATE ROLE sales_manager;
 
--- 2. Rollarga huquqlarni beramiz
-GRANT SELECT ON sotuvlar TO viewer;
-GRANT ALL PRIVILEGES ON sotuvlar TO manager;
+-- 2. Rollarga mos huquqlarni beramiz
+-- Sotuvchi: faqat ko'rish va qo'shish
+GRANT SELECT, INSERT ON sotuvlar TO sales_rep;
 
--- 3. Haqiqiy foydalanuvchilarni shu rollarga biriktiramiz
-GRANT viewer TO aziz;    -- Aziz endi faqat ko'ra oladi
-GRANT manager TO sardor; -- Sardor hamma narsani qila oladi
+-- Analitik: faqat statistika uchun ko'rish
+GRANT SELECT ON sotuvlar TO analyst;
+
+-- Menejer: hamma narsa (o'zgartirish, o'chirish ham)
+GRANT ALL PRIVILEGES ON sotuvlar TO sales_manager;
+
+-- 3. Haqiqiy xodimlarni rollarga biriktiramiz
+CREATE ROLE aziz_user LOGIN PASSWORD 'aziz123';
+CREATE ROLE komil_user LOGIN PASSWORD 'komil123';
+CREATE ROLE sardor_boss LOGIN PASSWORD 'boss456';
+
+GRANT sales_rep TO aziz_user;      -- Aziz oddiy sotuvchi
+GRANT analyst TO komil_user;        -- Komil analitik
+GRANT sales_manager TO sardor_boss; -- Sardor boss
 ```
+
+**Natija:**
+- Aziz yangi sotuv qo'sha oladi, boshqalarning sotuvlarini o'zgartira olmaydi.
+- Komil hisobotlar tayyorlaydi, lekin ma'lumotlarni o'zgartira olmaydi.
+- Sardor hamma narsani boshqaradi.
 
 ---
 
